@@ -1,0 +1,79 @@
+
+.footer{
+    background-color:rgb(68, 2, 2);
+    padding: 15px;
+    width: 100%;
+    
+    display: flex;
+}
+
+.personal-details{
+    margin:60px;
+    margin-left:100px;
+}
+.personal-details h1{
+    color: white;
+    font-size: 30px;
+}
+.address{
+    color: white;
+    margin: 8px;
+    
+
+}
+.address h1{
+   color: white;
+}
+.address p{
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+.contact{
+    margin-top:15px;
+}
+.contact h1{
+    color: white;
+    margin:5px;
+}
+.contact p{
+    margin-left: 20px;
+    color: white;
+    font-size: 18px;
+}
+.fssai{
+    margin-top: 15px;
+}
+.fssai h1{
+    color: white;
+    margin:5px;
+}
+.fssai p{
+    margin-left:20px;
+    font-size: 18px;
+    color: white;
+}
+
+/* product list style */
+.product-list{
+    width:30%;
+    margin-left: 5%;
+    
+    padding: auto;
+   
+}
+.product-list h1{
+    font-size: 30px;
+    margin-bottom: 5px;
+    color: white;
+}
+.product-list ul{
+    list-style-type: none;
+    
+}
+
+.link{
+    color:rgb(255,203,112);
+    font-size: 25px;
+    margin-top: 5px;
+}
