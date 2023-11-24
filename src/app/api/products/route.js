@@ -1,5 +1,5 @@
 import { connectionSrc } from "@/library/db";
-import { Product } from "@/library/models/Product";
+import { Product } from "@/library/models/product.js";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
