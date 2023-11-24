@@ -1,1 +1,1 @@
-export const connectionSrc="mongodb+srv://root:root@cluster0.pa8gzbi.mongodb.net/?retryWrites=true&w=majority";
+export const connection="mongodb://localhost:27017";
