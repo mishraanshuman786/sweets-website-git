@@ -13,7 +13,7 @@ export default function Footer(){
   }, [products]);
 
   async function getData() {
-    let data = await fetch("http://localhost:3000/api/products");
+    let data = await fetch("api/products");
     data = await data.json();
     await setProducts(data);
   }

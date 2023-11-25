@@ -15,7 +15,7 @@ export default function Contact() {
   }
 
   async function sendMail(){
-    let response=await fetch("http://localhost:3000/api/sendEmail",{
+    let response=await fetch("api/sendEmail",{
        method:"POST",
        body:JSON.stringify({
            name:name,to:email,subject:"For Training",text:message
