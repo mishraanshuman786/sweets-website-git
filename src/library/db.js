@@ -1,1 +1,1 @@
-export const connectionSrc="mongodb+srv://vercel-admin-user:cTwbdhpcVg6ZFubH@cluster0.pa8gzbi.mongodb.net/sweetsdb?retryWrites=true&w=majority"
+export const connectionSrc="mongodb+srv://mishraanshuman146:anshu146@cluster0.pa8gzbi.mongodb.net/sweetsdb?retryWrites=true&w=majority"
