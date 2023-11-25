@@ -6,9 +6,9 @@ const productModel=new mongoose.Schema({
    productName:String,
    category:String,
    desc:String,
-   images:[String],
+   images:[String]
 });
 
 
-// // connection products table with productModel schema
-export const Product=mongoose.models.products ||mongoose.model("products",productModel);
+// connection products table with productModel schema
+export const Product=mongoose.models.products || mongoose.model("products",productModel);
