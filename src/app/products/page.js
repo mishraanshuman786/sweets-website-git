@@ -32,7 +32,7 @@ export default function Product() {
                 let path;
 
               return (
-                <div key={element._id} className="card mt-5 container bg-dark">
+                <div key={element._id} className="card mt-5 container bg-dark" >
                     <div className="card-img-top m-2" style={{width:"100%",display:"flex",overflow:"auto"}}>
                         {
                             element.images.map((image,index)=>{
@@ -50,8 +50,8 @@ export default function Product() {
                     </div>
                   
                   <div className="card-body">
-                    <h5 className="card-title text-light text-lg">{element.productName}</h5>
-                    <p className="card-text text-light">
+                    <h5 className="card-title text-light text-lg h1">{element.productName}</h5>
+                    <p className="card-text text-light h4">
                       {element.desc}
                     </p>
                     <br/>

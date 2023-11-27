@@ -35,7 +35,7 @@ const Navbar = () => {
             Logo
           </Link>
           <button
-            className="navbar-toggler"
+            className="navbar-toggler bg-light text-dark"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -71,7 +71,7 @@ const Navbar = () => {
                 >
                   Products
                 </Link>
-                <ul className="dropdown-menu">
+                <ul className="dropdown-menu" style={{zIndex:10}}>
                   {/* dynamic content */}
                   {navProducts
                     ? navProducts.result.map((element) => {

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./components/styles/page.css";
+import Link from "next/link";
 
 export default function Homepage() {
   useEffect(() => {
@@ -19,7 +20,7 @@ export default function Homepage() {
   }
 
   return (
-    <div style={{backgroundColor:"wheat"}}>
+    <div style={{ backgroundColor: "wheat" }}>
       {/* Navbar */}
       <Navbar />
       {/* =================================================================== */}
@@ -29,15 +30,18 @@ export default function Homepage() {
           {navProducts
             ? navProducts.result.map((element) => {
                 let path = `/ProductImages/${element.images[0]}.jpg`;
+                let productsPath = `/products/${element._id}`;
 
                 return (
-                  <div
-                    className="col-xxl-4 col-xl-6"
-                  >
+                  <Link key={element._id} href={productsPath} style={{textDecoration:"none"}} className="col-xxl-4 col-xl-6">
                     <div
                       className="responsive-card card mx-auto bg-dark my-4 w-sm-2"
                       key={element._id}
-                      style={{width: "25rem",height:"22rem",textAlign:"center"}}
+                      style={{
+                        width: "25rem",
+                        height: "22rem",
+                        textAlign: "center",
+                      }}
                     >
                       <Image
                         src={path}
@@ -47,10 +51,12 @@ export default function Homepage() {
                         className="card-img-top mx-auto responsive-image"
                       />
                       <div class="card-body text-center">
-                        <h5 class="card-title text-light">{element.productName}</h5>
+                        <h5 class="card-title text-light">
+                          {element.productName}
+                        </h5>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 );
               })
             : null}
@@ -58,7 +64,7 @@ export default function Homepage() {
       </div>
       <div>
         {/* Footer */}
-         <Footer />
+        <Footer />
       </div>
     </div>
   );

@@ -2,27 +2,29 @@
 import {useState} from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import Link from "next/link";
 
 export default function Login() {
 
     const [email,setEmail]=useState();
     const [password,setPassword]=useState();
 
-    function click(e){
+    function login(e){
         e.preventDefault();
         alert(email,password);
     }
 
 
   return (
-    <div className="mb-8 background">
+    <div className="mb-8" style={{backgroundColor:"wheat"}}>
         {/* Navbar */}
         <Navbar/>
         {/* end navbar */}
-      <form className="container-fluid" >
-        <div className="bg-dark container-fluid mx-0 sticky-top p-1">
+        <div className="bg-dark container-fluid mx-0 sticky-top p-1" style={{zIndex:2}}>
           <h1 className="text-light mt-4 ">Login Form</h1>
         </div>
+      <form className="container" >
+        
 
         <div className="my-4">
           <label htmlFor="exampleInputEmail1" className="form-label">
@@ -53,9 +55,16 @@ export default function Login() {
           />
         </div>
 
-        <button type="submit" onClick={click} className="btn btn-primary mb-5">
+        <button type="submit" onClick={login} className="btn btn-primary mb-5">
           Submit
         </button>
+        <div className="my-2 mb-4">
+        <Link href={"/register"} style={{textDecoration:"none"}} className="h3">
+        Don't Have an Account?<span style={{textDecoration:"underline"}}>Register Here</span>
+        
+        </Link>
+        </div>
+
       </form>
       {/* footer */}
       <Footer />

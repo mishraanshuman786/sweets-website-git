@@ -3,19 +3,18 @@ import { FaGlobe } from "react-icons/fa6";
 import { FaPhone } from "react-icons/fa";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-// import "./styles/Footer.css";
 export default function Footer(){
 
      //  fetching products from database
-  const [products, setProducts] = useState();
+  const [footerProducts, setFooterProducts] = useState();
   useEffect(() => {
     getData();
-  }, [products]);
+  }, []);
 
   async function getData() {
-    let data = await fetch("api/products");
-    data = await data.json();
-    await setProducts(data);
+    let footerData = await fetch("api/products");
+    footerData= await footerData.json();
+    await setFooterProducts(footerData);
   }
 
 
@@ -48,8 +47,8 @@ export default function Footer(){
             <h1 className="text-light"><u>Our Products</u></h1>
             <ul className="list-group list-group-flush" style={{listStyleType:"none"}}>
               {
-                (products)?(
-                  products.result.map((element)=>{
+                (footerProducts)?(
+                  footerProducts.result.map((element)=>{
                     let url=`/products/${element._id}`;
                       return (
                         <li key={element._id}><Link  className="text-light list-group-item list-group-item-action list-group-item-success text-dark h3" href={url}>{element.productName}</Link></li>

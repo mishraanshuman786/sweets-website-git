@@ -2,11 +2,23 @@ import mongoose from "mongoose";
 
 
 // creating products table schema
-const userModel=new mongoose.Schema({
-   name:String,
-   email:String,
-   password:String,
-});
+const userModel=new mongoose.Schema(
+   {
+   name:{
+      type:String,
+      required:true,
+   },
+   email:{
+      type:String,
+      required:true,
+   },
+  password:{
+   type:String,
+   required:true,
+  }
+},
+  {timestamps:true}
+);
 
 
 // connection products table with productModel schema

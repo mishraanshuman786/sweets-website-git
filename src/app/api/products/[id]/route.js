@@ -4,17 +4,18 @@ import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
 
-export async function GET() {
+export async function GET(request,content) {
   try {
     // connection with Mongodb
-   await mongoose.connect(connectionSrc);
-    let data = await Product.find();
+    mongoose.connect(connectionSrc);
+    let data = await Product.findOne({_id:content.params.id});
+    console.log(data);
     
-    return NextResponse.json({ result: data });
+    return NextResponse.json({ result:[data], status:true });
    
   } catch (err) {
     console.error("error:", err.message);
-    return NextResponse.json({ result: false });
+    return NextResponse.json({ status:false });
   }
 }
 
