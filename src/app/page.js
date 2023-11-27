@@ -20,12 +20,12 @@ export default function Homepage() {
   }
 
   return (
-    <div style={{ backgroundColor: "wheat" }}>
+    <div>
       {/* Navbar */}
       <Navbar />
       {/* =================================================================== */}
 
-      <div className="container bg-success py-2">
+      <div className="container bg-success py-2" style={{ backgroundColor: "wheat" }}>
         <div className="row">
           {navProducts
             ? navProducts.result.map((element) => {
@@ -62,10 +62,9 @@ export default function Homepage() {
             : null}
         </div>
       </div>
-      <div>
-        {/* Footer */}
+      {/* Footer */}
         <Footer />
-      </div>
+      
     </div>
   );
 }

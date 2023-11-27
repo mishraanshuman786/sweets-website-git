@@ -1,66 +1,149 @@
-import { FaLocationPin } from "react-icons/fa6";
-import { FaGlobe } from "react-icons/fa6";
-import { FaPhone } from "react-icons/fa";
-import Link from "next/link";
-import { useState, useEffect } from "react";
+import { FaFacebookF,  FaTwitter,FaGoogle, FaLinkedinIn } from "react-icons/fa";
 export default function Footer(){
-
-     //  fetching products from database
-  const [footerProducts, setFooterProducts] = useState();
-  useEffect(() => {
-    getData();
-  }, []);
-
-  async function getData() {
-    let footerData = await fetch("api/products");
-    footerData= await footerData.json();
-    await setFooterProducts(footerData);
-  }
-
-
     return (
-        <div className="container-fluid row bg-dark mt-2">
-            {/* Personal Details */}
-          <div className="col-12 col-xxl-7 ms-xxl-5 mt-xxl-3 ps-xxl-5 pt-5">
-            <h1 className="text-light"><u>Personal Details</u></h1>
-            <div className="mt-4">
-            <h1 className="text-light"> <FaLocationPin style={{marginRight:6}} /> Address: </h1><br/>
-            <p className="text-light h3">
-                S-28/56 R-9 Anula Mahadev Nagar Colony, Varanasi
-            </p>
+    <div className="container-fluid mt-5">
 
-            </div>
-            <div className="contact mt-4">
-           <h1 className="text-light"><FaPhone style={{marginRight:6}} /> Phone Number</h1>
-            <p className="text-light h3">6307010388</p>
-            </div>
-            <div className="fssai mt-4">
-              <h1 className="text-light"><FaGlobe style={{marginRight:6}} />FSSAI </h1>
-              <p className="text-light h3">22723630000206</p>
-            </div>
+  
+  <footer
+          className="text-center text-lg-start text-white"
+          style={{backgroundColor:"#1c2331"}}
+          >
+   
+    <section
+             className="d-flex justify-content-between p-4"
+             style={{backgroundColor: "#6351ce"}}
+             >
+      
+      <div className="me-5 h4">
+        <span>Get connected with us on social networks:</span>
+      </div>
+     
 
-          </div>
+      
+      <div>
+        <a href="" className="text-white me-4 h2">
+        <FaFacebookF />
+        </a>
+        <a href="" className="text-white me-4 h2">
+        <FaTwitter />
+        </a>
+        <a href="" className="text-white me-4 h2">
+          <i className="fab fa-google"></i>
+        </a>
+        <a href="" className="text-white me-4 h2">
+        <FaGoogle />
+        </a>
+        <a href="" className="text-white me-4 h2">
+        <FaLinkedinIn />
+        </a>
+        
+        
+      </div>
+      
+    </section>
+    
 
-         
-          {/* Products List */}
-          <div className="col-12 col-xxl-4 text-center py-5 pt-2">
-            <h1 className="text-light"><u>Our Products</u></h1>
-            <ul className="list-group list-group-flush" style={{listStyleType:"none"}}>
-              {
-                (footerProducts)?(
-                  footerProducts.result.map((element)=>{
-                    let url=`/products/${element._id}`;
-                      return (
-                        <li key={element._id}><Link  className="text-light list-group-item list-group-item-action list-group-item-success text-dark h3" href={url}>{element.productName}</Link></li>
-                      )
-                  })
-                ):null
-              }
-             
-             
-            </ul>
-          </div>
+    
+    <section className="">
+      <div className="container text-center text-md-start mt-5">
+       
+        <div className="row mt-3">
+        
+          <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
            
+            <h6 className="text-uppercase fw-bold">Company name</h6>
+            <hr
+                className="mb-4 mt-0 d-inline-block mx-auto"
+                style={{width: 60, backgroundColor: "#7c4dff", height: 2}}
+                />
+            <p>
+              Here you can use rows and columns to organize your footer
+              content. Lorem ipsum dolor sit amet, consectetur adipisicing
+              elit.
+            </p>
+          </div>
+         
+
+          
+          <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+           
+            <h6 className="text-uppercase fw-bold">Products</h6>
+            <hr
+                className="mb-4 mt-0 d-inline-block mx-auto"
+                style={{width: 60, backgroundColor: "#7c4dff", height: 2}}
+                />
+            <p>
+              <a href="#!" className="text-white">MDBootstrap</a>
+            </p>
+            <p>
+              <a href="#!" className="text-white">MDWordPress</a>
+            </p>
+            <p>
+              <a href="#!" className="text-white">BrandFlow</a>
+            </p>
+            <p>
+              <a href="#!" className="text-white">Bootstrap Angular</a>
+            </p>
+          </div>
+         
+
+        
+          <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            
+            <h6 className="text-uppercase fw-bold">Useful links</h6>
+            <hr
+                className="mb-4 mt-0 d-inline-block mx-auto"
+                style={{width: 60, backgroundColor: "#7c4dff", height: 2}}
+                />
+            <p>
+              <a href="#!" className="text-white">Your Account</a>
+            </p>
+            <p>
+              <a href="#!" className="text-white">Become an Affiliate</a>
+            </p>
+            <p>
+              <a href="#!" className="text-white">Shipping Rates</a>
+            </p>
+            <p>
+              <a href="#!" className="text-white">Help</a>
+            </p>
+          </div>
+        
+         
+          <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+           
+            <h6 className="text-uppercase fw-bold">Contact</h6>
+            <hr
+                className="mb-4 mt-0 d-inline-block mx-auto"
+                style={{width: 60, backgroundColor: "#7c4dff", height: 2}}
+                />
+            <p><i className="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+            <p><i className="fas fa-envelope mr-3"></i> info@example.com</p>
+            <p><i className="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+            <p><i className="fas fa-print mr-3"></i> + 01 234 567 89</p>
+          </div>
+         
         </div>
+       
+      </div>
+    </section>
+  
+
+   
+    <div
+         className="text-center p-3"
+         style={{backgroundColor:" rgba(0, 0, 0, 0.2)"}}
+         >
+      © 2020 Copyright:
+      <a className="text-white" href="https://mdbootstrap.com/"
+         >MDBootstrap.com</a
+        >
+    </div>
+    
+  </footer>
+ 
+
+</div>
+
     )
 }
