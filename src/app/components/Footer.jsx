@@ -1,11 +1,11 @@
-import { FaFacebookF,  FaTwitter,FaGoogle, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF,  FaTwitter,FaGoogle, FaLinkedinIn, FaPhoneAlt,FaAddressBook } from "react-icons/fa";
 export default function Footer(){
     return (
     <div className="container-fluid mt-5">
 
   
   <footer
-          className="text-center text-lg-start text-white"
+          className="text-center text-lg-start container-fluid text-white"
           style={{backgroundColor:"#1c2331"}}
           >
    
@@ -51,15 +51,13 @@ export default function Footer(){
         
           <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
            
-            <h6 className="text-uppercase fw-bold">Company name</h6>
+            <h6 className="text-uppercase fw-bold h4">About Company</h6>
             <hr
                 className="mb-4 mt-0 d-inline-block mx-auto"
                 style={{width: 60, backgroundColor: "#7c4dff", height: 2}}
                 />
-            <p>
-              Here you can use rows and columns to organize your footer
-              content. Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit.
+            <p className="h5">
+              We are sell sugaror without sugar laddu on your order Yes! Our Laddus are made with all natural Jaggery and Ghee. Keeping in Mind the health of every person, we should deliver pure-hand made Laddos.
             </p>
           </div>
          
@@ -67,7 +65,7 @@ export default function Footer(){
           
           <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
            
-            <h6 className="text-uppercase fw-bold">Products</h6>
+            <h6 className="text-uppercase fw-bold h4">Products</h6>
             <hr
                 className="mb-4 mt-0 d-inline-block mx-auto"
                 style={{width: 60, backgroundColor: "#7c4dff", height: 2}}
@@ -90,7 +88,7 @@ export default function Footer(){
         
           <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
             
-            <h6 className="text-uppercase fw-bold">Useful links</h6>
+            <h6 className="text-uppercase fw-bold h4">Useful links</h6>
             <hr
                 className="mb-4 mt-0 d-inline-block mx-auto"
                 style={{width: 60, backgroundColor: "#7c4dff", height: 2}}
@@ -112,15 +110,15 @@ export default function Footer(){
          
           <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
            
-            <h6 className="text-uppercase fw-bold">Contact</h6>
+            <h6 className="text-uppercase fw-bold h4">Contact</h6>
             <hr
                 className="mb-4 mt-0 d-inline-block mx-auto"
                 style={{width: 60, backgroundColor: "#7c4dff", height: 2}}
                 />
-            <p><i className="fas fa-home mr-3"></i> New York, NY 10012, US</p>
-            <p><i className="fas fa-envelope mr-3"></i> info@example.com</p>
-            <p><i className="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-            <p><i className="fas fa-print mr-3"></i> + 01 234 567 89</p>
+            <p className="h5"><FaAddressBook /> S-28/56 R-9 Anula Mahadev Nagar Colony, Varanasi</p>
+            <p className="h5"><i className="fas fa-envelope mr-3"></i> FSSAI: 22723630000206</p>
+            <p className="h5"><FaPhoneAlt /> 6307010388</p>
+           
           </div>
          
         </div>
@@ -131,12 +129,12 @@ export default function Footer(){
 
    
     <div
-         className="text-center p-3"
+         className="text-center p-3 h5"
          style={{backgroundColor:" rgba(0, 0, 0, 0.2)"}}
          >
-      © 2020 Copyright:
-      <a className="text-white" href="https://mdbootstrap.com/"
-         >MDBootstrap.com</a
+      © 2023 Copyright:
+      <a className="text-white h5" href="#"
+         >Ladooshop.com</a
         >
     </div>
     

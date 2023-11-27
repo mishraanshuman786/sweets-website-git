@@ -25,7 +25,7 @@ export default function Homepage() {
       <Navbar />
       {/* =================================================================== */}
 
-      <div className="container bg-success py-2" style={{ backgroundColor: "wheat" }}>
+      <div className="container bg-success py-2" style={{ backgroundColor: "wheat"}}>
         <div className="row">
           {navProducts
             ? navProducts.result.map((element) => {
@@ -33,12 +33,12 @@ export default function Homepage() {
                 let productsPath = `/products/${element._id}`;
 
                 return (
-                  <Link key={element._id} href={productsPath} style={{textDecoration:"none"}} className="col-xxl-4 col-xl-6">
+                  <Link key={element._id} href={productsPath} style={{textDecoration:"none"}} className="col-xl-4 col-md-6">
                     <div
                       className="responsive-card h-20  card mx-auto bg-dark my-4 w-sm-2"
                       key={element._id}
                       style={{
-                        width: "22rem",
+                        width: "20rem",
                         height: "22rem",
                         textAlign: "center",
                       }}

@@ -9,7 +9,7 @@ export async function GET(request,content) {
     // connection with Mongodb
     mongoose.connect(connectionSrc);
     let data = await Product.findOne({_id:content.params.id});
-    console.log(data);
+   
     
     return NextResponse.json({ result:[data], status:true });
    
