@@ -1,7 +1,7 @@
 import { FaFacebookF,  FaTwitter,FaGoogle, FaLinkedinIn, FaPhoneAlt,FaAddressBook } from "react-icons/fa";
 export default function Footer(){
     return (
-    <div className="container-fluid mt-5">
+    <div className="container-fluid">
 
   
   <footer

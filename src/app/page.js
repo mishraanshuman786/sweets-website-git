@@ -20,7 +20,7 @@ export default function Homepage() {
   }
 
   return (
-    <div>
+    <div style={{backgroundColor:"wheat"}}>
       {/* Navbar */}
       <Navbar />
       {/* =================================================================== */}
