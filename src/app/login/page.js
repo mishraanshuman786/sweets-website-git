@@ -25,7 +25,7 @@ export default function Login() {
         password,
         redirect: false,
       });
-     
+
       if (res.ok) {
         setError(false);
 
@@ -101,20 +101,23 @@ export default function Login() {
         </div>
 
         <div>
-
-        <button type="submit" onClick={login} className="btn btn-primary mb-5">
-          Submit
-        </button>
-        {/* Logout button */}
-        {showLogout ? (
           <button
-            type="button"
-            className="btn btn-success mb-5 ms-5"
-            onClick={() => signOut()}
+            type="submit"
+            onClick={login}
+            className="btn btn-primary mb-5"
           >
-            Logout
+            Submit
           </button>
-        ) : null}
+          {/* Logout button */}
+          {showLogout ? (
+            <button
+              type="button"
+              className="btn btn-success mb-5 ms-5"
+              onClick={() => signOut()}
+            >
+              Logout
+            </button>
+          ) : null}
         </div>
 
         <div className="my-2 mb-4">

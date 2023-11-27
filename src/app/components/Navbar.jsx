@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
 
 const Navbar = () => {
-
   const router = useRouter();
   const [navProducts, setNavProducts] = useState();
 
@@ -72,7 +71,7 @@ const Navbar = () => {
                 >
                   Products
                 </Link>
-                <ul className="dropdown-menu" style={{zIndex:10}}>
+                <ul className="dropdown-menu" style={{ zIndex: 10 }}>
                   {/* dynamic content */}
                   {navProducts
                     ? navProducts.result.map((element) => {
@@ -99,16 +98,17 @@ const Navbar = () => {
                   </li>
                 </ul>
               </li>
-             
             </ul>
 
-           
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={() => router.push("/login")}
+            >
+              Login
+            </button>
 
-            <button type="button" className="btn btn-success" onClick={()=>router.push("/login")}>Login</button>
-           
-           {/* button */}
-           
-
+            {/* button */}
           </div>
         </div>
       </nav>

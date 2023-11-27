@@ -4,11 +4,10 @@ import Footer from "../components/Footer";
 import "./blog.css";
 
 export default function Blog() {
- 
   return (
     <div>
       {/* Navbar */}
-      <Navbar/>
+      <Navbar />
 
       {/* blog heading */}
       <div className="blog-heading">
@@ -17,6 +16,5 @@ export default function Blog() {
       {/* Footer */}
       <Footer />
     </div>
-
   );
 }

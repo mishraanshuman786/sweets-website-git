@@ -6,63 +6,57 @@ export default function RegisterForm() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState(false);
-  const [errorMessage,setErrorMessage]=useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
- async function register(e) {
+  async function register(e) {
     e.preventDefault();
     if (!name || !email || !password) {
-        setError(true);
-        setErrorMessage("Please fill in all the fields.");
-        return;
-    }
-    else{
-         try{
-            setError(false);
-            setErrorMessage("");
-            // fetching the userExists API
-           const res=await fetch("api/userExists", {
-            method:"POST",
-            headers:{
-              "Content-Type":"application/json"
-            },
-            body:JSON.stringify({email}),
-           });
-           const {user}=await res.json();
+      setError(true);
+      setErrorMessage("Please fill in all the fields.");
+      return;
+    } else {
+      try {
+        setError(false);
+        setErrorMessage("");
+        // fetching the userExists API
+        const res = await fetch("api/userExists", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        });
+        const { user } = await res.json();
 
-           if(user){
-            setError(true);
-            setErrorMessage("User already Exists.");
-            return;
-           }
-
-
-
-//      creating the users
-            let response=await fetch("api/register",{
-              method:"POST",
-              headers:{
-                  "Content-Type":"application/json"
-              },
-              body:JSON.stringify({
-                  name,email,password
-              })
-             
-            });
-
-            if(response.ok){
-              setName("");
-              setEmail("");
-              setPassword("");
-            }
-        }catch(error){
-            console.log("error:",error);
-      
+        if (user) {
+          setError(true);
+          setErrorMessage("User already Exists.");
+          return;
         }
-    }
-    
-  }
 
- 
+        //      creating the users
+        let response = await fetch("api/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+          }),
+        });
+
+        if (response.ok) {
+          setName("");
+          setEmail("");
+          setPassword("");
+        }
+      } catch (error) {
+        console.log("error:", error);
+      }
+    }
+  }
 
   return (
     <div>
@@ -73,17 +67,14 @@ export default function RegisterForm() {
         <h1 className="text-light mt-4 ">User Registration</h1>
       </div>
       {/* error alert */}
-      {
-         (error)?(
-            <div>
-            <div class="alert alert-danger" role="alert">
-              There is some error. {errorMessage}
-            </div>
+      {error ? (
+        <div>
+          <div class="alert alert-danger" role="alert">
+            There is some error. {errorMessage}
           </div>
-          ):null
-        }
-      
-      
+        </div>
+      ) : null}
+
       {/* form handling */}
       <form className="container">
         <div className="my-4">
