@@ -2,9 +2,7 @@
 import Navbar from "@/app/components/Navbar";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { FaLocationPin } from "react-icons/fa6";
-import { FaGlobe } from "react-icons/fa6";
-import { FaPhone } from "react-icons/fa";
+import Footer from "@/app/components/Footer";
 
 export default function Product({ params }) {
   // state to store particular product data
@@ -70,31 +68,7 @@ export default function Product({ params }) {
 
       {/* ========================================================= */}
       {/* Footer Part */}
-     <div className="Footer">
-     <div className="container-fluid row bg-dark">
-            {/* Personal Details */}
-          <div className="col-12 col-xxl-7 ms-xxl-5 mt-xxl-3 ps-xxl-5 pt-5">
-            <h1 className="text-light"><u>Personal Details</u></h1>
-            <div className="mt-4">
-            <h1 className="text-light"> <FaLocationPin style={{marginRight:6}} /> Address: </h1><br/>
-            <p className="text-light h3">
-                S-28/56 R-9 Anula Mahadev Nagar Colony, Varanasi
-            </p>
-
-            </div>
-            <div className="contact mt-4">
-           <h1 className="text-light"><FaPhone style={{marginRight:6}} /> Phone Number</h1>
-            <p className="text-light h3">6307010388</p>
-            </div>
-            <div className="fssai mt-4">
-              <h1 className="text-light"><FaGlobe style={{marginRight:6}} />FSSAI </h1>
-              <p className="text-light h3">22723630000206</p>
-            </div>
-
-          </div> 
-        </div>
-
-     </div>
+          <Footer />
     </div>
 
   );

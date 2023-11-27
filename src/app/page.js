@@ -35,10 +35,10 @@ export default function Homepage() {
                 return (
                   <Link key={element._id} href={productsPath} style={{textDecoration:"none"}} className="col-xxl-4 col-xl-6">
                     <div
-                      className="responsive-card card mx-auto bg-dark my-4 w-sm-2"
+                      className="responsive-card h-20  card mx-auto bg-dark my-4 w-sm-2"
                       key={element._id}
                       style={{
-                        width: "25rem",
+                        width: "22rem",
                         height: "22rem",
                         textAlign: "center",
                       }}
@@ -46,7 +46,7 @@ export default function Homepage() {
                       <Image
                         src={path}
                         alt="product"
-                        width={600}
+                        width={400}
                         height={300}
                         className="card-img-top mx-auto responsive-image"
                       />
