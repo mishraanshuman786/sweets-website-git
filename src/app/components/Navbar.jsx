@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "./styles/Navbar.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 const Navbar = () => {
 
@@ -108,6 +109,7 @@ const Navbar = () => {
            
 
             <button type="button" className="btn btn-success" onClick={()=>router.push("/login")}>Login</button>
+           
            {/* button */}
            
 

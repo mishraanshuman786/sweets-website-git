@@ -19,7 +19,7 @@ export default function Footer(){
 
 
     return (
-        <div className="container-fluid row bg-dark">
+        <div className="container-fluid row bg-dark mt-2">
             {/* Personal Details */}
           <div className="col-12 col-xxl-7 ms-xxl-5 mt-xxl-3 ps-xxl-5 pt-5">
             <h1 className="text-light"><u>Personal Details</u></h1>

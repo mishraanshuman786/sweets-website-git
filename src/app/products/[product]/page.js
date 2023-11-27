@@ -15,7 +15,7 @@ export default function Product({ params }) {
 
     getProduct();
   
-  }, []);
+  });
 
   async function getProduct() {
     let url = `/api/products/${params.product}`;
@@ -44,7 +44,7 @@ export default function Product({ params }) {
             path=`/ProductImages/${element.images[0]}.jpg`;
             console.log("image path:",path);
            return (
-            <div className="container-fluid row">
+            <div className="container-fluid row" key={element._id}>
                 {/* // image figcaption */}
             <figure className="figure col-3" >
             <Image src={path} width={500} height={200} className="mt-4 figure-img img-fluid rounded" alt="Hello" style={{border:"2px solid grey"}} />

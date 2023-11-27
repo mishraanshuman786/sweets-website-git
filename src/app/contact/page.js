@@ -44,9 +44,9 @@ export default function Contact() {
       {/* Navbar */}
       <Navbar />
       {/* content */}
-      <div>
-        <div className="bg-dark container-fluid mt-2 sticky-top p-2">
-          <h1 className="text-light mt-4">Contact Page</h1>
+      <div style={{backgroundColor:"wheat"}}>
+        <div className="bg-dark container-fluid mt-2 sticky-top p-2" style={{zIndex:2}}>
+          <h1 className="text-light mt-4">Contact Us</h1>
         </div>
 
         <form className="py-4 container">
