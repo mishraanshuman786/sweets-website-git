@@ -6,6 +6,7 @@ import {
   FaPhoneAlt,
   FaAddressBook,
 } from "react-icons/fa";
+import { CgMail } from "react-icons/cg";
 export default function Footer() {
   return (
     <div className="container-fluid">
@@ -17,24 +18,24 @@ export default function Footer() {
           className="d-flex justify-content-between p-4"
           style={{ backgroundColor: "#6351ce" }}
         >
-          <div className="me-5 h4">
+          <div className="me-5 h5">
             <span>Get connected with us on social networks:</span>
           </div>
 
           <div>
-            <a href="" className="text-white me-4 h2">
+            <a href="" className="text-white me-4 h3">
               <FaFacebookF />
             </a>
-            <a href="" className="text-white me-4 h2">
+            <a href="" className="text-white me-4 h3">
               <FaTwitter />
             </a>
-            <a href="" className="text-white me-4 h2">
+            <a href="" className="text-white me-4 h3">
               <i className="fab fa-google"></i>
             </a>
-            <a href="" className="text-white me-4 h2">
+            <a href="" className="text-white me-4 h3">
               <FaGoogle />
             </a>
-            <a href="" className="text-white me-4 h2">
+            <a href="" className="text-white me-4 h3">
               <FaLinkedinIn />
             </a>
           </div>
@@ -44,13 +45,13 @@ export default function Footer() {
           <div className="container text-center text-md-start mt-5">
             <div className="row mt-3">
               <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                <h6 className="text-uppercase fw-bold h4">About Company</h6>
+                <h6 className="text-uppercase fw-bold h5">About Company</h6>
                 <hr
                   className="mb-4 mt-0 d-inline-block mx-auto"
                   style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
                 />
-                <p className="h5">
-                  We are sell sugaror without sugar laddu on your order Yes! Our
+                <p className="h6">
+                  We are selling sugar or without sugar laddu on your order. Yes! Our
                   Laddus are made with all natural Jaggery and Ghee. Keeping in
                   Mind the health of every person, we should deliver pure-hand
                   made Laddos.
@@ -58,7 +59,7 @@ export default function Footer() {
               </div>
 
               <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="text-uppercase fw-bold h4">Products</h6>
+                <h6 className="text-uppercase fw-bold h5">Products</h6>
                 <hr
                   className="mb-4 mt-0 d-inline-block mx-auto"
                   style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
@@ -86,7 +87,7 @@ export default function Footer() {
               </div>
 
               <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="text-uppercase fw-bold h4">Useful links</h6>
+                <h6 className="text-uppercase fw-bold h5">Useful links</h6>
                 <hr
                   className="mb-4 mt-0 d-inline-block mx-auto"
                   style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
@@ -114,20 +115,23 @@ export default function Footer() {
               </div>
 
               <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                <h6 className="text-uppercase fw-bold h4">Contact</h6>
+                <h6 className="text-uppercase fw-bold h5">Contact</h6>
                 <hr
                   className="mb-4 mt-0 d-inline-block mx-auto"
                   style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
                 />
-                <p className="h5">
-                  <FaAddressBook /> S-28/56 R-9 Anula Mahadev Nagar Colony,
+                <p className="h6">
+                  <FaAddressBook style={{fontSize:25}} /> S-28/56 R-9 Anula Mahadev Nagar Colony,
                   Varanasi
                 </p>
-                <p className="h5">
-                  <i className="fas fa-envelope mr-3"></i> FSSAI: 22723630000206
+                <p className="h6">
+                  <i className="fas fa-envelope mr-3" style={{fontSize:25}}></i> FSSAI: 22723630000206
                 </p>
-                <p className="h5">
-                  <FaPhoneAlt /> 6307010388
+                <p className="h6">
+                  <FaPhoneAlt style={{fontSize:25}} /> 6307010388
+                </p>
+                <p className="h6">
+                <CgMail style={{fontSize:25}} /> journywithabhipandit@gmail.com
                 </p>
               </div>
             </div>
@@ -135,11 +139,11 @@ export default function Footer() {
         </section>
 
         <div
-          className="text-center p-3 h5"
+          className="text-center p-3 h6"
           style={{ backgroundColor: " rgba(0, 0, 0, 0.2)" }}
         >
           © 2023 Copyright:
-          <a className="text-white h5" href="#">
+          <a className="text-white h6" href="#">
             Ladooshop.com
           </a>
         </div>
