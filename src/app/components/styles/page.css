@@ -1,6 +1,10 @@
 .imagecontainer::-webkit-scrollbar {
   display: none;
 }
+
+.footerSlide.active {
+     background-color: brown;
+}
   
 .responsive-image{
   outline:1px solid grey;

@@ -197,9 +197,78 @@ export default function Homepage() {
         </p>
         <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
           <h5>FSSAI License- 122222999000322</h5>
-          <button style={{width:150,height:65,borderRadius:6,fontSize:18,color:"white",margin:10,border:"none",backgroundColor:"brown"}}>Explore More</button>
+          <button style={{width:"60%",height:60,borderRadius:6,fontSize:18,color:"white",margin:10,border:"none",backgroundColor:"brown"}}>Explore More</button>
         </div>
       </div>
+
+      {/* Join our community */}
+      <div style={{display:"flex",flexDirection:"column",backgroundColor:"#f04e13",color:"white",alignItems:"center",justifyContent:"center"}}>
+        <h2 style={{marginBottom:20,marginTop:20}}>Join Our Community!</h2>
+        <h6 style={{textAlign:"center"}}>Get your dose of sweetness with our naturally sweetened treats! Subscribe now to stay in the loop on new launches and promotions!</h6>
+        <input type="email" placeholder="Your email" style={{border:"none",width:"90%",height:65,fontSize:20,color:"black",paddingLeft:10,borderRadius:6}} />
+        <button style={{width:"90%",height:65,fontSize:20,color:"white",backgroundColor:"brown",borderRadius:6,border:"none",marginTop:10,marginBottom:10}}>Subscribe</button>
+      </div>
+
+      {/* slider footer */}
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active footerSlide bg-dark "  aria-current="true"  aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" class="footerSlide  bg-dark " aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" class="footerSlide bg-dark" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" style={{height:250}}>
+      {/* content */}
+      <div style={{width:50,height:50,margin:"auto",marginTop:15,marginBottom:15}}>
+      <svg focusable="false" viewBox="0 0 24 22" role="presentation">
+      <g transform="translate(1 1)" stroke-width="1.5" fill="none" fill-rule="evenodd">
+        <path d="M5 10H2M5 15H4" stroke="#761700" stroke-linecap="square"></path>
+        <path stroke="#761700" d="M16.829 16H22v-6l-4-2-1-4H9v12h2.171"></path>
+        <path d="M0 5h5" stroke="#761700" stroke-linecap="square"></path>
+        <path stroke="#761700" stroke-linecap="square" d="M0 0h9v4"></path>
+        <circle stroke="#761700" stroke-linecap="square" cx="14" cy="17" r="3"></circle>
+        <path stroke="#761700" stroke-linecap="square" d="M13 7v2h2"></path>
+      </g>
+    </svg>
+      </div>
+     <div style={{textAlign:"center"}}>
+      <h5 style={{color:"brown"}}>Fastest Shiping And Better Handling</h5>
+      <h5 style={{color:"black"}}>Delivery through reputed courier companies</h5>
+     </div>
+    </div>
+    <div class="carousel-item" style={{height:250}}>
+      <div style={{width:50,height:50,margin:"auto",marginTop:15,marginBottom:15}}>
+      <svg focusable="false" viewBox="0 0 24 24" role="presentation">
+      <g stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <path d="M10 17H4c-1.7 0-3 1.3-3 3v3h12v-3c0-1.7-1.3-3-3-3zM7 14c-1.7 0-3-1.3-3-3v-1c0-1.7 1.3-3 3-3s3 1.3 3 3v1c0 1.7-1.3 3-3 3z" stroke="#761700"></path>
+        <path stroke="#761700" d="M13 1v10l4-3h6V1z"></path>
+      </g>
+    </svg>
+      </div>
+      <div style={{textAlign:"center"}}>
+      <h5 style={{color:"brown"}}>Top-notch support</h5>
+      <h5 style={{color:"black"}}>Highly Motivated Support Executives</h5>
+     </div>
+    </div>
+    <div class="carousel-item" style={{height:250}}>
+    <div style={{width:50,height:50,margin:"auto",marginTop:15,marginBottom:15}}>
+    <svg focusable="false" viewBox="0 0 24 24" role="presentation">
+      <g stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <path d="M1 5h22M1 9h22M9 17H3c-1.105 0-2-.895-2-2V3c0-1.105.895-2 2-2h18c1.105 0 2 .895 2 2v10M5 13h5" stroke="#761700"></path>
+        <path stroke="#761700" d="M13 16h8v7h-8zM15 16v-2c0-1.1.9-2 2-2s2 .9 2 2v2M17 19v1"></path>
+      </g>
+    </svg>
+      </div>
+      <div style={{textAlign:"center"}}>
+      <h5 style={{color:"brown"}}>Secure Payments</h5>
+      <h5 style={{color:"black"}}>Transaction through reputed and trustworthy payment gateway.</h5>
+     </div>
+    </div>
+  </div>
+ 
+</div>
+
+
       {/* Footer */}
       <Footer />
     </div>
