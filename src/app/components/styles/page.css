@@ -1,10 +1,17 @@
-
+.imagecontainer::-webkit-scrollbar {
+  display: none;
+}
+  
+.responsive-image{
+  outline:1px solid grey;
+}
 @media(max-width:430px){
   .responsive-card{
     width:18rem;
   }
   .responsive-image{
     width:250px;
+   
   }
 
 }

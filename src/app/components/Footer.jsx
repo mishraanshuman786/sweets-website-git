@@ -11,12 +11,12 @@ export default function Footer() {
   return (
     <div className="container-fluid">
       <footer
-        className="text-center text-lg-start container-fluid text-white"
-        style={{ backgroundColor: "#1c2331" }}
+        className="text-center text-lg-start text-white"
+        style={{ backgroundColor: "#761700" }}
       >
         <section
           className="d-flex justify-content-between p-4"
-          style={{ backgroundColor: "#6351ce" }}
+          style={{ backgroundColor: "rgb(68, 2, 2)" }}
         >
           <div className="me-5 h5">
             <span>Get connected with us on social networks:</span>
@@ -41,7 +41,7 @@ export default function Footer() {
           </div>
         </section>
 
-        <section className="">
+        <section style={{ backgroundColor: "#761700" }}>
           <div className="container text-center text-md-start mt-5">
             <div className="row mt-3">
               <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
@@ -140,7 +140,7 @@ export default function Footer() {
 
         <div
           className="text-center p-3 h6"
-          style={{ backgroundColor: " rgba(0, 0, 0, 0.2)" }}
+          style={{ backgroundColor: "#761700" }}
         >
           © 2023 Copyright:
           <a className="text-white h6" href="#">

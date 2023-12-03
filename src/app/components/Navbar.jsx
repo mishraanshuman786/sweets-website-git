@@ -26,7 +26,7 @@ const Navbar = () => {
   return (
     <div className="sticky-top">
       <nav
-        style={{ backgroundColor: "rgb(68, 2, 2)" }}
+        style={{ backgroundColor: "#761700" }}
         className="navbar navbar-expand-lg "
       >
         <div className="container-fluid">

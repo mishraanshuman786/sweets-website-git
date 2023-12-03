@@ -10,7 +10,7 @@ export default function Contact() {
 
   function clicked(e) {
     e.preventDefault();
-    alert(name, email);
+     sendMail();
   }
 
   async function sendMail() {

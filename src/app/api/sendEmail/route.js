@@ -6,26 +6,26 @@ import nodemailer from 'nodemailer';
 export async function POST(req, res) {
   if (req.method === 'POST') {
       
-    let payload=await req.json();
+    // let payload=await req.json();
     
-    const { to,subject,text,  } = payload;
+    // const { to,subject,text,  } = payload;
 
     // Create a transporter using your email service credentials
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      secure: false, // Use SSL
+      host: 'smtp.ethereal.email',
+      port: 587,
       auth: {
-        user: 'mishraanshuman619@gmail.com',
-        pass: 'jyhb wxoz oprc uozj',
-      },
+          user: 'herta12@ethereal.email',
+          pass: 'JhR7QAjba7nRnZaHPa'
+      }
     });
 
     // Define the email options
     const mailOptions = {
       from: 'mishraanshuman619@gmail.com',
-      to,
-      subject,
-      text,
+      to:'mishraanshuman146@gmail.com',
+      subject:"sending the email",
+      text:"this email is sending through smtp.",
     };
 
     try {
