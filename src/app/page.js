@@ -1,33 +1,35 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./components/styles/page.css";
 import Link from "next/link";
 import Slider from "./components/Slider";
-import { CgColorBucket } from "react-icons/cg";
+
 
 export default function Homepage() {
   useEffect(() => {
-    getData();
+    getCollections();
+    getProducts();
   }, []);
 
   const [navProducts, setNavProducts] = useState();
+  const [collections,setCollections]=useState();
 
-  async function getData() {
-    let data = await fetch("api/products");
-    data = await data.json();
-    await setNavProducts(data);
+  async function getProducts() {
+    let productsdata = await fetch("api/products");
+    productsdata = await productsdata.json();
+    await setNavProducts(productsdata);
+  }
+
+  async function getCollections(){
+    let collectionData = await fetch("api/collections");
+    collectionData = await collectionData.json();
+    await setCollections(collectionData);
   }
 
   return (
-    <div
-      style={{
-        backgroundImage: "/images/cardbackground.jpg",
-        overflow: "hidden",
-      }}
-    >
+    <div style={{ backgroundColor: "#FFEBEE" }}>
       {/* Navbar */}
       <Navbar />
       {/* =================================================================== */}
@@ -38,64 +40,40 @@ export default function Homepage() {
         <Slider />
       </div>
 
-      <div style={{ backgroundColor: "#FFEBEE" }}>
-        {/* products */}
+     
 
-        <div>
-          <h3 style={{ color: "brown", padding: 10 }}>
-            Curated Collection in Trend
-          </h3>
-          <div
-            style={{ display: "flex", overflow: "scroll" }}
-            className="imagecontainer"
-          >
-            {navProducts
-              ? navProducts.result.map((element) => {
-                  let path = `/ProductImages/${element.images[0]}.jpg`;
-                  let productsPath = `/products/${element._id}`;
+      <div style={{ backgroundColor: "#FFEBEE"}}>
 
-                  return (
-                    <Link
-                      key={element._id}
-                      href={productsPath}
-                      style={{
-                        textDecoration: "none",
-                        marginLeft: 10,
-                        marginRight: 10,
-                        marginTop: 10,
-                      }}
-                    >
-                      <div
-                        key={element._id}
-                        style={{
-                          width: "16rem",
-                          height: "18rem",
-                          textAlign: "center",
-                        }}
-                      >
-                        <Image
-                          src={path}
-                          alt="product"
-                          width={80}
-                          height={220}
-                          className="card-img-top mx-auto responsive-image"
-                          style={{ borderRadius: "100%" }}
-                        />
-                        <div class="card-body text-center">
-                          <h5
-                            class="card-title"
-                            style={{ color: "brown", marginTop: 10 }}
-                          >
-                            {element.productName}
-                          </h5>
-                        </div>
-                      </div>
-                    </Link>
-                  );
-                })
-              : null}
+         {/* categories */}
+         <div >
+         <div>
+          <h3 style={{ color: "brown", padding: 10 }}>Curated Collections In Trend</h3>
           </div>
-        </div>
+          {/* horizontal cards */}
+          <div className="collection" style={{display:"flex"}}>
+           
+          {
+            collections?(
+                collections.result.map((element)=>{
+                  let path=`collectionsImages/${element.image}.jpg`;
+                  let url=`/categoryProducts/${element._id}`;
+                  return (
+                   <div className="collectionimagecontainer" >
+                    <Link href={url} style={{listStyleType:"none"}} >
+                    <img src={path} />
+                    <h5 style={{marginTop:10,color:"brown",textDecoration:"none"}}>{element.name}</h5>
+
+                    </Link>
+                    </div>
+                  )
+                })
+            ):null
+          } 
+          
+          </div>
+         </div>
+
+
 
         {/* category */}
 
@@ -106,8 +84,8 @@ export default function Homepage() {
         <div>
           <h3 style={{ color: "brown", padding: 10 }}>Grab The Deals</h3>
           <div
-            style={{ display: "flex", overflow: "scroll" }}
-            className="imagecontainer"
+            style={{ display: "flex", overflowX: "scroll",border:"1px solid grey" }}
+            className="stylecontainer"
           >
             {navProducts
               ? navProducts.result.map((element) => {
@@ -115,43 +93,29 @@ export default function Homepage() {
                   let productsPath = `/products/${element._id}`;
 
                   return (
-                    <Link
-                      key={element._id}
-                      href={productsPath}
-                      style={{
-                        textDecoration: "none",
-                        marginLeft: 10,
-                        marginRight: 10,
-                        marginTop: 10,
-                        height:250
-                      }}
-                    >
-                      <div
-                        key={element._id}
-                        style={{
-                          width: "15rem",
-                          height: "20rem",
-                          textAlign: "center",
-                        }}
-                      >
-                        <Image
-                          src={path}
-                          alt="product"
-                          width={50}
-                          height={180}
-                          className="card-img-top mx-auto responsive-image"
-                          style={{ borderRadius: "1%" }}
-                        />
-                        <div class="card-body text-center">
-                          <h5
-                            class="card-title"
-                            style={{ color: "brown", marginTop: 10 }}
-                          >
-                            {element.productName}
-                          </h5>
-                        </div>
-                      </div>
-                    </Link>
+                    <div className="bg-light imagecontainer" >
+                    <img src={path} />
+                    <h4>{element.productName}</h4>
+
+                    <button
+                    style={{
+                      width: 180,
+                      float: "right",
+                      display: "block",
+                      height: 44,
+                      borderRadius: 6,
+                      fontSize: 18,
+                      color: "white",
+                      margin: 15,
+                      border: "none",
+                      backgroundColor: "brown",
+                    }}
+                  >
+                    Add To Cart
+                  </button>
+
+                    </div>
+                    
                   );
                 })
               : null}

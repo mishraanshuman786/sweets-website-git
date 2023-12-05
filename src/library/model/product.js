@@ -3,9 +3,9 @@ import mongoose from "mongoose";
 // creating products table schema
 const productModel = new mongoose.Schema({
   productName: String,
-  category: String,
+  category: [{ type: mongoose.Schema.Types.ObjectId, ref: 'category' }],
   desc: String,
-  images: [String],
+  images: [String]
 });
 
 // connection products table with productModel schema

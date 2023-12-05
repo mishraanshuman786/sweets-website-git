@@ -21,11 +21,11 @@
         height: 200px;
     }
 }
-@media(min-width:625px){
-   .slider{
-        background-color:rgba(228, 142, 37, 0.805);
-        
+@media only screen and (min-width:408px) and (max-width:1314px){
+    .sliderimage{
+        height: 400px;
     }
+
      .image{
        
         width:300px;
@@ -44,7 +44,9 @@
 }
 
 @media(min-width:1315px){
-   
+    .sliderimage{
+        height: 500px;
+    }
 .slider{
     background-color:rgba(228, 142, 37, 0.805) ;
    

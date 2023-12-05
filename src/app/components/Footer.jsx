@@ -1,153 +1,153 @@
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaGoogle,
-  FaLinkedinIn,
-  FaPhoneAlt,
-  FaAddressBook,
-} from "react-icons/fa";
-import { CgMail } from "react-icons/cg";
+"use client";
+import "./styles/footer.css";
 export default function Footer() {
   return (
-    <div className="container-fluid">
-      <footer
-        className="text-center text-lg-start text-white"
-        style={{ backgroundColor: "#761700" }}
-      >
-        <section
-          className="d-flex justify-content-between p-4"
-          style={{ backgroundColor: "rgb(68, 2, 2)" }}
-        >
-          <div className="me-5 h5">
-            <span>Get connected with us on social networks:</span>
-          </div>
-
-          <div>
-            <a href="" className="text-white me-4 h3">
-              <FaFacebookF />
-            </a>
-            <a href="" className="text-white me-4 h3">
-              <FaTwitter />
-            </a>
-            <a href="" className="text-white me-4 h3">
-              <i className="fab fa-google"></i>
-            </a>
-            <a href="" className="text-white me-4 h3">
-              <FaGoogle />
-            </a>
-            <a href="" className="text-white me-4 h3">
-              <FaLinkedinIn />
-            </a>
-          </div>
-        </section>
-
-        <section style={{ backgroundColor: "#761700" }}>
-          <div className="container text-center text-md-start mt-5">
-            <div className="row mt-3">
-              <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                <h6 className="text-uppercase fw-bold h5">About Company</h6>
-                <hr
-                  className="mb-4 mt-0 d-inline-block mx-auto"
-                  style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
-                />
-                <p className="h6">
-                  We are selling sugar or without sugar laddu on your order. Yes! Our
-                  Laddus are made with all natural Jaggery and Ghee. Keeping in
-                  Mind the health of every person, we should deliver pure-hand
-                  made Laddos.
-                </p>
-              </div>
-
-              <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="text-uppercase fw-bold h5">Products</h6>
-                <hr
-                  className="mb-4 mt-0 d-inline-block mx-auto"
-                  style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
-                />
-                <p>
-                  <a href="#!" className="text-white">
-                    MDBootstrap
-                  </a>
-                </p>
-                <p>
-                  <a href="#!" className="text-white">
-                    MDWordPress
-                  </a>
-                </p>
-                <p>
-                  <a href="#!" className="text-white">
-                    BrandFlow
-                  </a>
-                </p>
-                <p>
-                  <a href="#!" className="text-white">
-                    Bootstrap Angular
-                  </a>
-                </p>
-              </div>
-
-              <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="text-uppercase fw-bold h5">Useful links</h6>
-                <hr
-                  className="mb-4 mt-0 d-inline-block mx-auto"
-                  style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
-                />
-                <p>
-                  <a href="#!" className="text-white">
-                    Your Account
-                  </a>
-                </p>
-                <p>
-                  <a href="#!" className="text-white">
-                    Become an Affiliate
-                  </a>
-                </p>
-                <p>
-                  <a href="#!" className="text-white">
-                    Shipping Rates
-                  </a>
-                </p>
-                <p>
-                  <a href="#!" className="text-white">
-                    Help
-                  </a>
-                </p>
-              </div>
-
-              <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                <h6 className="text-uppercase fw-bold h5">Contact</h6>
-                <hr
-                  className="mb-4 mt-0 d-inline-block mx-auto"
-                  style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
-                />
-                <p className="h6">
-                  <FaAddressBook style={{fontSize:25}} /> S-28/56 R-9 Anula Mahadev Nagar Colony,
-                  Varanasi
-                </p>
-                <p className="h6">
-                  <i className="fas fa-envelope mr-3" style={{fontSize:25}}></i> FSSAI: 22723630000206
-                </p>
-                <p className="h6">
-                  <FaPhoneAlt style={{fontSize:25}} /> 6307010388
-                </p>
-                <p className="h6">
-                <CgMail style={{fontSize:25}} /> journywithabhipandit@gmail.com
-                </p>
-              </div>
+    <div>
+      {/* accordian */}
+      
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item" style={{ backgroundColor: "brown" }}>
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button
+              class="accordion-button collapsed"
+              style={{
+                backgroundColor: "brown",
+                paddingRight: 50,
+                color: "white",
+                marginLeft: 10,
+              }}
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseOne"
+              aria-expanded="false"
+              aria-controls="flush-collapseOne"
+            >
+              Ladoo Story
+            </button>
+          </h2>
+          <div
+            id="flush-collapseOne"
+            class="accordion-collapse collapse"
+            aria-labelledby="flush-headingOne"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div class="accordion-body" style={{ color: "white" }}>
+              We source these authentic desi "flavours" and regional savours
+              from the best regional vendors who are known for generations for
+              these amazing delicacies. The name SweeDesi is comes from “Sweets
+              + Desi” i.e. the Sweets and flavours which are Traditional,
+              Authentic, Unadulterated with no preservatives. In the current
+              busy and hectic life, the ready availability of our hometown
+              flavours gives us a nostalgic feeling and closeness to our roots.
             </div>
           </div>
-        </section>
-
-        <div
-          className="text-center p-3 h6"
-          style={{ backgroundColor: "#761700" }}
-        >
-          © 2023 Copyright:
-          <a className="text-white h6" href="#">
-            Ladooshop.com
-          </a>
         </div>
-      </footer>
+        <div class="accordion-item" style={{ backgroundColor: "brown" }}>
+          <h2 class="accordion-header" id="flush-headingTwo">
+            <button
+              class="accordion-button collapsed"
+              style={{
+                outline: "none",
+                backgroundColor: "brown",
+                color: "white",
+                paddingRight: 50,
+                marginLeft: 10,
+              }}
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseTwo"
+              aria-expanded="false"
+              aria-controls="flush-collapseTwo"
+            >
+              Quick Links
+            </button>
+          </h2>
+          <div
+            id="flush-collapseTwo"
+            class="accordion-collapse collapse"
+            aria-labelledby="flush-headingTwo"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div class="accordion-body" style={{ color: "white" }}>
+              About Us Shipping Policy Return & Refund Policy Terms of Service
+              Contact Us Privacy Policy
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" style={{ backgroundColor: "brown" }}>
+          <h2 class="accordion-header" id="flush-headingThree">
+            <button
+              class="accordion-button collapsed"
+              style={{
+                backgroundColor: "brown",
+                border: "none",
+                color: "white",
+                paddingRight: 50,
+                marginLeft: 10,
+              }}
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseThree"
+              aria-expanded="false"
+              aria-controls="flush-collapseThree"
+            >
+              Get In Touch With Us
+            </button>
+          </h2>
+          <div
+            id="flush-collapseThree"
+            class="accordion-collapse collapse"
+            aria-labelledby="flush-headingThree"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div class="accordion-body" style={{ color: "white" }}>
+              <pre>
+                Customer Care - 7272848989 ( Mon-Sat : 9 AM to 7 PM )<br></br>
+                Email : support@sweedesi.com<br></br>
+                Address: D6/284, Chitrakoot, Jaipur, Rajasthan - 302021
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* desktop size content */}
+      <div className="desktop-content">
+        <div>
+          <h5>Ladoo Store</h5>
+          <p>
+            We source these authentic desi "flavours" and regional savours from
+            the best regional vendors who are known for generations for these
+            amazing delicacies. The name SweeDesi is comes from “Sweets + Desi”
+            i.e. the Sweets and flavours which are Traditional, Authentic,
+            Unadulterated with no preservatives. In the current busy and hectic
+            life, the ready availability of our hometown flavours gives us a
+            nostalgic feeling and closeness to our roots.
+          </p>
+        </div>
+        <hr/>
+        <div>
+          <h5>Quicklinks</h5>
+          <ul style={{ display: "flex",listStyleType:"none",justifyContent:"flex-start" }}>
+            <li style={{marginRight:"5%"}}>About Us</li>
+            <li style={{marginRight:"5%"}}>Shiping Policy</li>
+            <li style={{marginRight:"5%"}}>Return and Refund Policy</li>
+            <li style={{marginRight:"5%"}}>Terms of Service</li>
+            <li style={{marginRight:"5%"}}>Contact Us</li>
+            <li style={{marginRight:"5%"}}>Privacy Policy</li>
+          </ul>
+        </div>
+        <hr/>
+        <div>
+          <h5>Get In Touch With Us</h5>
+          <p>
+            Customer Care - 7272848989 ( Mon-Sat : 9 AM to 7 PM ) <br></br>
+            Email :
+            support@sweedesi.com <br></br> 
+            Address: D6/284, Chitrakoot, Jaipur, Rajasthan
+            - 302021
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

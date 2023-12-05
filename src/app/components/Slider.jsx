@@ -12,16 +12,16 @@ export default function Slider() {
 
   return (
     // <!-- image slider  -->
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel slide">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
+    <div id="carouselExampleControls" style={{marginTop:20}} class="container carousel slide" data-bs-ride="carousel slide">
+    <div class="carousel-inner" style={{border:"1px solid black",borderRadius:10}}>
+      <div class="carousel-item active" >
         <img src="/ProductImages/flexseed1.jpg" class="d-block w-100 sliderimage" alt="..."   />
       </div>
       <div class="carousel-item">
-        <img src="/ProductImages/flexseed2.jpg" class="d-block w-100 sliderimage" alt="..."   />
+        <img src="/ProductImages/dryfruits2.jpg" class="d-block w-100  sliderimage" alt="..."   />
       </div>
       <div class="carousel-item">
-        <img src="/ProductImages/coconut2.jpg" class="d-block w-100 sliderimage" alt="..."   />
+        <img src="/ProductImages/coconut2.jpg" class="d-block w-100  sliderimage" alt="..."   />
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">

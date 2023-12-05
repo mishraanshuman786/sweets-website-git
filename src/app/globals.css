@@ -4,9 +4,7 @@
   padding:0px;
   box-sizing:border-box;
 }
-body{
-  background-color: rgb(255,203,112);
-}
+
 body::-webkit-scrollbar {
   display: none;
 }
