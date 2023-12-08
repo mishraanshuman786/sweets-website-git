@@ -17,6 +17,13 @@ export default function Homepage() {
   const [navProducts, setNavProducts] = useState();
   const [collections,setCollections]=useState();
 
+  // cart data
+  const {
+    state: { cart },
+    dispatch,
+  } = CartState();
+
+
   async function getProducts() {
     let productsdata = await fetch("api/products");
     productsdata = await productsdata.json();
@@ -28,6 +35,8 @@ export default function Homepage() {
     collectionData = await collectionData.json();
     await setCollections(collectionData);
   }
+
+ 
 
 
   return (
@@ -69,7 +78,11 @@ export default function Homepage() {
                     </div>
                   )
                 })
-            ):null
+            ):(<div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>)
           } 
           
           </div>
@@ -100,6 +113,9 @@ export default function Homepage() {
                     <h4>{element.productName}</h4>
 
                     <button
+                   type="button"
+                   className="btn"
+                 
                     style={{
                       width: 180,
                       float: "right",
@@ -112,6 +128,10 @@ export default function Homepage() {
                       border: "none",
                       backgroundColor: "brown",
                     }}
+                    onClick={()=>{
+                      dispatch({ type: "ADD_TO_CART", payload: element });
+                      
+                    }}
                   >
                     Add To Cart
                   </button>
@@ -119,8 +139,16 @@ export default function Homepage() {
                     </div>
                     
                   );
+
+                  
+
+
                 })
-              : null}
+              : (<div class="d-flex justify-content-center">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden"></span>
+              </div>
+            </div>)}
           </div>
         </div>
              <hr/>

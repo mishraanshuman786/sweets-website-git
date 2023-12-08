@@ -51,7 +51,6 @@ export default function Products({ params }) {
             }}
           >
             <h4>{content.category[0].name}</h4>
-            <h6 className="text-dark">Id: {content.category[0]._id}</h6>
             <Image
               src={path}
               width={300}
@@ -86,6 +85,23 @@ export default function Products({ params }) {
                 {content.category[0].name}
               </h2>
               <h4>{content.category[0].number} Products</h4>
+              <button
+                    style={{
+                      width: 145,
+                      height: 44,
+                      borderRadius: 6,
+                      fontSize: 14,
+                      color: "white",
+                      margin: 15,
+                      border: "none",
+                      backgroundColor: "brown",
+                    }}
+                    onClick={() =>router.push("/Cart")}
+                  >
+                   Go To Cart
+                  </button>
+
+                  
             </div>
             {content.product.map((element) => {
               let path = `/ProductImages/${element.images[0]}.jpg`;
@@ -112,11 +128,14 @@ export default function Products({ params }) {
                   </div>
                    <div style={{display:"flex",flexDirection:"column"}}>
                   <button
+                    class="btn btn-primary"
+                     data-bs-toggle="modal"
+                     data-bs-target="#exampleModal"
                     style={{
                       width: 145,
                       height: 44,
                       borderRadius: 6,
-                      fontSize: 18,
+                      fontSize: 14,
                       color: "white",
                       margin: 15,
                       border: "none",
@@ -124,17 +143,40 @@ export default function Products({ params }) {
                     }}
                     onClick={() =>
                       dispatch({ type: "ADD_TO_CART", payload: element })
+                      
                     }
                   >
                     Add To Cart
                   </button>
+ 
+                  {/* <!-- Modal --> */}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Data Added To The Cart</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{/* ============================= */}
                  
                   <button
+                   
+                   class="btn btn-primary"
+                   data-bs-toggle="modal"
+                   data-bs-target="#exampleModal2"
                     style={{
                       width: 145,
                       height: 44,
                       borderRadius: 6,
-                      fontSize: 18,
+                      fontSize: 14,
                       color: "white",
                       margin: 15,
                       border: "none",
@@ -150,21 +192,41 @@ export default function Products({ params }) {
                     Remove To Cart
                   </button>
 
-                  <button
-                    style={{
-                      width: 145,
-                      height: 44,
-                      borderRadius: 6,
-                      fontSize: 18,
-                      color: "white",
-                      margin: 15,
-                      border: "none",
-                      backgroundColor: "brown",
-                    }}
-                    onClick={() =>router.push("/Cart")}
-                  >
-                   Go To Cart
-                  </button>
+                  {/* <!-- Modal --> */}
+             {     (cart.length>0)?(
+                  <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Data Removed From The Cart</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>):(
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Cart is Empty.</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+)
+            }
+
+                  {/* ================================== */}
 
                   
 

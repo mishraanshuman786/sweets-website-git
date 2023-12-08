@@ -3,11 +3,18 @@ import Link from "next/link";
 import "./styles/footer.css";
 import { FaInstagramSquare } from "react-icons/fa";
 import { ImFacebook2 } from "react-icons/im";
+import React, { useState, useEffect } from "react";
 export default function Footer() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      require("bootstrap/dist/js/bootstrap.bundle.min.js");
+    }
+  }, []);
+
   return (
-    <div  style={{backgroundColor:"brown",color:"white"}}>
+    <div style={{ backgroundColor: "brown", color: "white" }}>
       {/* accordian */}
-      
+
       <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item" style={{ backgroundColor: "brown" }}>
           <h2 class="accordion-header" id="flush-headingOne">
@@ -35,10 +42,10 @@ export default function Footer() {
             data-bs-parent="#accordionFlushExample"
           >
             <div class="accordion-body" style={{ color: "white" }}>
-              We source these authentic desi flavours and regional savours
-              from the best regional vendors who are known for generations for
-              these amazing delicacies. The name SweeDesi is comes from “Sweets
-              + Desi” i.e. the Sweets and flavours which are Traditional,
+              We source these authentic desi flavours and regional savours from
+              the best regional vendors who are known for generations for these
+              amazing delicacies. The name SweeDesi is comes from “Sweets +
+              Desi” i.e. the Sweets and flavours which are Traditional,
               Authentic, Unadulterated with no preservatives. In the current
               busy and hectic life, the ready availability of our hometown
               flavours gives us a nostalgic feeling and closeness to our roots.
@@ -127,55 +134,61 @@ export default function Footer() {
             nostalgic feeling and closeness to our roots.
           </p>
         </div>
-        <hr/>
+        <hr />
         <div>
           <h5>Quicklinks</h5>
-          <ul style={{ display: "flex",listStyleType:"none",justifyContent:"flex-start" }}>
-            <li style={{marginRight:"5%"}}>About Us</li>
-            <li style={{marginRight:"5%"}}>Shiping Policy</li>
-            <li style={{marginRight:"5%"}}>Return and Refund Policy</li>
-            <li style={{marginRight:"5%"}}>Terms of Service</li>
-            <li style={{marginRight:"5%"}}>Contact Us</li>
-            <li style={{marginRight:"5%"}}>Privacy Policy</li>
+          <ul
+            style={{
+              display: "flex",
+              listStyleType: "none",
+              justifyContent: "flex-start",
+            }}
+          >
+            <li style={{ marginRight: "5%" }}>About Us</li>
+            <li style={{ marginRight: "5%" }}><Link style={{textDecoration:"none",color:"white"}} href="/contact">Contact Us</Link></li>
           </ul>
         </div>
-        <hr/>
+        <hr />
         <div>
           <h5>Get In Touch With Us</h5>
           <p>
-            Customer Care - 7272848989 ( Mon-Sat : 9 AM to 7 PM ) <br></br>
-            Email :
-            support@sweedesi.com <br></br> 
-            Address: D6/284, Chitrakoot, Jaipur, Rajasthan
-            - 302021
+            Customer Care - 6307010388 ( Mon-Sat : 9 AM to 7 PM ) <br></br>
+            Email : journywithabhipandit@gmail.com , indiankissanvns@gmail.com<br></br>
+            Address: S-28/56 R-9 Anula Mahadev Nagar Colony, Varanasi 
           </p>
         </div>
-
       </div>
-      
-{/* addition footer part */}
-      <div className="container-fluid" style={{backgroundColor:"brown",color:"white"}}>
-      <hr></hr>
-       <div className="d-md-flex justify-content-between">
-       
-       <div>
-        <h6>@2023 Ladoo Story</h6>
-        <h6>All Rights Reserverd</h6>
-       </div>
 
-       <div>
-        <h6>Follow Us</h6>
-        <div>
-        <Link href={"https://www.instagram.com/"} ><FaInstagramSquare style={{width:40,height:60,color:"white"}} /></Link>
-        <Link href={"https://www.facebook.com/"} > <ImFacebook2  style={{width:40,height:60,color:"white"}}/></Link>
-       
+      {/* addition footer part */}
+      <div
+        className="container-fluid"
+        style={{ backgroundColor: "brown", color: "white" }}
+      >
+        <hr></hr>
+        <div className="d-md-flex justify-content-between">
+          <div>
+            <h6>@2023 Ladoo Story</h6>
+            <h6>All Rights Reserverd</h6>
+          </div>
+
+          <div>
+            <h6>Follow Us</h6>
+            <div>
+              <Link href={"https://www.instagram.com/"}>
+                <FaInstagramSquare
+                  style={{ width: 40, height: 60, color: "white" }}
+                />
+              </Link>
+              <Link href={"https://www.facebook.com/"}>
+                {" "}
+                <ImFacebook2
+                  style={{ width: 40, height: 60, color: "white" }}
+                />
+              </Link>
+            </div>
+          </div>
         </div>
-       </div>
-       </div>
       </div>
-
-
-
     </div>
   );
 }
