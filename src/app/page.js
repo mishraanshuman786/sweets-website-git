@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import "./components/styles/page.css";
 import Link from "next/link";
 import Slider from "./components/Slider";
+import { CartState } from "@/context/Context";
 
 
 export default function Homepage() {
@@ -28,6 +29,7 @@ export default function Homepage() {
     await setCollections(collectionData);
   }
 
+
   return (
     <div style={{ backgroundColor: "#FFEBEE" }}>
       {/* Navbar */}
@@ -50,7 +52,7 @@ export default function Homepage() {
           <h3 style={{ color: "brown", padding: 10 }}>Curated Collections In Trend</h3>
           </div>
           {/* horizontal cards */}
-          <div className="collection" style={{display:"flex"}}>
+          <div className="collection"  style={{display:"flex"}}>
            
           {
             collections?(
@@ -58,10 +60,10 @@ export default function Homepage() {
                   let path=`collectionsImages/${element.image}.jpg`;
                   let url=`/categoryProducts/${element._id}`;
                   return (
-                   <div className="collectionimagecontainer" >
-                    <Link href={url} style={{listStyleType:"none"}} >
+                   <div className="collectionimagecontainer" key={element._id} >
+                    <Link href={url} style={{textDecoration:"none"}} >
                     <img src={path} />
-                    <h5 style={{marginTop:10,color:"brown",textDecoration:"none"}}>{element.name}</h5>
+                    <h5 style={{marginTop:10,color:"brown",textAlign:"center"}}>{element.name.substring(0,20)}..</h5>
 
                     </Link>
                     </div>
@@ -93,7 +95,7 @@ export default function Homepage() {
                   let productsPath = `/products/${element._id}`;
 
                   return (
-                    <div className="bg-light imagecontainer" >
+                    <div className="bg-light imagecontainer" key={element._id} >
                     <img src={path} />
                     <h4>{element.productName}</h4>
 
@@ -125,15 +127,15 @@ export default function Homepage() {
         {/* Description */}
         <h2 style={{textAlign:"center",color:'brown'}}>Ladoo Story- Flavours of India</h2>
         <p style={{textAlign:"justify",padding:12,color:"black",fontSize:18}}>
-          For a person, it is a challenging feat to distance oneself from one's
-          roots, culture and the real flavors of pure laddu of one's home
+          For a person, it is a challenging feat to distance oneself from one s
+          roots, culture and the real flavors of pure laddu of one s home
           mother. Although we may physically move away from these elements, the
           nostalgia and memories remain, ultimately creating a craving for the
           familiar flavors of home. In the bustling lifestyle of big cities
           today, LADDOO STORY acts as a bridge, reviving these memories,
           nostalgia and flavors and bringing them closer to you. We are creating
           an ecosystem that takes care of both our health and taste equally. The
-          name Ladoo Story originates from the combination of "LADDOO + STORY",
+          name Ladoo Story originates from the combination of LADDOO + STORY,
           representing traditional, authentic and unadulterated flavors without
           preservatives. Amidst the present busy and chaotic life, the instant
           availability of the flavors of our hometown creates a feeling of

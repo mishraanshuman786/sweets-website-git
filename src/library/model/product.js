@@ -5,7 +5,9 @@ const productModel = new mongoose.Schema({
   productName: String,
   category: [{ type: mongoose.Schema.Types.ObjectId, ref: 'category' }],
   desc: String,
-  images: [String]
+  images: [String],
+  price:Number,
+  rating:Number
 });
 
 // connection products table with productModel schema

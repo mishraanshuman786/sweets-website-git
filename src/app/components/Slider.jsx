@@ -12,16 +12,31 @@ export default function Slider() {
 
   return (
     // <!-- image slider  -->
-    <div id="carouselExampleControls" style={{marginTop:20}} class="container carousel slide" data-bs-ride="carousel slide">
+    <div id="carouselExampleControls" style={{marginTop:20}} class="container-fluid carousel slide" data-bs-ride="carousel slide">
     <div class="carousel-inner" style={{border:"1px solid black",borderRadius:10}}>
       <div class="carousel-item active" >
-        <img src="/ProductImages/flexseed1.jpg" class="d-block w-100 sliderimage" alt="..."   />
+        <img src="/images/banner1.jpg" class="d-block w-100 sliderimage" alt="..."   />
       </div>
       <div class="carousel-item">
-        <img src="/ProductImages/dryfruits2.jpg" class="d-block w-100  sliderimage" alt="..."   />
+        <img src="/images/banner2.jpg" class="d-block w-100  sliderimage" alt="..."   />
       </div>
       <div class="carousel-item">
-        <img src="/ProductImages/coconut2.jpg" class="d-block w-100  sliderimage" alt="..."   />
+        <img src="/images/banner3.jpg" class="d-block w-100  sliderimage" alt="..."   />
+      </div>
+      <div class="carousel-item">
+        <img src="/images/banner4.jpg" class="d-block w-100  sliderimage" alt="..."   />
+      </div>
+      <div class="carousel-item">
+        <img src="/images/banner5.jpg" class="d-block w-100  sliderimage" alt="..."   />
+      </div>
+      <div class="carousel-item">
+        <img src="/images/banner6.jpg" class="d-block w-100  sliderimage" alt="..."   />
+      </div>
+      <div class="carousel-item">
+        <img src="/images/banner7.jpg" class="d-block w-100  sliderimage" alt="..."   />
+      </div>
+      <div class="carousel-item">
+        <img src="/images/banner8.jpg" class="d-block w-100  sliderimage" alt="..."   />
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">

@@ -1,8 +1,11 @@
 "use client";
+import Link from "next/link";
 import "./styles/footer.css";
+import { FaInstagramSquare } from "react-icons/fa";
+import { ImFacebook2 } from "react-icons/im";
 export default function Footer() {
   return (
-    <div>
+    <div  style={{backgroundColor:"brown",color:"white"}}>
       {/* accordian */}
       
       <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -32,7 +35,7 @@ export default function Footer() {
             data-bs-parent="#accordionFlushExample"
           >
             <div class="accordion-body" style={{ color: "white" }}>
-              We source these authentic desi "flavours" and regional savours
+              We source these authentic desi flavours and regional savours
               from the best regional vendors who are known for generations for
               these amazing delicacies. The name SweeDesi is comes from “Sweets
               + Desi” i.e. the Sweets and flavours which are Traditional,
@@ -115,7 +118,7 @@ export default function Footer() {
         <div>
           <h5>Ladoo Store</h5>
           <p>
-            We source these authentic desi "flavours" and regional savours from
+            We source these authentic desi flavours and regional savours from
             the best regional vendors who are known for generations for these
             amazing delicacies. The name SweeDesi is comes from “Sweets + Desi”
             i.e. the Sweets and flavours which are Traditional, Authentic,
@@ -147,7 +150,32 @@ export default function Footer() {
             - 302021
           </p>
         </div>
+
       </div>
+      
+{/* addition footer part */}
+      <div className="container-fluid" style={{backgroundColor:"brown",color:"white"}}>
+      <hr></hr>
+       <div className="d-md-flex justify-content-between">
+       
+       <div>
+        <h6>@2023 Ladoo Story</h6>
+        <h6>All Rights Reserverd</h6>
+       </div>
+
+       <div>
+        <h6>Follow Us</h6>
+        <div>
+        <Link href={"https://www.instagram.com/"} ><FaInstagramSquare style={{width:40,height:60,color:"white"}} /></Link>
+        <Link href={"https://www.facebook.com/"} > <ImFacebook2  style={{width:40,height:60,color:"white"}}/></Link>
+       
+        </div>
+       </div>
+       </div>
+      </div>
+
+
+
     </div>
   );
 }

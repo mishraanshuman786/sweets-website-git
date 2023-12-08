@@ -1,8 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import "./styles/Navbar.css";
+import { TiShoppingCart } from "react-icons/ti";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { CartState } from "@/context/Context";
+import { FaInstagramSquare } from "react-icons/fa";
+import { ImFacebook2 } from "react-icons/im";
 
 const Navbar = () => {
   const router = useRouter();
@@ -23,6 +27,14 @@ const Navbar = () => {
     data = await data.json();
     await setNavProducts(data);
   }
+
+  // fetching cartdata from CartState
+
+  const {
+    state: { cart },
+    dispatch,
+  } = CartState();
+
   return (
     <div className="sticky-top">
       <nav
@@ -31,7 +43,7 @@ const Navbar = () => {
       >
         <div className="container-fluid">
           <Link className="navbar-brand text-light" href="#">
-            Logo
+           LADOO STORY
           </Link>
           <button
             className="navbar-toggler bg-light text-dark"
@@ -86,7 +98,11 @@ const Navbar = () => {
                           </li>
                         );
                       })
-                    : null}
+                    : (<div class="text-center">
+                    <div class="spinner-border" role="status">
+                      <span class="sr-only"></span>
+                    </div>
+                  </div>)}
                   <li>
                     <hr className="dropdown-divider text-dark" />
                   </li>
@@ -97,15 +113,71 @@ const Navbar = () => {
                   </li>
                 </ul>
               </li>
+
             </ul>
+            {/* cart Component */}
+
+            <div class="dropdown dropleft me-5">
+              <button
+                type="button"
+                className="btn btn-success  dropdown-toggle"
+                href="/products"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span style={{ fontSize: 20 }}>
+                  <TiShoppingCart />
+                </span>
+                Cart Items
+              </button>
+              <div
+                className="dropdown-menu" 
+                style={{
+                  width: 305,
+                  color: "#273746",
+                  position:"absolute",
+                  right:20,
+                  backgroundColor:"whitesmoke"
+                }}
+              >
+                <h4>Cart items:{cart.length}</h4>
+                
+                <h4>Cart Items:</h4>
+                {cart.map((item) => {
+                  let id=item._id;
+                  return (
+                    <div key={item._id} style={{backgroundColor:"grey",padding:10,margin:5,borderRadius:6,border:"1px solid black",color:"white"}}>
+                      <h5>{item.productName}</h5>
+                      <button
+                        type="button"
+                        className="btn btn-danger outline"
+                        role="button"
+                     onClick={()=>dispatch({ type: 'REMOVE_FROM_CART',payload:{id:id} })}
+                      >
+                      Remove
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* cart component end */}
 
             <button
               type="button"
-              className="btn btn-success"
+              className="btn btn-success me-5"
               onClick={() => router.push("/login")}
             >
               Login
             </button>
+
+            <div>
+        <Link href={"https://www.instagram.com/"} ><FaInstagramSquare style={{width:40,height:60,color:"white"}} /></Link>
+        <Link href={"https://www.facebook.com/"} > <ImFacebook2  style={{width:40,height:60,color:"white"}}/></Link>
+       
+        </div>
 
             {/* button */}
           </div>
