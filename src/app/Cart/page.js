@@ -113,8 +113,8 @@ export default function Cart() {
             </div>
           </div>
           {/* rating component */}
-          <div style={{ color: "white" }}>
-            <h5 className="text-light">Sort By Rating:</h5>
+          <div className="mb-4" style={{ color: "white" }}>
+            <h5 className="text-light mt-4">Sort By Rating:</h5>
 
             {[...Array(5)].map((_, index) => {
               return (
@@ -136,7 +136,7 @@ export default function Cart() {
           </div>
 
           {/* serach by entering the product name */}
-          <div className="input-group mb-3">
+          <div className="input-group mb-3 mt-4">
             <input
               type="text"
               className="form-control"
@@ -150,18 +150,13 @@ export default function Cart() {
                 })
               }
             />
-            <br></br>
-            <div className="input-group-append">
-              <button className="btn btn-outline-secondary" type="button">
-                Search a Product
-              </button>
-            </div>
+          
           </div>
 
           {/* clear filters button */}
           <button
             type="button"
-            className="btn btn-outline-primary m-5 mt-2"
+            className="btn btn-outline-primary  mt-5 w-100 mb-5"
             onClick={() => filterDispatch({ type: "CLEAR_FILTERS" })}
           >
             Clear Filters
@@ -208,8 +203,40 @@ export default function Cart() {
                     );
                   })}
 
-                  <h4>Price: {item.price} Rs/kg</h4>
-                  <h4>Rating: {item.rating}</h4>
+                  <h4>{item.price} Rs/kg</h4>
+                  <div>
+                        {[...Array(5)].map((_,index) => {
+                          return (item.rating > index) ? <IoStar className="ms-1" /> : <FaRegStar className="ms-1" />;
+                        })}
+                  </div>
+                  {/* buttons */}
+                       <div style={{ display: "flex", flexDirection: "column" }}>
+                    
+                      <button
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal2"
+                        style={{
+                          width: 145,
+                          height: 44,
+                          borderRadius: 6,
+                          fontSize: 14,
+                          color: "white",
+                          margin: 15,
+                          border: "none",
+                          backgroundColor: "brown",
+                        }}
+                        onClick={() =>
+                          dispatch({
+                            type: "REMOVE_FROM_CART",
+                            payload: { id: item._id },
+                          })
+                        }
+                      >
+                        Remove To Cart
+                      </button>
+                   
+                  </div>
                 </div>
               );
             })

@@ -8,6 +8,7 @@ import { CartState } from "@/context/Context";
 import { FaInstagramSquare } from "react-icons/fa";
 import { ImFacebook2 } from "react-icons/im";
 
+
 const Navbar = () => {
   const router = useRouter();
   const [navProducts, setNavProducts] = useState();
@@ -42,7 +43,7 @@ const Navbar = () => {
         className="navbar navbar-expand-lg "
       >
         <div className="container-fluid">
-          <Link className="navbar-brand text-light" href="#">
+          <Link className="navbar-brand text-light btnhover" href="/">
            LADOO STORY
           </Link>
           <button
@@ -58,20 +59,7 @@ const Navbar = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link
-                  className="nav-link active text-light"
-                  aria-current="page"
-                  href="/blog"
-                >
-                  Blog
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link text-light" href="/contact">
-                  Contact Us
-                </Link>
-              </li>
+              
               <li className="nav-item dropdown">
                 <Link
                   className="nav-link dropdown-toggle bg-success text-light"
@@ -79,6 +67,7 @@ const Navbar = () => {
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
+                  style={{borderRadius:6}}
                 >
                   Products
                 </Link>
@@ -98,11 +87,7 @@ const Navbar = () => {
                           </li>
                         );
                       })
-                    : (<div class="text-center">
-                    <div class="spinner-border" role="status">
-                      <span class="sr-only"></span>
-                    </div>
-                  </div>)}
+                    : (null)}
                   <li>
                     <hr className="dropdown-divider text-dark" />
                   </li>
@@ -113,11 +98,16 @@ const Navbar = () => {
                   </li>
                 </ul>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link text-light btnhover" href="/contact">
+                  Contact Us
+                </Link>
+              </li>
 
             </ul>
             {/* cart Component */}
 
-            <div class="dropdown dropleft me-5">
+            <div class="dropdown dropleft me-2">
               <button
                 type="button"
                 className="btn btn-success  dropdown-toggle"
@@ -174,8 +164,8 @@ const Navbar = () => {
             </button>
 
             <div>
-        <Link href={"https://www.instagram.com/"} ><FaInstagramSquare style={{width:40,height:60,color:"white"}} /></Link>
-        <Link href={"https://www.facebook.com/"} > <ImFacebook2  style={{width:40,height:60,color:"white"}}/></Link>
+        <Link  href={"https://www.instagram.com/"} ><FaInstagramSquare className="btnhover" style={{width:40,height:60,color:"white"}} /></Link>
+        <Link  href={"https://www.facebook.com/"} > <ImFacebook2 className="btnhover"  style={{width:40,height:60,color:"white"}}/></Link>
        
         </div>
 

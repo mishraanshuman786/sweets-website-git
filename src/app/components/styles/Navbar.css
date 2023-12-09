@@ -50,3 +50,6 @@
 .product-container:hover .product-hidden-content{
     display: block;
 }
+.btnhover:hover{
+ color: grey !important;
+}
