@@ -15,9 +15,9 @@ export default function Products({ params }) {
   });
 
   const router = useRouter();
-
   const [content, setContent] = useState();
-  let path;
+
+  let path, temp;
 
   async function getData() {
     let url = `/api/collections/${params.products}`;
@@ -27,13 +27,18 @@ export default function Products({ params }) {
   }
 
   // cart data
-  const {
-    state: { cart },
+  let {
+    state: { cart, idPrice },
     dispatch,
   } = CartState();
 
   if (content) {
     path = `/collectionsImages/${content.category[0].image}.jpg`;
+
+    // to update the id to index number of the category price and rating
+    temp = content.product[0].category.findIndex((ele) => {
+      return ele.id === params.products;
+    });
   }
 
   return (
@@ -41,7 +46,6 @@ export default function Products({ params }) {
       {/* navbar */}
       <Navbar />
       <div className="row m-3 m-sm-5">
-        {/* Filters Component */}
         {content ? (
           <div
             className="col-lg-4 mb-4 col-12"
@@ -49,7 +53,7 @@ export default function Products({ params }) {
               border: "1px solid grey",
               borderRadius: 6,
               color: "brown",
-              padding:20
+              padding: 20,
             }}
           >
             <h4>{content.category[0].name}</h4>
@@ -83,7 +87,7 @@ export default function Products({ params }) {
               border: "1px solid grey",
               borderRadius: 6,
               backgroundColor: "whitesmoke",
-              padding:20
+              padding: 20,
             }}
           >
             <div style={{ padding: 10 }}>
@@ -102,7 +106,10 @@ export default function Products({ params }) {
                   border: "none",
                   backgroundColor: "brown",
                 }}
-                onClick={() => router.push("/Cart")}
+                onClick={() => {
+                  dispatch({ type: 'UPDATE_ID', payload:temp});
+                  router.push("/Cart");
+                }}
               >
                 Go To Cart
               </button>
@@ -127,10 +134,15 @@ export default function Products({ params }) {
                     </div>
                     <div style={{ padding: 10, color: "brown" }}>
                       <h3>{element.productName}</h3>
-                      <h4>Price: {element.price} Rs/Kg</h4>
+
+                      <h4>Price: {element.category[temp].price} Rs/Kg</h4>
                       <div>
-                        {[...Array(5)].map((_,index) => {
-                          return (element.rating > index) ? <IoStar /> : <FaRegStar />;
+                        {[...Array(5)].map((_, index) => {
+                          return element.category[temp].rating > index ? (
+                            <IoStar />
+                          ) : (
+                            <FaRegStar />
+                          );
                         })}
                       </div>
                     </div>

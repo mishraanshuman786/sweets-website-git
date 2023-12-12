@@ -5,9 +5,10 @@ import { cartReducer, filterReducer } from "./Reducers";
 const Cart=createContext();
 const Context=({children})=>{
     
-    const initialData = {
+    let initialData = {
         products: [],
         cart: [],
+        idPrice:0
       };
 
     const initialFilterData={

@@ -37,7 +37,7 @@ const Navbar = () => {
   } = CartState();
 
   return (
-    <div className="sticky-top">
+    <div>
       <nav
         style={{ backgroundColor: "#761700" }}
         className="navbar navbar-expand-lg "

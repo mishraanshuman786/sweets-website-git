@@ -9,8 +9,8 @@ import { CartState } from "@/context/Context";
 
 export default function Cart() {
   // cart data
-  const {
-    state: { cart },
+  let {
+    state: { cart, idPrice },
     dispatch,
   } = CartState();
 
@@ -26,9 +26,9 @@ export default function Cart() {
     if (sort) {
       sortedProducts = sortedProducts.sort((a, b) => {
         if (sort === "lowToHigh") {
-          return a.price - b.price;
+          return a.category[idPrice].price - b.category[idPrice].price;
         } else if (sort === "highToLow") {
-          return b.price - a.price;
+          return b.category[idPrice].price - a.category[idPrice].price;
         } else {
           return sortedProducts;
         }
@@ -36,7 +36,7 @@ export default function Cart() {
     }
     if (byRating) {
       sortedProducts = sortedProducts.filter((prod) => {
-        return prod.rating >= byRating;
+        return prod.category[idPrice].rating >= byRating;
       });
     }
     if (searchQuery) {
@@ -150,7 +150,6 @@ export default function Cart() {
                 })
               }
             />
-          
           </div>
 
           {/* clear filters button */}
@@ -173,6 +172,8 @@ export default function Cart() {
         >
           {cart.length >= 1 ? (
             transformProducts().map((item) => {
+              
+
               return (
                 <div
                   style={{
@@ -185,7 +186,7 @@ export default function Cart() {
                   key={item._id}
                 >
                   <h3 style={{ color: "brown" }}>{item.productName}</h3>
-                  {item.images.map((ele,index) => {
+                  {item.images.map((ele, index) => {
                     let url = `/ProductImages/${ele}.jpg`;
                     return (
                       <Image
@@ -203,45 +204,49 @@ export default function Cart() {
                     );
                   })}
 
-                  <h4>{item.price} Rs/kg</h4>
+                  <h4>{item.category[idPrice].price} Rs/kg</h4>
                   <div>
-                        {[...Array(5)].map((_,index) => {
-                          return (item.rating > index) ? <IoStar className="ms-1" /> : <FaRegStar className="ms-1" />;
-                        })}
+                    {[...Array(5)].map((_, index) => {
+                      return item.category[idPrice].rating > index ? (
+                        <IoStar className="ms-1" />
+                      ) : (
+                        <FaRegStar className="ms-1" />
+                      );
+                    })}
                   </div>
                   {/* buttons */}
-                       <div style={{ display: "flex", flexDirection: "column" }}>
-                    
-                      <button
-                        class="btn btn-primary"
-                        data-bs-toggle="modal"
-                        data-bs-target="#exampleModal2"
-                        style={{
-                          width: 145,
-                          height: 44,
-                          borderRadius: 6,
-                          fontSize: 14,
-                          color: "white",
-                          margin: 15,
-                          border: "none",
-                          backgroundColor: "brown",
-                        }}
-                        onClick={() =>
-                          dispatch({
-                            type: "REMOVE_FROM_CART",
-                            payload: { id: item._id },
-                          })
-                        }
-                      >
-                        Remove To Cart
-                      </button>
-                   
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    <button
+                      class="btn btn-primary"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal2"
+                      style={{
+                        width: 145,
+                        height: 44,
+                        borderRadius: 6,
+                        fontSize: 14,
+                        color: "white",
+                        margin: 15,
+                        border: "none",
+                        backgroundColor: "brown",
+                      }}
+                      onClick={() =>
+                        dispatch({
+                          type: "REMOVE_FROM_CART",
+                          payload: { id: item._id },
+                        })
+                      }
+                    >
+                      Remove To Cart
+                    </button>
                   </div>
                 </div>
               );
             })
           ) : (
-            <h2>Your Cart is Empty. Please Add Some Products..... </h2>
+            <div>
+              <h2>Your Cart is Empty. Please Add Some Products..... </h2>
+            </div>
           )}
         </div>
       </div>

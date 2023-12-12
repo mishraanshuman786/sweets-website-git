@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Footer from "@/app/components/Footer";
 
+
 export default function Product({ params }) {
   // state to store particular product data
   const [product, setProduct] = useState();

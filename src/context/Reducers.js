@@ -13,6 +13,11 @@ export const cartReducer=(state,action)=>{
           ...state,
           products: action.payload,
         };
+    case 'UPDATE_ID':
+      return {
+        ...state,
+        idPrice: action.payload,
+      }
     default:
         return state;
    }
