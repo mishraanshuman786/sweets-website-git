@@ -99,11 +99,20 @@ const Navbar = () => {
                 </ul>
               </li>
               <li className="nav-item">
+                <Link className="nav-link text-light btnhover" href="/Cart">
+                  My Cart
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link className="nav-link text-light btnhover" href="/contact">
                   Contact Us
                 </Link>
               </li>
-
+              <li className="nav-item">
+                <Link className="nav-link text-light btnhover" href="/contact">
+                  About Us
+                </Link>
+              </li>
             </ul>
             {/* cart Component */}
 

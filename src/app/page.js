@@ -7,7 +7,7 @@ import Link from "next/link";
 import Slider from "./components/Slider";
 import { CartState } from "@/context/Context";
 import { useRouter } from "next/navigation";
-
+import DialogBox from "./components/DialogBox";
 
 export default function Homepage() {
   const router = useRouter();
@@ -19,6 +19,8 @@ export default function Homepage() {
 
   const [navProducts, setNavProducts] = useState();
   const [collections, setCollections] = useState();
+  const [showCartAddedDropdown, setShowCartAddedDropdown] = useState(false);
+  const [showRemoveCartDropdown, setShowRemoveCartDropdown]=useState(false);
 
   // cart data
   const {
@@ -40,8 +42,6 @@ export default function Homepage() {
 
   return (
     <div style={{ backgroundColor: "#FFEBEE" }}>
-    
-
       <div className="sticky-top ">
         <div
           className="container-fluid sticky-top"
@@ -137,27 +137,72 @@ export default function Homepage() {
                     <img src={path} />
                     <h4>{element.productName}</h4>
 
-                    <button
-                      type="button"
-                      className="btn"
-                      style={{
-                        width: 180,
-                        float: "right",
-                        display: "block",
-                        height: 44,
-                        borderRadius: 6,
-                        fontSize: 18,
-                        color: "white",
-                        margin: 15,
-                        border: "none",
-                        backgroundColor: "brown",
-                      }}
-                      onClick={() => {
-                        dispatch({ type: "ADD_TO_CART", payload: element });
-                      }}
-                    >
-                      Add To Cart
-                    </button>
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      {cart.some((p) => p._id === element._id) ? (
+                        <button
+                          style={{
+                            width: 145,
+                            height: 44,
+                            borderRadius: 6,
+                            fontSize: 14,
+                            color: "white",
+                            margin: 15,
+                            border: "none",
+                            backgroundColor: "brown",
+                          }}
+                          onClick={() =>{
+                            dispatch({
+                              type: "REMOVE_FROM_CART",
+                              payload: { id: element._id },
+                            })
+                            setShowRemoveCartDropdown(!showRemoveCartDropdown);
+                          }
+                          }
+                        >
+                          Remove To Cart
+                        </button>
+                      ) : (
+                        <button
+                          style={{
+                            width: 145,
+                            height: 44,
+                            borderRadius: 6,
+                            fontSize: 14,
+                            color: "white",
+                            margin: 15,
+                            border: "none",
+                            backgroundColor: "brown",
+                          }}
+                          onClick={() =>{
+                            dispatch({ type: "ADD_TO_CART", payload: element })
+                            setShowCartAddedDropdown(!showCartAddedDropdown);
+                          }
+                          }
+                        >
+                          Add To Cart
+                        </button>
+                      )}
+
+                      {showCartAddedDropdown ? (
+                        <DialogBox
+                          title="Cart"
+                          content="Your Product is Addedd to the Cart."
+                          isOpen={showCartAddedDropdown}
+                          onClose={()=>setShowCartAddedDropdown(false)}
+                        ></DialogBox>
+                      ) : null}
+
+                      {
+                        showRemoveCartDropdown ? (
+                          <DialogBox
+                            title="Cart"
+                            content="Product is Removed from the Cart."
+                            isOpen={showRemoveCartDropdown}
+                            onClose={()=>setShowRemoveCartDropdown(false)}
+                          ></DialogBox>
+                        ) : null
+                      }
+                    </div>
                   </div>
                 );
               })

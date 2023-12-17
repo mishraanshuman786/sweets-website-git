@@ -37,21 +37,21 @@ export default function Slider() {
         </div>
         <div class="carousel-item" data-bs-interval="2000">
           <img
-            src="/images/banner3.jpg"
+            src="/images/banner9.jpg"
             class="d-block w-100  sliderimage"
             alt="..."
           />
         </div>
         <div class="carousel-item" data-bs-interval="2000">
           <img
-            src="/images/banner4.jpg"
+            src="/images/banner7.jpg"
             class="d-block w-100  sliderimage"
             alt="..."
           />
         </div>
         <div class="carousel-item" data-bs-interval="2000">
           <img
-            src="/images/banner5.jpg"
+            src="/images/banner15.jpg"
             class="d-block w-100  sliderimage"
             alt="..."
           />

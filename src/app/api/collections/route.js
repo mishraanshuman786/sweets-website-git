@@ -8,6 +8,7 @@ export async function GET() {
     // connection with Mongodb
     await mongoose.connect(connectionSrc);
     let data = await Categories.find();
+    // getting all the categories
     return NextResponse.json({ result: data });
   } catch (err) {
     console.error("error:", err.message);

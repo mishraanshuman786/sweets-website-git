@@ -44,20 +44,20 @@ export default function Product({ params }) {
                 return (
                   <div className="container-fluid row" key={element._id}>
                     {/* // image figcaption */}
-                    <figure className="figure col-3">
+                    <figure className="figure col-3" >
                       <Image
                         src={path}
-                        width={500}
+                        width={200}
                         height={200}
                         className="mt-4 figure-img img-fluid rounded"
                         alt="Hello"
-                        style={{ border: "2px solid grey" }}
+                        style={{ border: "2px solid grey",height:360,width:700 }}
                       />
                       <figcaption className="figure-caption">
-                        <h4 className="text-dark">
-                          Product Name: {element.productName}
-                        </h4>
-                        <h5>Category: {element.category}</h5>
+                        <h5 className="text-dark text-center">
+                         {element.productName}
+                        </h5>
+                        {/* <h5>Category: {element.category}</h5> */}
                       </figcaption>
                     </figure>
 
@@ -69,7 +69,8 @@ export default function Product({ params }) {
                         backgroundColor: "wheat",
                       }}
                     >
-                      <p className="h3 mt-5  ytext-center container-fluid">
+                      <h4 className="mt-5">{element.productName}</h4>
+                      <p className="h5 mt-3 text-left container-fluid">
                         {element.desc}
                       </p>
                     </div>
