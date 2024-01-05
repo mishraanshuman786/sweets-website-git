@@ -10,7 +10,7 @@ export async function GET(request,content) {
     await mongoose.connect(connectionSrc);
     let productdata = await Product.find({ category: { $elemMatch: { id:content.params.products } } });
      let categorydata=await Categories.find({_id:content.params.products})
-    return NextResponse.json({ product: productdata, category: categorydata, reult:true});
+    return NextResponse.json({ result: productdata, category: categorydata, reults:true});
   } catch (err) {
     console.error("error:", err.message);
     return NextResponse.json({ result: false });

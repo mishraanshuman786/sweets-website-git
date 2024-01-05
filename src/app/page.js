@@ -18,14 +18,16 @@ export default function Homepage() {
 
   useEffect(() => {
     getCollections();
+    getProducts();
+    getLaddooDesighee();
   }, []);
 
   
   const [collections, setCollections] = useState();
-
-  const [showPopup, setShowPopup] = useState(true);
-  // adding next and previos buttons on the products state variables
-  const [currentPosition, setCurrentPosition] = useState(0);
+  const [navProducts, setNavProducts] = useState();
+  const [laddooDesighee,setLaddooDesighee]=useState();
+  const [showPopup, setShowPopup] = useState(true)
+ 
 
  
 
@@ -39,11 +41,24 @@ export default function Homepage() {
  
 
  
-
+console.log("first:",collections);
   async function getCollections() {
     let collectionData = await fetch("api/collections");
     collectionData = await collectionData.json();
     await setCollections(collectionData);
+  }
+
+  async function getProducts() {
+    let productsdata = await fetch("api/products");
+    productsdata = await productsdata.json();
+    await setNavProducts(productsdata);
+  }
+
+  async function getLaddooDesighee(){
+    let api=`api/collections/656daabf41ff1afeaba93473`;
+    let collection1 = await fetch(api);
+    collection1=await collection1.json();
+    await setLaddooDesighee(collection1);
   }
 
   // fetching review and rating from products to show the slider in the homepage
@@ -124,7 +139,10 @@ export default function Homepage() {
         <hr />
 
         {/* products */}
-           <ProductSlider />
+           <ProductSlider data={navProducts} title="Grab The Deals" />
+        <hr />
+         {/* laddo desighee collections products*/}
+         <ProductSlider data={laddooDesighee} title="Laddoo Desighee Collections" />
         <hr />
         {/* Description */}
         <div className="container">

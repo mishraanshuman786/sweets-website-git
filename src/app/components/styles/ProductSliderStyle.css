@@ -3,12 +3,14 @@
 .stylecontainer {
   display: flex;
   overflow-x: scroll;
+  /* border:1px solid grey; */
+  border-radius: 6px;
 }
 
 
 .imagecontainer {
   border: 1px solid grey;
-  width: 350px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,7 +24,24 @@
   width: 220px;
   height: 240px;
 }
+.imagecontainer h4{
+  text-align: left;
+}
 
+.rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Ensure stars wrap to the next line */
+  margin-top: 10px;
+}
+
+.star {
+  width: 20px;
+  height: 20px;
+  
+  margin-right: 5px;
+}
 
 @media (max-width: 1113px) {
   .stylecontainer::-webkit-scrollbar {
