@@ -1,0 +1,48 @@
+/* styles.css */
+
+.stylecontainer {
+  display: flex;
+  overflow-x: scroll;
+}
+
+
+.imagecontainer {
+  border: 1px solid grey;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.imagecontainer img {
+  border-radius: 10px;
+  width: 220px;
+  height: 240px;
+}
+
+
+@media (max-width: 1113px) {
+  .stylecontainer::-webkit-scrollbar {
+    display: none;
+  }
+
+  .responsive-card {
+    width: 18rem;
+  }
+}
+
+@media (max-width: 1196px) {
+  .collection {
+    overflow-x: auto;
+  }
+}
+
+
+@media (max-width: 864px) {
+  .collection {
+    overflow-x: scroll;
+  }
+}

@@ -1,0 +1,33 @@
+
+
+@media(max-width:1382px)
+{
+    .leftimage{
+        width: 260px;
+    }
+}
+
+@media(max-width:1237px)
+{
+    .leftimage{
+        width: 210px;
+    }
+}
+@media(max-width:991px)
+{
+    .leftimage{
+        width: 400px;
+    }
+}
+@media(max-width:558px)
+{
+    .text-content-column{
+        flex-direction: column;
+    }
+}
+@media(max-width:462px)
+{
+    .leftimage{
+        width: 320px;
+    }
+}
