@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 function ShipingPolicy() {
   return (
-    <div>
+    <div style={{marginTop:170}}>
       {/* Navbar component */}
       <Navbar/>
       {/* =================================== */}

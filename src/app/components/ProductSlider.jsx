@@ -10,7 +10,7 @@ import DialogBox from "./DialogBox";
 import { useRouter } from "next/navigation";
 import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
-import { IoStar } from 'react-icons/io5';
+import { IoStar } from "react-icons/io5";
 
 const ProductSlider = (props) => {
   const router = useRouter();
@@ -24,6 +24,8 @@ const ProductSlider = (props) => {
     state: { cart },
     dispatch,
   } = CartState();
+
+  console.log("cart:", cart);
 
   const handleNext = () => {
     const container = imageContainerRef.current;
@@ -60,7 +62,7 @@ const ProductSlider = (props) => {
         >
           {props.data ? (
             props.data.result.map((element) => {
-              let path = `/ProductImages/${element.images[0]}.jpg`;
+              let path = `/ProductImages/${element.images[props.index]}.jpg`;
               let productsPath = `/products/${element._id}`;
 
               return (
@@ -69,34 +71,45 @@ const ProductSlider = (props) => {
                   ref={imageContainerRef}
                   style={{ backgroundColor: "white" }}
                   key={element._id}
-                  onClick={() => router.push(productsPath)}
                 >
                   <img src={path} alt={element.productName} />
                   <h4>{element.productName}</h4>
                   <h4>
                     {element.category &&
-                    element.category[0] &&
-                    element.category[0].price
-                      ?<span>{ element.category[0].price} <strike>{element.category[0].price-100}</strike></span>
-                      : "Price not available"}
-                      
+                    element.category[props.index] &&
+                    element.category[props.index].price ? (
+                      <span>
+                        {element.category[props.index].price}{" "}
+                        <strike>{element.category[0].price + 100}</strike>
+                      </span>
+                    ) : (
+                      "Price not available"
+                    )}
                   </h4>
 
-                  <div className="rating" >
-  {element.category && element.category[0] && element.category[0].rating
-    ? Array.from({ length: element.category[0].rating }, (_, i) => (
-        <span key={i} className="star">
-          <IoStar />
-        </span>
-      ))
-    : "Rating not available"}
-</div>
-
+                  <div className="rating">
+                    {element.category &&
+                    element.category[props.index] &&
+                    element.category[props.index].rating
+                      ? Array.from(
+                          { length: element.category[props.index].rating },
+                          (_, i) => (
+                            <span key={i} className="star">
+                              <IoStar />
+                            </span>
+                          )
+                        )
+                      : "Rating not available"}
+                  </div>
 
                   <div style={{ display: "flex", flexDirection: "column" }}>
                     <div style={{ display: "flex", flexDirection: "column" }}>
                       <div style={{ display: "flex", flexDirection: "column" }}>
-                        {cart.some((p) => p._id === element._id) ? (
+                        {cart.some(
+                          (p) =>
+                            p._id === element._id &&
+                            p.categoryId === element.categoryId
+                        ) ? (
                           <button
                             style={{
                               width: 145,
@@ -111,7 +124,9 @@ const ProductSlider = (props) => {
                             onClick={() => {
                               dispatch({
                                 type: "REMOVE_FROM_CART",
-                                payload: { id: element._id },
+                                payload: {
+                                  productId: element._id,
+                                },
                               });
                               setShowRemoveCartDropdown(
                                 !showRemoveCartDropdown

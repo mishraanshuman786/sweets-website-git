@@ -32,10 +32,13 @@ export default function RootLayout({ children }) {
               justifyContent: "center",
               borderBottom: "1px solid grey",
               paddingTop: 10,
+              position:"fixed",
+              zIndex:100
             }}
           >
             <p>Free Delivery Available Over All India After 999. Rs Shopping.</p>
           </div>
+        
           <Context>
             <div className="fixed-bottom" style={{ marginBottom: 90, marginLeft: 30,width:100 }}>
               <Link

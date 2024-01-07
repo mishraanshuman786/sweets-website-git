@@ -22,7 +22,7 @@ export default function Slider() {
   const translateValue = `-${currentIndex * 100}%`;
 
   return (
-    <div id="slider" style={{ marginTop: 20,overflow: "hidden" }}>
+    <div id="slider" style={{marginTop: 20,overflow: "hidden",marginTop:170}}>
       <div
         className="slider-container"
         style={{ display: "flex", transition: "transform 0.5s ease", transform: `translateX(${translateValue})` }}

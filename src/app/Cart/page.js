@@ -1,6 +1,6 @@
 "use client";
 import "./Cart.css";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "@/app/components/Navbar";
 import Image from "next/image";
 import { FaRegStar } from "react-icons/fa6";
@@ -10,9 +10,9 @@ import { CartState } from "@/context/Context";
 import RazorpayForm from "../components/RazorpayForm";
 
 export default function Cart() {
-
- const [totalAmount,setTotalAmount]=useState(0);
-
+  const [totalAmount, setTotalAmount] = useState(0);
+  // Define a state for product weights
+  const [productWeights, setProductWeights] = useState({});
 
   // cart data
   let {
@@ -54,26 +54,23 @@ export default function Cart() {
     return sortedProducts;
   };
 
-
   useEffect(() => {
     let calculatedTotalAmount = 1;
-  
+
     // if (cart.length >= 1) {
     //   cart.forEach((item) => {
     //     calculatedTotalAmount += item.category[idPrice].price;
     //   });
     // }
-  
+
     setTotalAmount(calculatedTotalAmount);
   }, [cart, idPrice]);
-  
 
   return (
-    <div>
+    <div style={{ marginTop: 170 }}>
       {/* navbar */}
       <Navbar />
 
-     
       {/* filter content */}
       <div className="row m-3 m-sm-5">
         {/* Filters Component */}
@@ -182,15 +179,13 @@ export default function Cart() {
           </button>
 
           {/* Make Payment Button */}
-          {
-            (cart.length>=1)?(
-              <div>
+          {cart.length >= 1 ? (
+            <div>
               <h4 className="text-light">Total Amount:{totalAmount}</h4>
-              
-              <RazorpayForm amount={totalAmount}  />
-              </div>
-            ):null
-          }
+
+              <RazorpayForm amount={totalAmount} />
+            </div>
+          ) : null}
         </div>
 
         <div
@@ -198,17 +193,19 @@ export default function Cart() {
           style={{
             border: "1px solid grey",
             borderRadius: 6,
-            backgroundColor: "white",
+            backgroundColor: "whitesmoke",
           }}
         >
           {cart.length >= 1 ? (
             transformProducts().map((item) => {
-              
+              // Use the product's ID as a key for the product's weight
+              const productWeight = productWeights[item._id] || 1;
+
               return (
                 <div
                   style={{
                     border: "1px solid grey",
-                    backgroundColor: "whitesmoke",
+                    backgroundColor: "white",
                     margin: 8,
                     borderRadius: 6,
                     padding: 6,
@@ -217,35 +214,114 @@ export default function Cart() {
                 >
                   <h3 style={{ color: "brown" }}>{item.productName}</h3>
                   <div style={{ display: "flex", overflowX: "auto" }}>
-                  {item.images.map((ele, index) => {
-                    let url = `/ProductImages/${ele}.jpg`;
-                    return (
-                      <Image
-                        src={url}
-                        width={180}
-                        height={180}
-                        style={{
-                          border: "1px solid grey",
-                          borderRadius: 6,
-                          margin: 6,
-                        }}
-                        alt="Product Images"
-                        key={index}
-                      />
-                    );
-                  })}
+                    {item.images.map((ele, index) => {
+                      let url = `/ProductImages/${ele}.jpg`;
+                      console.log(item.categoryId);
+                      return (
+                        <Image
+                          src={url}
+                          width={180}
+                          height={180}
+                          style={{
+                            border: "1px solid grey",
+                            borderRadius: 6,
+                            margin: 6,
+                          }}
+                          alt="Product Images"
+                          key={index}
+                        />
+                      );
+                    })}
                   </div>
 
-                  <h4>{item.category[idPrice].price} Rs/kg</h4>
+                 
+                    {item.category[item.categoryIndex] &&
+                    item.category[item.categoryIndex].price !== undefined ? (
+                      <h4>
+                      <strike className="me-2">
+                        {item.category[item.categoryIndex].price + 100}Rs/kg
+                      </strike>
+                       {item.category[item.categoryIndex].price} Rs/kg
+                       </h4>
+                    ) : null}
+                   
                   <div>
                     {[...Array(5)].map((_, index) => {
-                      return item.category[idPrice].rating > index ? (
+                      return item.category[item.categoryIndex].rating > index ? (
                         <IoStar className="ms-1" />
                       ) : (
                         <FaRegStar className="ms-1" />
                       );
                     })}
                   </div>
+
+                  {/* weight calculator controls */}
+                  <div
+                    style={{
+                      width: 160,
+                      padding: 0,
+                      height: 40,
+                      border: "1px solid black",
+                      fontSize: 25,
+                      fontWeight: "bold",
+                      borderRadius: 6,
+                      userSelect: "none",
+                      marginTop: 6,
+                    }}
+                  >
+                    <div
+                      style={{
+                        height: 38,
+                        display: "inline-block",
+                        width: 29,
+                        textAlign: "center",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        // Update the product's weight for the specific item
+                        setProductWeights((prevWeights) => ({
+                          ...prevWeights,
+                          [item._id]: productWeight > 1 ? productWeight - 1 : 1,
+                        }));
+                      }}
+                    >
+                      -
+                    </div>
+                    <div
+                      style={{
+                        display: "inline-block",
+                        width: 98,
+                        textAlign: "center",
+                      }}
+                    >
+                      {productWeight}kg
+                    </div>
+                    <div
+                      style={{
+                        display: "inline-block",
+                        height: 38,
+                        width: 29,
+                        textAlign: "center",
+                        cursor: "pointer",
+                      }}
+                      onClick={() =>
+                        setProductWeights((prevWeights) => ({
+                          ...prevWeights,
+                          [item._id]:
+                            productWeight < 50 ? productWeight + 1 : 50,
+                        }))
+                      }
+                    >
+                      +
+                    </div>
+                  </div>
+
+                  {/* Total Amount */}
+                  <h3 className="pt-2">
+                    Total Amount:
+                    <span>{item.category[idPrice].price * productWeight}Rs.</span>
+                  </h3>
+
                   {/* buttons */}
                   <div style={{ display: "flex", flexDirection: "column" }}>
                     <button
@@ -259,13 +335,16 @@ export default function Cart() {
                         fontSize: 14,
                         color: "white",
                         margin: 15,
+                        marginTop: 8,
                         border: "none",
                         backgroundColor: "brown",
                       }}
                       onClick={() =>
                         dispatch({
                           type: "REMOVE_FROM_CART",
-                          payload: { id: item._id },
+                          payload: {
+                            productId: item._id,
+                          },
                         })
                       }
                     >
@@ -276,8 +355,11 @@ export default function Cart() {
               );
             })
           ) : (
-            <div>
+            <div className="empty-cart-container">
               <h2>Your Cart is Empty. Please Add Some Products..... </h2>
+              <div>
+              <img src="/emptycart.webp" alt="empty cart" />
+              </div>
             </div>
           )}
         </div>

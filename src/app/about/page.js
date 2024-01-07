@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 
 const About = () => {
   return (
-    <div>
+    <div style={{marginTop:170}}>
       {/* Navbar */}
       <Navbar />
     <div className={styles.container}>

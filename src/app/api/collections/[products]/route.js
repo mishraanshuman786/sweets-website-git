@@ -4,15 +4,21 @@ import { Categories } from "@/library/model/categories";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
-export async function GET(request,content) {
+export async function GET(request, content) {
   try {
-    // connection with Mongodb
-    await mongoose.connect(connectionSrc);
-    let productdata = await Product.find({ category: { $elemMatch: { id:content.params.products } } });
-     let categorydata=await Categories.find({_id:content.params.products})
-    return NextResponse.json({ result: productdata, category: categorydata, reults:true});
+    // Connect to MongoDB using mongoose
+    await mongoose.connect(connectionSrc, { useNewUrlParser: true, useUnifiedTopology: true });
+
+    // Use correct parameter for querying products
+    let productData = await Product.find({ categoryId: content.params.products });
+
+    // Use correct parameter for querying categories
+    let categoryData = await Categories.findById(content.params.products);
+
+    // Return response with correct property names
+    return NextResponse.json({ results: true, result: productData, category: categoryData });
   } catch (err) {
-    console.error("error:", err.message);
-    return NextResponse.json({ result: false });
+    console.error("Error:", err.message);
+    return NextResponse.json({ results: false });
   }
 }

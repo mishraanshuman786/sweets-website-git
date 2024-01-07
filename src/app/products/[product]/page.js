@@ -26,7 +26,7 @@ export default function Product({ params }) {
  
  
   return (
-    <div>
+    <div style={{marginTop:170}}>
       {/* // Navbar */}
       <Navbar />
       <div className="container-fluid">

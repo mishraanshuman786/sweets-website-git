@@ -6,7 +6,7 @@ import styles from './PrivacyPolicy.module.css';
 
 const PrivacyPolicy = () => {
     return (
-        <div>
+        <div style={{marginTop:170}}>
 
             {/* Navbar */}
             <Navbar />

@@ -1,1 +1,40 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
+
+/* empty cart start */
+
+.empty-cart-container h2{
+   text-align: center;
+}
+.empty-cart-container div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    height:430px;
+}
+
+@media(max-width:1292px){
+    .empty-cart-container h2{
+        font-size: 25px;
+    }
+}
+
+
+@media(max-width:1036px){
+    .empty-cart-container h2{
+        font-size: 22px;
+    }
+}
+
+
+@media(max-width:648px){
+    .empty-cart-container h2{
+        font-size: 18px;
+    }
+
+    .empty-cart-container div img{
+        width:300px;
+    }
+}
+
+/* empty card end */

@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 
 const TermsOfService = () => {
   return (
-    <div>
+    <div style={{marginTop:170}}>
 
       {/* Navbar component */}
       <Navbar/>

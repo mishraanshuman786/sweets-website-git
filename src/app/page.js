@@ -18,14 +18,16 @@ export default function Homepage() {
 
   useEffect(() => {
     getCollections();
-    getProducts();
+    // getProducts();
     getLaddooDesighee();
+    getLaddooSugerfree();
   }, []);
 
   
   const [collections, setCollections] = useState();
-  const [navProducts, setNavProducts] = useState();
+  // const [navProducts, setNavProducts] = useState();
   const [laddooDesighee,setLaddooDesighee]=useState();
+  const [laddooSugerfree,setLaddooSugerfree]=useState();
   const [showPopup, setShowPopup] = useState(true)
  
 
@@ -48,17 +50,24 @@ console.log("first:",collections);
     await setCollections(collectionData);
   }
 
-  async function getProducts() {
-    let productsdata = await fetch("api/products");
-    productsdata = await productsdata.json();
-    await setNavProducts(productsdata);
-  }
+  // async function getProducts() {
+  //   let productsdata = await fetch("api/products");
+  //   productsdata = await productsdata.json();
+  //   await setNavProducts(productsdata);
+  // }
 
   async function getLaddooDesighee(){
     let api=`api/collections/656daabf41ff1afeaba93473`;
     let collection1 = await fetch(api);
     collection1=await collection1.json();
     await setLaddooDesighee(collection1);
+  }
+
+  async function getLaddooSugerfree(){
+    let api=`api/collections/656dab9341ff1afeaba93474`;
+    let collection2 = await fetch(api);
+    collection2=await collection2.json();
+    await setLaddooSugerfree(collection2);
   }
 
   // fetching review and rating from products to show the slider in the homepage
@@ -138,11 +147,14 @@ console.log("first:",collections);
 
         <hr />
 
-        {/* products */}
-           <ProductSlider data={navProducts} title="Grab The Deals" />
+        {/* products
+           <ProductSlider data={navProducts} title="Grab The Deals" /> */}
         <hr />
          {/* laddo desighee collections products*/}
-         <ProductSlider data={laddooDesighee} title="Laddoo Desighee Collections" />
+         <ProductSlider data={laddooDesighee} title="Laddoo Desighee Collections" index={0} />
+        <hr />
+         {/* laddo sugerfree collections products*/}
+         <ProductSlider data={laddooSugerfree} title="Laddoo Sugerfree Collections" index={1} />
         <hr />
         {/* Description */}
         <div className="container">

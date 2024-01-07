@@ -162,7 +162,7 @@ export default function Footer() {
               justifyContent: "flex-start",
             }}
           >
-            <li style={{ marginRight: "5%" }}><Link style={{textDecoration:"none",color:"white"}} href="/contact">About Us</Link></li>
+            <li style={{ marginRight: "5%" }}><Link style={{textDecoration:"none",color:"white"}} href="/about">About Us</Link></li>
             <li style={{ marginRight: "5%" }}><Link style={{textDecoration:"none",color:"white"}} href="/contact">Contact Us</Link></li>
             <li style={{ marginRight: "5%" }}><Link style={{textDecoration:"none",color:"white"}} href="/privacyPolicy">Privacy Policy</Link></li>
             <li style={{ marginRight: "5%" }}><Link style={{textDecoration:"none",color:"white"}} href="/refundPolicy">Refund Policy</Link></li>

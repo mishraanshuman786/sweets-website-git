@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 
 const RefundPolicy = () => {
     return (
-        <div>
+        <div style={{marginTop:170}}>
             {/* Navbar component */}
             <Navbar />
             {/* ================================== */}

@@ -22,7 +22,7 @@ export default function Product() {
 
   
   return (
-    <div>
+    <div style={{marginTop:170}}>
       {/* Navbar */}
       <Navbar />
 

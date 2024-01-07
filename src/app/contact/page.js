@@ -36,7 +36,7 @@ export default function Contact() {
   }
 
   return (
-    <div style={{ backgroundImage: "/public/images/background.jpg" }}>
+    <div style={{ backgroundImage: "/public/images/background.jpg",marginTop:170 }}>
       {/* Navbar */}
       <Navbar />
       {/* content */}
