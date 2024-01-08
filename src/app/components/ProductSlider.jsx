@@ -46,7 +46,6 @@ const ProductSlider = (props) => {
     setScrollPosition((prevPosition) => Math.max(0, prevPosition - 1));
   };
 
-  console.log("content:", props.data);
 
   return (
     <div style={{ position: "relative", width: "85%", margin: "auto" }}>
@@ -192,36 +191,16 @@ const ProductSlider = (props) => {
         </div>
       </div>
       {/* Next and Previous buttons */}
-      <div style={{ height: "100%" }}>
+      <div  className="product-slider-button">
         <div
+          className="previous-button"
           onClick={handlePrevious}
-          style={{
-            position: "absolute",
-            left: "-100px",
-            top: "50%",
-            backgroundColor: "grey",
-            fontSize: 40,
-            borderRadius: 30,
-            width: 60,
-            height: 60,
-            textAlign: "center",
-          }}
         >
           <GrPrevious />
         </div>
         <div
+          className="next-button"
           onClick={handleNext}
-          style={{
-            position: "absolute",
-            right: "-100px",
-            top: "50%",
-            backgroundColor: "grey",
-            fontSize: 40,
-            borderRadius: 30,
-            width: 60,
-            height: 60,
-            textAlign: "center",
-          }}
         >
           <GrNext />
         </div>

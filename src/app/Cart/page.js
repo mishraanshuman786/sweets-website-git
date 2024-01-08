@@ -10,7 +10,7 @@ import { CartState } from "@/context/Context";
 import RazorpayForm from "../components/RazorpayForm";
 
 export default function Cart() {
-  const [totalAmount, setTotalAmount] = useState(0);
+  const [paymentAmount, setPaymentAmount] = useState(0); // Add paymentAmount state
   // Define a state for product weights
   const [productWeights, setProductWeights] = useState({});
 
@@ -55,16 +55,17 @@ export default function Cart() {
   };
 
   useEffect(() => {
-    let calculatedTotalAmount = 1;
+    let calculatedPaymentAmount = 0;
 
-    // if (cart.length >= 1) {
-    //   cart.forEach((item) => {
-    //     calculatedTotalAmount += item.category[idPrice].price;
-    //   });
-    // }
+    if (cart.length >= 1) {
+      cart.forEach((item) => {
+        const productWeight = productWeights[item._id] || 1;
+        calculatedPaymentAmount += item.category[item.categoryIndex].price * productWeight;
+      });
+    }
 
-    setTotalAmount(calculatedTotalAmount);
-  }, [cart, idPrice]);
+    setPaymentAmount(calculatedPaymentAmount);
+  }, [cart, idPrice, productWeights]);
 
   return (
     <div style={{ marginTop: 170 }}>
@@ -181,9 +182,9 @@ export default function Cart() {
           {/* Make Payment Button */}
           {cart.length >= 1 ? (
             <div>
-              <h4 className="text-light">Total Amount:{totalAmount}</h4>
+              <h4 className="text-light">Total Amount:{paymentAmount}</h4>
 
-              <RazorpayForm amount={totalAmount} />
+              <RazorpayForm amount={paymentAmount} />
             </div>
           ) : null}
         </div>
@@ -319,7 +320,7 @@ export default function Cart() {
                   {/* Total Amount */}
                   <h3 className="pt-2">
                     Total Amount:
-                    <span>{item.category[idPrice].price * productWeight}Rs.</span>
+                    <span>{item.category[item.categoryIndex].price * productWeight}Rs.</span>
                   </h3>
 
                   {/* buttons */}

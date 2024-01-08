@@ -43,6 +43,55 @@
   margin-right: 5px;
 }
 
+.product-slider-button{
+  height:100%;
+}
+
+.previous-button{
+  position: absolute;
+  left: -100px;
+  top:50%;
+  background-color: grey;
+  font-size: 40px;
+ border-radius: 30px;
+  width: 60px;
+  height: 60px;
+  text-align:center;
+}
+
+.next-button{
+  position:absolute;
+  right:-100px;
+  top:50%;
+  background-color: grey;
+  font-size: 40px;
+  border-radius: 30px;
+  width: 60px;
+  height: 60px;
+  text-align:center;
+}
+
+/* ========================== responsive media query code ========================== */
+@media(max-width:1353px)
+{
+  .previous-button{
+    left: -80px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
+  .next-button{
+    right: -80px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
+}
+
 @media (max-width: 1113px) {
   .stylecontainer::-webkit-scrollbar {
     display: none;
@@ -59,9 +108,87 @@
   }
 }
 
+@media (max-width:1098px){
+  .previous-button{
+    left: -60px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
+  .next-button{
+    right: -60px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
+}
+
 
 @media (max-width: 864px) {
   .collection {
     overflow-x: scroll;
+  }
+}
+
+
+@media (max-width:809px){
+  .previous-button{
+    left: -40px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
+  .next-button{
+    right: -40px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
+}
+
+@media (max-width:578px){
+  .previous-button{
+    left: -35px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
+  .next-button{
+    right: -35px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
+}
+
+
+@media (max-width:408px){
+  .previous-button{
+    left: -30px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
+  .next-button{
+    right: -30px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
   }
 }

@@ -69,6 +69,7 @@ const Navbar = () => {
                 <Image src="/logo.png" alt="logo" width="100" height="100" />
               </motion.div>
             </Link>
+            
             <button
               className="navbar-toggler "
               style={{ backgroundColor: "brown", borderColor: "brown" }}
