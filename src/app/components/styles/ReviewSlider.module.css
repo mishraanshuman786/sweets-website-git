@@ -1,0 +1,111 @@
+.slider {
+    position: relative;
+    overflow: hidden;
+    background-color: #f5f5f5; /* Light gray background color */
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+  .slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .slide {
+    flex: 0 0 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+  }
+  
+  .slide.active {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .contentContainer {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fff; /* White background color */
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  }
+  
+  .slide.active .contentContainer {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .comment {
+    font-size: 22px; /* Increased text size */
+    margin-bottom: 10px;
+    color: #333; /* Dark text color */
+  }
+  
+  .rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Ensure stars wrap to the next line */
+    margin-top: 10px;
+  }
+  
+  .star {
+    width: 20px;
+    height: 20px;
+    
+    margin-right: 5px;
+  }
+  
+  .navButtons {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Center the buttons vertically */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+    padding: 0 20px; /* Add padding to ensure buttons are fully visible */
+    transform: translateY(-50%);
+  }
+  
+  .navButton {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    outline: none;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .dot {
+    width: 12px;
+    height: 12px;
+    background-color: #bbb;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .activeDot {
+    background-color: #007bff;
+  }
+
+  .next{
+    margin-right: 30px;
+  }
+  
+  

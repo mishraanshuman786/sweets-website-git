@@ -1,0 +1,26 @@
+/* TermsOfService.module.css */
+
+.container {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+}
+
+.container h2 {
+    color: #333;
+}
+
+.container p {
+    margin-bottom: 15px;
+}
+
+.container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.container li {
+    margin-bottom: 10px;
+}
+
+
