@@ -34,17 +34,12 @@ export default function Products({ params }) {
   } = CartState();
 
   if (content) {
-    console.log(content);
-    path = `/collectionsImages/${content.category[0].image}.jpg`;
-
-    // to update the id to index number of the category price and rating
-    temp = content.product[0].category.findIndex((ele) => {
-      return ele.id === params.products;
-    });
+    console.log("content:", content);
+    path = `/collectionsImages/${content.category.image}.jpg`;
   }
 
   return (
-    <div>
+    <div style={{ marginTop: 170 }}>
       {/* navbar */}
       <Navbar />
       <div className="row m-3 m-sm-5">
@@ -58,7 +53,7 @@ export default function Products({ params }) {
               padding: 20,
             }}
           >
-            <h4>{content.category[0].name}</h4>
+            <h4>{content.category.name}</h4>
             <Image
               src={path}
               width={300}
@@ -71,7 +66,7 @@ export default function Products({ params }) {
               className="mt-3"
               style={{ textAlign: "justify", color: "black" }}
             >
-              {content.category[0].desc}
+              {content.category.desc}
             </h5>
           </div>
         ) : (
@@ -94,9 +89,9 @@ export default function Products({ params }) {
           >
             <div style={{ padding: 10 }}>
               <h2 style={{ color: "brown", marginTop: 10 }}>
-                {content.category[0].name}
+                {content.category.name}
               </h2>
-              
+
               <button
                 style={{
                   width: 145,
@@ -109,101 +104,113 @@ export default function Products({ params }) {
                   backgroundColor: "brown",
                 }}
                 onClick={() => {
-                  dispatch({ type: 'UPDATE_ID', payload:temp});
+                  dispatch({ type: "UPDATE_ID", payload: temp });
                   router.push("/Cart");
                 }}
               >
                 Go To Cart
               </button>
             </div>
-            {content.product.map((element) => {
+            {content.result.map((element) => {
               let path = `/ProductImages/${element.images[0]}.jpg`;
-              let link=`/products/${element._id}`;
+              let link = `/products/${element._id}`;
+              let category = element.categoryIndex;
+              console.log("price:", element.categoryIndex);
               return (
-                <Link href={link} key={element._id} style={{textDecoration:'none'}}>
-                <div
+                <Link
+                  href={link}
                   key={element._id}
-                  className="d-lg-flex justify-content-between"
-                  style={{ border: "1px solid grey" }}
+                  style={{ textDecoration: "none" }}
                 >
-                  <div className="d-flex text-dark  w-100 text-content-column">
-                    <div style={{ padding: 10 }}>
-                      <Image
-                        src={path}
-                        style={{ borderRadius: 6, border: "1px solid black" }}
-                        width="200"
-                        height="210"
-                        alt="Product Image"
-                      />
-                    </div>
-                    <div style={{ padding: 10, color: "brown" }}>
-                      <h3>{element.productName}</h3>
+                  <div
+                    key={element._id}
+                    className="d-lg-flex justify-content-between"
+                    style={{ border: "1px solid grey" }}
+                  >
+                    <div className="d-flex text-dark  w-100 text-content-column">
+                      <div style={{ padding: 10 }}>
+                        <Image
+                          src={path}
+                          style={{ borderRadius: 6, border: "1px solid black" }}
+                          width="200"
+                          height="210"
+                          alt="Product Image"
+                        />
+                      </div>
+                      <div style={{ padding: 10, color: "brown" }}>
+                        <h3>{element.productName}</h3>
+                        {element.category[category] &&
+                        element.category[category].price !== undefined ? (
+                          <h4>
+                            <strike className="me-2">
+                              {element.category[category].price + 100}
+                            </strike>
+                            {element.category[category].price} Rs/Kg
+                          </h4>
+                        ) : null}
 
-                      <h4>Price: {element.category[temp].price} Rs/Kg</h4>
-                      <div>
-                        {[...Array(5)].map((_, index) => {
-                          return element.category[temp].rating > index ? (
-                            <IoStar />
-                          ) : (
-                            <FaRegStar />
-                          );
-                        })}
+                       { element.category[category] &&
+                        element.category[category].rating !== undefined ? (
+                        <div>
+                          {[...Array(5)].map((_, index) =>
+                            element.category[category].rating > index ? (
+                              <IoStar key={index} />
+                            ) : (
+                              <FaRegStar key={index} />
+                            )
+                          )}
+                        </div>
+                        ) : null}
                       </div>
                     </div>
-                  </div>
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    {cart.some((p) => p._id === element._id) ? (
-                      <button
-                        style={{
-                          width: 145,
-                          height: 44,
-                          borderRadius: 6,
-                          fontSize: 14,
-                          color: "white",
-                          margin: 15,
-                          border: "none",
-                          backgroundColor: "brown",
-                          cursor:'pointer'
-                        }}
-                        onClick={(e) =>
-                          {
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      {cart.some((p) => p._id === element._id) ? (
+                        <button
+                          style={{
+                            width: 145,
+                            height: 44,
+                            borderRadius: 6,
+                            fontSize: 14,
+                            color: "white",
+                            margin: 15,
+                            border: "none",
+                            backgroundColor: "brown",
+                            cursor: "pointer",
+                          }}
+                          onClick={(e) => {
                             e.preventDefault();
                             dispatch({
                               type: "REMOVE_FROM_CART",
                               payload: { id: element._id },
-                            })
-                          }
-                       
-                        }
-                      >
-                        Remove To Cart
-                      </button>
-                    ) : (
-                      <button
-                        style={{
-                          width: 145,
-                          height: 44,
-                          borderRadius: 6,
-                          fontSize: 14,
-                          color: "white",
-                          margin: 15,
-                          border: "none",
-                          backgroundColor: "brown",
-                          zIndex:50,
-                          cursor:'pointer'
-                        }}
-                        onClick={(e) =>{
-                          e.preventDefault();
-                          dispatch({ type: "ADD_TO_CART", payload: element })
-                        }
-                         
-                        }
-                      >
-                        Add To Cart
-                      </button>
-                    )}
+                            });
+                          }}
+                        >
+                          Remove To Cart
+                        </button>
+                      ) : (
+                        <button
+                          style={{
+                            width: 145,
+                            height: 44,
+                            borderRadius: 6,
+                            fontSize: 14,
+                            color: "white",
+                            margin: 15,
+                            border: "none",
+                            backgroundColor: "brown",
+                            zIndex: 50,
+                            cursor: "pointer",
+                          }}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            dispatch({ type: "ADD_TO_CART", payload: element });
+                          }}
+                        >
+                          Add To Cart
+                        </button>
+                      )}
+                    </div>
                   </div>
-                </div>
                 </Link>
               );
             })}

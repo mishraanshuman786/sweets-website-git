@@ -47,6 +47,13 @@
   text-decoration: none !important;
 }
 
+.image-zooming{
+  transition: transform 0.3s ease-in-out; /* Added transition property */
+}
+.image-zooming:hover{
+  transform: scale(1.05); /* Zoom-in effect on hover */
+}
+
 @media (max-width: 1201px) {
   .collectionimagecontainer {
     width: 250px;

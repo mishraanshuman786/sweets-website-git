@@ -1,0 +1,6 @@
+.image-zooming{
+    transition: transform 0.3s ease-in-out; /* Added transition property */
+}
+.image-zooming:hover{
+    transform: scale(1.05); /* Zoom-in effect on hover */
+}

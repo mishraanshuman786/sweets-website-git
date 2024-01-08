@@ -119,7 +119,7 @@ console.log("first:",collections);
                 return (
                   <div className="collectionimagecontainer" key={element._id}>
                     <Link href={url} style={{ textDecoration: "none" }}>
-                      <img src={path} />
+                      <img className="image-zooming" src={path} />
                       <h5
                         style={{
                           marginTop: 10,
@@ -219,21 +219,7 @@ console.log("first:",collections);
             }}
           >
             <h5>FSSAI License- 122222999000322</h5>
-            <button
-              onClick={() => router.push("/https://wa.me/917706087842")}
-              style={{
-                width: "60%",
-                height: 60,
-                borderRadius: 6,
-                fontSize: 18,
-                color: "white",
-                margin: 10,
-                border: "none",
-                backgroundColor: "brown",
-              }}
-            >
-              Explore More
-            </button>
+          
           </div>
         </div>
       </div>

@@ -1,7 +1,4 @@
-// ProductSlider.jsx
 "use client";
-
-// ProductSlider.jsx
 
 import React, { useState, useEffect, useRef } from "react";
 import "./styles/ProductSliderStyle.css";
@@ -11,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
 import { IoStar } from "react-icons/io5";
+import Link from "next/link";
 
 const ProductSlider = (props) => {
   const router = useRouter();
@@ -62,8 +60,8 @@ const ProductSlider = (props) => {
           {props.data ? (
             props.data.result.map((element) => {
               let path = `/ProductImages/${element.images[props.index]}.jpg`;
-              let productsPath = `/products/${element._id}`;
-
+              let productPageUrl=`/products/${element._id}`;
+             
               return (
                 <div
                   className="imagecontainer"
@@ -71,9 +69,11 @@ const ProductSlider = (props) => {
                   style={{ backgroundColor: "white" }}
                   key={element._id}
                 >
-                  <img src={path} alt={element.productName} />
-                  <h4>{element.productName}</h4>
-                  <h4>
+               <Link href={productPageUrl}>
+               <img style={{marginTop:10}} src={path} alt={element.productName} />
+               </Link>
+                  <h4 style={{marginTop:5}}>{element.productName}</h4>
+                  <h5>
                     {element.category &&
                     element.category[props.index] &&
                     element.category[props.index].price ? (
@@ -84,7 +84,7 @@ const ProductSlider = (props) => {
                     ) : (
                       "Price not available"
                     )}
-                  </h4>
+                  </h5>
 
                   <div className="rating">
                     {element.category &&
