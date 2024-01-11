@@ -4,6 +4,9 @@ import { AuthProvider } from "./Providers";
 import Context from "../context/Context";
 import Link from "next/link";
 import Head from "next/head";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +23,7 @@ export default function RootLayout({ children }) {
         <meta name="description" content={metadata.description} />
       </Head>
       <body className={inter.className}>
+        <ToastContainer />
         <AuthProvider>
           <div
             className="container-fluid sticky-top small-device"

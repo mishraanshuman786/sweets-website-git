@@ -15,8 +15,26 @@ import ProductSlider from "./components/ProductSlider";
 
 export default function Homepage() {
   const router = useRouter();
+  const router2=useRouter();
 
   useEffect(() => {
+    getCollections();
+    // getProducts();
+    getLaddooDesighee();
+    getLaddooSugerfree();
+  }, []);
+
+  useEffect(() => {
+    // Check if the popup has been shown before
+    const popupShownBefore = localStorage.getItem('popupShown');
+    
+    // If not shown before, display the popup
+    if (!popupShownBefore) {
+      setShowPopup(true);
+      // Set the flag in local storage to indicate that the popup has been shown
+      localStorage.setItem('popupShown', 'true');
+    }
+
     getCollections();
     // getProducts();
     getLaddooDesighee();
@@ -30,13 +48,10 @@ export default function Homepage() {
   const [laddooSugerfree,setLaddooSugerfree]=useState();
   const [showPopup, setShowPopup] = useState(true)
  
-
- 
-
   // =============================================================================
   // cart data
   const {
-    state: { cart, products },
+    state: { loginStatus },
     dispatch,
   } = CartState();
 
@@ -44,17 +59,12 @@ export default function Homepage() {
 
  
 console.log("first:",collections);
+console.log("login status:",loginStatus);
   async function getCollections() {
     let collectionData = await fetch("api/collections");
     collectionData = await collectionData.json();
     await setCollections(collectionData);
   }
-
-  // async function getProducts() {
-  //   let productsdata = await fetch("api/products");
-  //   productsdata = await productsdata.json();
-  //   await setNavProducts(productsdata);
-  // }
 
   async function getLaddooDesighee(){
     let api=`api/collections/656daabf41ff1afeaba93473`;
@@ -106,7 +116,7 @@ console.log("first:",collections);
         {/* categories */}
         <div>
           <div>
-            <h3 style={{ color: "brown", padding: 10 }}>
+            <h3 style={{ color: "brown", padding: 10, }}>
               Curated Collections In Trend
             </h3>
           </div>

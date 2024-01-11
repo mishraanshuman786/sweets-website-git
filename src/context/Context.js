@@ -8,7 +8,8 @@ const Context=({children})=>{
     let initialData = {
         products: [],
         cart: [],
-        idPrice:0
+        idPrice:0,
+        loginStatus:{ message:"User not logged in.",email:"",status:false}
       };
 
     const initialFilterData={

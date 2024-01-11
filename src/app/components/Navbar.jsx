@@ -7,31 +7,19 @@ import { useRouter } from "next/navigation";
 import { CartState } from "@/context/Context";
 import Image from "next/image";
 import { motion, useAnimation } from "framer-motion";
+import { PiUserCircleGearFill } from "react-icons/pi";
+import { FaUserCheck } from "react-icons/fa6";
+import axios from "axios";
 
 const Navbar = () => {
   const router = useRouter();
   const [navCollections, setNavCollections] = useState();
+  const [userDetails, setUserDetails] = useState({});
+  const [isCartHovered, setIsCartHovered] = useState(false);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      require("bootstrap/dist/js/bootstrap.bundle.min.js");
-    }
-  }, []);
-
-  useEffect(() => {
-    getData();
-  }, [navCollections]);
-
-  async function getData() {
-    let data = await fetch("api/collections");
-    data = await data.json();
-    await setNavCollections(data);
-  }
-
-  // fetching cartdata from CartState
-
+  // cart state context
   const {
-    state: { cart },
+    state: { cart, loginStatus },
     dispatch,
   } = CartState();
 
@@ -43,6 +31,42 @@ const Navbar = () => {
     controls.start({ y: 0, opacity: 1, transition: { duration: 0.5 } });
   }, []);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      require("bootstrap/dist/js/bootstrap.bundle.min.js");
+    }
+  }, []);
+
+  useEffect(() => {
+    getData();
+  }, [navCollections]);
+
+  // // fetching the user data
+  // useEffect(()=>{
+  //   getUsername();
+  // },[userDetails]);
+
+  // async function getUsername(){
+  //   const response = await axios("/api/users/user", {
+  //     method: "POST", // or other HTTP method
+  //     data: loginStatus.email,
+  //   });
+  //   setUserDetails(response);
+  // }
+
+  async function getData() {
+    let data = await fetch("api/collections");
+    data = await data.json();
+    await setNavCollections(data);
+  }
+
+  useEffect(() => {
+    const item = localStorage.getItem("loginStatus");
+    const loginInfo = JSON.parse(item);
+    setUserDetails(loginInfo);
+  });
+
+  console.log("Data stored:", userDetails);
   return (
     // Use motion.div for the animated container
     <motion.div
@@ -115,7 +139,9 @@ const Navbar = () => {
                     }}
                   >
                     {/* dynamic content */}
-                    {navCollections
+                    {navCollections &&
+                    navCollections.result &&
+                    Array.isArray(navCollections.result)
                       ? navCollections.result.map((element) => {
                           let url = `/categoryProducts/${element._id}`;
                           return (
@@ -165,32 +191,28 @@ const Navbar = () => {
               </ul>
               {/* cart Component */}
               {/* Apply the bounce effect to the cart icon */}
-              <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-              <div style={{ position: "relative" }}>
-                <div
-                  className="btnhover"
-                  style={{
-                    position: "absolute",
-                    backgroundColor: "brown",
-                    color: "white",
-                    width: 30,
-                    height: 30,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    borderRadius: 18,
-                    fontWeight: "bold",
-                    left: 30,
-                    top: 5,
-                  }}
-                >
-                  {cart.length}
-                </div>
+              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                <div style={{ position: "relative" }}>
+                  <div
+                    className="btnhover"
+                    style={{
+                      position: "absolute",
+                      backgroundColor: "brown",
+                      color: "white",
+                      width: 30,
+                      height: 30,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      borderRadius: 18,
+                      fontWeight: "bold",
+                      left: 30,
+                      top: 5,
+                    }}
+                  >
+                    {cart.length}
+                  </div>
 
-               
                   <Link
                     type="button"
                     className="btn"
@@ -203,22 +225,99 @@ const Navbar = () => {
                       <TiShoppingCart />
                     </span>
                   </Link>
-               
-              </div>
+                </div>
               </motion.div>
 
               {/* cart component end */}
+              <motion.div
+                style={{ position: "relative" }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <button
+                  type="button"
+                  className="btn me-5"
+                  onClick={() => router.push("/login")}
+                  style={{ backgroundColor: "whitesmoke", color: "brown",zIndex:100 }}
+                  onMouseEnter={() => setIsCartHovered(true)}
+                  onMouseLeave={() => setIsCartHovered(false)}
+                >
+                  {userDetails.status ? (
+                    <FaUserCheck style={{ fontSize: 70 }} />
+                  ) : (
+                    <PiUserCircleGearFill style={{ fontSize: 70 }} />
+                  )}
+                </button>
+              </motion.div>
+              {/* login status */}
+              {isCartHovered ? (
+                <div
+                  className="login-status"
+                  style={{
+                    position: "absolute",
+                    backgroundColor: "white",
+                    width: 400,
+                    right: 6,
+                    top: 115,
+                    height: 200,
+                    padding: 10,
 
-              {/* <button
-              type="button"
-              className="btn me-5"
-              onClick={() => router.push("/login")}
-              style={{backgroundColor:"brown",color:"white"}}
-            >
-              Login
-            </button>
+                    borderRadius: 6,
+                    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", // Optional: Add a subtle box shadow
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                  onMouseEnter={() => setIsCartHovered(true)}
+                  onMouseLeave={() => setIsCartHovered(false)}
+                >
+                  {userDetails.status ? (
+                    <div style={{ margin: 0, marginBottom: 10 }}>
+                      <h5>Thank You for Logging In.</h5>
+                      <button
+                        style={{
+                          backgroundColor: "brown",
+                          color: "white",
+                          padding: "8px 16px",
+                          borderRadius: 4,
+                          cursor: "pointer",
+                        }}
+                        onClick={async () => {
+                          // Handle logout logic here
+                          const object = {
+                            id: userDetails.data.id,
+                            cart: cart,
+                          };
+                          if (userDetails.status) {
+                            const response = await axios.post(
+                              "api/users/logout",
+                              object
+                            );
+  
+                            // setting the localStorage
+                            const loginStatus = {
+                            data:{},
+                              status: false,
+                            };
+                            const jsonString = JSON.stringify(loginStatus);
+                            localStorage.setItem("loginStatus", jsonString);
+                            console.log("logout reponse:", response);
+                          }
+                        }}
+                      >
+                        LogOut
+                      </button>
+                    </div>
+                  ) : (
+                    <div style={{ margin: 0, marginBottom: 10 }}>
+                      <h5>Currently, You are not logged in!</h5>
+                    </div>
+                  )}
+                </div>
+              ) : null}
 
-            <div>
+              {/* <div>
             <Link  href={"https://www.facebook.com/profile.php?id=61554135820905&mibextid=kFxxJD"} > <ImFacebook2 className="btnhover"  style={{width:40,height:33,color:"brown"}}/></Link>
         <Link  href={"https://www.instagram.com/laddoo_story_varanasi?igsh=MTl2aXJwdHozdTc2dw=="} ><FaInstagramSquare className="btnhover" style={{width:40,height:40,color:"brown"}} /></Link>
       

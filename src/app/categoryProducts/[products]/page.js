@@ -34,17 +34,17 @@ export default function Products({ params }) {
   } = CartState();
 
   if (content) {
-    console.log(content);
-    path = `/collectionsImages/${content.category[0].image}.jpg`;
+    console.log("content:",content);
+    path = `/collectionsImages/${content.category.image}.jpg`;
 
-    // to update the id to index number of the category price and rating
-    temp = content.product[0].category.findIndex((ele) => {
-      return ele.id === params.products;
-    });
+    // // to update the id to index number of the category price and rating
+    // temp = content.product[0].category.findIndex((ele) => {
+    //   return ele.id === params.products;
+    // });
   }
 
   return (
-    <div>
+    <div style={{marginTop:170}}>
       {/* navbar */}
       <Navbar />
       <div className="row m-3 m-sm-5">
@@ -58,7 +58,7 @@ export default function Products({ params }) {
               padding: 20,
             }}
           >
-            <h4>{content.category[0].name}</h4>
+            <h4>{content.category.name}</h4>
             <Image
               src={path}
               width={300}
@@ -71,7 +71,7 @@ export default function Products({ params }) {
               className="mt-3"
               style={{ textAlign: "justify", color: "black" }}
             >
-              {content.category[0].desc}
+              {content.category.desc}
             </h5>
           </div>
         ) : (
@@ -94,7 +94,7 @@ export default function Products({ params }) {
           >
             <div style={{ padding: 10 }}>
               <h2 style={{ color: "brown", marginTop: 10 }}>
-                {content.category[0].name}
+                {content.category.name}
               </h2>
               
               <button
@@ -116,7 +116,7 @@ export default function Products({ params }) {
                 Go To Cart
               </button>
             </div>
-            {content.product.map((element) => {
+            {content.result.map((element) => {
               let path = `/ProductImages/${element.images[0]}.jpg`;
               let link=`/products/${element._id}`;
               return (
@@ -139,10 +139,10 @@ export default function Products({ params }) {
                     <div style={{ padding: 10, color: "brown" }}>
                       <h3>{element.productName}</h3>
 
-                      <h4>Price: {element.category[temp].price} Rs/Kg</h4>
+                      <h4>Price: {element.category[element.categoryIndex].price} Rs/Kg</h4>
                       <div>
                         {[...Array(5)].map((_, index) => {
-                          return element.category[temp].rating > index ? (
+                          return element.category[element.categoryIndex].rating > index ? (
                             <IoStar />
                           ) : (
                             <FaRegStar />

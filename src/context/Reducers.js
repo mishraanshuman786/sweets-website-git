@@ -24,6 +24,17 @@ export const cartReducer=(state,action)=>{
           ? { ...item, rating: action.payload.rating, comment: action.payload.comment }
           : item
       );
+      case 'UPDATE_LOGIN_STATUS':
+        return {
+          ...state,
+          loginStatus:action.payload
+        };
+      case 'AUTH_SUCCESS':
+        return {
+          ...state,
+          // Add user-specific cart data if available
+          cart:action.payload.cart,
+        };
     default:
         return state;
    }

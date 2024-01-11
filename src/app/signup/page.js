@@ -1,67 +1,45 @@
 "use client";
-import styles from "./login.module.css";
+import styles from "./signup.module.css";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import Link from "next/link";
 
 import { toast } from "react-toastify";
-import { CartState } from "@/context/Context";
 
-function Login() {
+function Signup() {
   const router = useRouter();
   // State for user information
   const [user, setUser] = useState({
     email: "",
     password: "",
+    username: "",
   });
 
-  const { dispatch } = CartState();
   const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [loading,setLoading]=useState(false);
 
-  const handleSubmit = async (e) => {
+
+  const handleSubmit =async (e) => {
     try {
       e.preventDefault();
       setLoading(true);
       // Handle signup form submission logic here using the 'user' state
       console.log("User Information:", user);
-      const response = await axios.post("api/users/login", user);
-      console.log("Success:", response.data);
-      toast.success("Login Success.", { position: "top-right" });
+     const response=await axios.post("api/users/signup",user);
+     console.log("Success:",response.data);
+     router.push("/login");
 
-      // setting the localStorage
-      const loginStatus={
-        data:response.data,
-        status:true
-      }
-      const jsonString=JSON.stringify(loginStatus);
-      localStorage.setItem("loginStatus",jsonString);
-
-      // fetching cart data from the particular user cart
-      const cartObject= await axios.post("api/cart/fetchCart", response.data);
-       // Dispatch AUTH_SUCCESS action with user-specific cart data
-       if(cartObject.status===true && cartObject.data!=null)
-       {
-        dispatch({ type: 'AUTH_SUCCESS', payload: { cart: cartObject.data.cartItems } });
-       }
-       else{
-        dispatch({ type: 'AUTH_SUCCESS', payload: { cart:[] } });
-       }
-      
-      // Redirect to the homepage with the login status as a query parameter
-      router.push("/");
+      toast.success("Username: " + user.username+" with email: "+user.email+" created Successfully.", { position: "top-right" });
 
       // reseting the fields
       setUser({
+        username: "",
         email: "",
         password: "",
       });
     } catch (error) {
-      error
-        ? toast.error(error.message, { position: "top-right" })
-        : toast.error("Login Failed..", { position: "top-right" });
-    } finally {
+     error? toast.error(error.message,{ position: "top-right" }) : toast.error("Signup Failed..",{ position: "top-right" });
+    } finally{
       setLoading(false);
     }
   };
@@ -76,7 +54,11 @@ function Login() {
   };
 
   useEffect(() => {
-    if (user.email.length > 0 && user.password.length > 0) {
+    if (
+      user.email.length > 0 &&
+      user.password.length > 0 &&
+      user.username.length > 0
+    ) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
@@ -87,9 +69,21 @@ function Login() {
       <div
         className={`${styles["signup-container"]} ${styles["signup-title"]}`}
       >
-        {loading ? "processing" : "LOGIN"}
+       {loading?"processing":"SIGNUP"}
         <div className={styles["signup-form"]}>
           <form onSubmit={handleSubmit}>
+            <div className={styles["form-group"]}>
+              <label>Username</label>
+              <input
+                type="text"
+                name="username"
+                value={user.username}
+                onChange={handleChange}
+                placeholder="Enter Username"
+                required
+              />
+            </div>
+
             <div className={styles["form-group"]}>
               <label>Email</label>
               <input
@@ -118,10 +112,6 @@ function Login() {
               <button type="submit" disabled={buttonDisabled}>
                 Sign Up
               </button>
-              <p style={{ fontSize: 20, fontWeight: "normal", marginTop: 10 }}>
-                If you are not already Registered. Go To{" "}
-                <Link href="/signup">Sign Up Page</Link>
-              </p>
             </div>
           </form>
         </div>
@@ -130,4 +120,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;

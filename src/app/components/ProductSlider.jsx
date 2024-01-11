@@ -60,7 +60,7 @@ const ProductSlider = (props) => {
             transform: `translateX(-${scrollPosition * 6}%)`,
           }}
         >
-          {props.data ? (
+          {props.data && props.data.result ? (
             props.data.result.map((element) => {
               let path = `/ProductImages/${element.images[props.index]}.jpg`;
               let productsPath = `/products/${element._id}`;
