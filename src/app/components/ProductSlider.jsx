@@ -13,19 +13,15 @@ import { GrNext } from "react-icons/gr";
 import { IoStar } from "react-icons/io5";
 
 const ProductSlider = (props) => {
-  const router = useRouter();
-
+ 
   const imageContainerRef = useRef(null); // Ref for the image container
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [showCartAddedDropdown, setShowCartAddedDropdown] = useState(false);
-  const [showRemoveCartDropdown, setShowRemoveCartDropdown] = useState(false);
-
+ 
   const {
     state: { cart },
     dispatch,
   } = CartState();
 
-  console.log("cart:", cart);
 
   const handleNext = () => {
     const container = imageContainerRef.current;
@@ -128,9 +124,7 @@ const ProductSlider = (props) => {
                                   productId: element._id,
                                 },
                               });
-                              setShowRemoveCartDropdown(
-                                !showRemoveCartDropdown
-                              );
+                              
                             }}
                           >
                             Remove To Cart
@@ -152,30 +146,13 @@ const ProductSlider = (props) => {
                                 type: "ADD_TO_CART",
                                 payload: element,
                               });
-                              setShowCartAddedDropdown(!showCartAddedDropdown);
+                              
                             }}
                           >
                             Add To Cart
                           </button>
                         )}
-
-                        {showCartAddedDropdown ? (
-                          <DialogBox
-                            title="Cart"
-                            content="Your Product is Added to the Cart."
-                            isOpen={showCartAddedDropdown}
-                            onClose={() => setShowCartAddedDropdown(false)}
-                          ></DialogBox>
-                        ) : null}
-
-                        {showRemoveCartDropdown ? (
-                          <DialogBox
-                            title="Cart"
-                            content="Product is Removed from the Cart."
-                            isOpen={showRemoveCartDropdown}
-                            onClose={() => setShowRemoveCartDropdown(false)}
-                          ></DialogBox>
-                        ) : null}
+ 
                       </div>
                     </div>
                   </div>

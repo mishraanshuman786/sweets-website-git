@@ -26,8 +26,8 @@ const About = () => {
         <p className={styles.p}>In the bustling lifestyle of big cities today, LADDOO STORY acts as a bridge, reviving these memories, nostalgia, and flavors and bringing them closer to you. We are creating an ecosystem that takes care of both our health and taste equally.</p>
       </div>
       <div>
-        <h1 className={styles.h1}>Swedesy: Traditional and Authentic Flavors</h1>
-        <p className={styles.p}>The name Swedesy originates from the combination of &quot;LADDOO + STORY,&quot; representing traditional, authentic, and unadulterated flavors without preservatives. Amidst the present busy and chaotic life, the instant availability of the flavors of our hometown creates a feeling of nostalgia and connection with our roots.</p>
+        <h1 className={styles.h1}>Laddostory: Traditional and Authentic Flavors</h1>
+        <p className={styles.p}>The name Laddoostory originates from the combination of &quot;LADDOO + STORY,&quot; representing traditional, authentic, and unadulterated flavors without preservatives. Amidst the present busy and chaotic life, the instant availability of the flavors of our hometown creates a feeling of nostalgia and connection with our roots.</p>
       </div>
       <div>
         <h1 className={styles.h1}>We Believe in Eating Better</h1>

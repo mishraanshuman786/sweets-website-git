@@ -61,6 +61,12 @@ const Navbar = () => {
   }
 
   useEffect(() => {
+    const object={
+      data:{},
+      status:false
+    }
+    const stringifyObject=JSON.stringify(object);
+    localStorage.setItem("loginStatus",stringifyObject);
     const item = localStorage.getItem("loginStatus");
     const loginInfo = JSON.parse(item);
     setUserDetails(loginInfo);
