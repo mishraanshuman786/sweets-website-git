@@ -17,7 +17,11 @@ export async function POST(request) {
 
     // updating the cart into the database
 
-    await mongoose.connect(connectionSrc);
+     // Connection with MongoDB
+     await mongoose.connect(connectionSrc, {
+      useNewUrlParser: true,
+      
+    });
     const result = await Cart.create(
       {
          user: id,

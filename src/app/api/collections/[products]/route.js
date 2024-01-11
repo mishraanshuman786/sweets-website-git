@@ -6,8 +6,11 @@ import { NextResponse } from "next/server";
 
 export async function GET(request, content) {
   try {
-    // Connect to MongoDB using mongoose
-    await mongoose.connect(connectionSrc, { useNewUrlParser: true, useUnifiedTopology: true });
+     // Connection with MongoDB
+     await mongoose.connect(connectionSrc, {
+      useNewUrlParser: true,
+      
+    });
 
     // Use correct parameter for querying products
     let productData = await Product.find({ categoryId: content.params.products });

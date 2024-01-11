@@ -5,7 +5,10 @@ import mongoose from "mongoose";
 
 export async function POST(request){
       try{
-        await mongoose.connect(connectionSrc);
+         // Connection with MongoDB
+    await mongoose.connect(connectionSrc, {
+      useNewUrlParser: true,
+    });
         const reqBody=await request.json();
         const {id}=reqBody;
 

@@ -6,7 +6,11 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     // connection with Mongodb
-    await mongoose.connect(connectionSrc);
+      // Connection with MongoDB
+      await mongoose.connect(connectionSrc, {
+        useNewUrlParser: true,
+       
+      });
     let data = await Categories.find();
     // getting all the categories
     return NextResponse.json({ result: data });

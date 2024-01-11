@@ -6,7 +6,10 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     // connection with Mongodb
-    await mongoose.connect(connectionSrc);
+    await mongoose.connect(connectionSrc, {
+      useNewUrlParser: true,
+      // No need for useUnifiedTopology option
+    });
     let data = await Product.find();
 
     return NextResponse.json({ result: data });

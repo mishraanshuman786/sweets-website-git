@@ -5,8 +5,11 @@ import { NextResponse } from "next/server";
 
 export async function GET(request, content) {
   try {
-    // connection with Mongodb
-    mongoose.connect(connectionSrc);
+      // Connection with MongoDB
+      await mongoose.connect(connectionSrc, {
+        useNewUrlParser: true,
+        // No need for useUnifiedTopology option
+      });
     let data = await Product.findOne({ _id: content.params.id });
 
     return NextResponse.json({ result: [data], status: true });
