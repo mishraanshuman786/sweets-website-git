@@ -8,6 +8,7 @@ import { IoStar } from "react-icons/io5";
 import Footer from "@/app/components/Footer";
 import { CartState } from "@/context/Context";
 import RazorpayForm from "../components/RazorpayForm";
+import Link from "next/link";
 
 export default function Cart() {
   const [totalAmount, setTotalAmount] = useState(0);
@@ -19,40 +20,6 @@ export default function Cart() {
     state: { cart, idPrice },
     dispatch,
   } = CartState();
-
-  // filter data
-  const {
-    filterState: { sort, byRating, searchQuery },
-    filterDispatch,
-  } = CartState();
-
-  const transformProducts = () => {
-    let sortedProducts = [...cart];
-
-    if (sort) {
-      sortedProducts = sortedProducts.sort((a, b) => {
-        if (sort === "lowToHigh") {
-          return a.category[idPrice].price - b.category[idPrice].price;
-        } else if (sort === "highToLow") {
-          return b.category[idPrice].price - a.category[idPrice].price;
-        } else {
-          return sortedProducts;
-        }
-      });
-    }
-    if (byRating) {
-      sortedProducts = sortedProducts.filter((prod) => {
-        return prod.category[idPrice].rating >= byRating;
-      });
-    }
-    if (searchQuery) {
-      sortedProducts = sortedProducts.filter((prod) => {
-        return prod.productName.toLowerCase().includes(searchQuery);
-      });
-    }
-
-    return sortedProducts;
-  };
 
   useEffect(() => {
     let calculatedTotalAmount = 1;
@@ -75,117 +42,41 @@ export default function Cart() {
       <div className="row m-3 m-sm-5">
         {/* Filters Component */}
         <div
-          className="col-lg-3 mb-4 col-12"
+          className="col-lg-3 mb-4 mt-5 col-12"
           style={{
             border: "1px solid grey",
             borderRadius: 6,
             backgroundColor: "#1A2421",
+            height:480,
+            display:"flex",
+            flexDirection: "column",
+            justifyContent:"center"
+
           }}
         >
-          <h5 className="mt-5 ms-2" style={{ color: "white" }}>
-            Sort By Price
-          </h5>
-
-          {/* ascending and descending order */}
-          <div>
-            <div className="form-check">
-              <div className="custom-control custom-radio">
-                <input
-                  type="radio"
-                  id="customRadio1"
-                  name="customRadio"
-                  style={{ fontSize: "20" }}
-                  className="custom-control-input "
-                  checked={sort === "lowToHigh" ? true : false}
-                  onChange={() =>
-                    filterDispatch({
-                      type: "SORT_BY_PRICE",
-                      payload: "lowToHigh",
-                    })
-                  }
-                />
-                <label className="text-light" for="customRadio1">
-                  <h5>Ascending Order</h5>
-                </label>
-              </div>
-              <div className="custom-control custom-radio">
-                <input
-                  type="radio"
-                  id="customRadio2"
-                  name="customRadio"
-                  style={{ fontSize: "20" }}
-                  className="custom-control-input"
-                  checked={sort === "highToLow" ? true : false}
-                  onChange={() =>
-                    filterDispatch({
-                      type: "SORT_BY_PRICE",
-                      payload: "highToLow",
-                    })
-                  }
-                />
-                <label className="text-light" for="customRadio2">
-                  <h5>Descending Order</h5>
-                </label>
-              </div>
-            </div>
-          </div>
-          {/* rating component */}
-          <div className="mb-4" style={{ color: "white" }}>
-            <h5 className="text-light mt-4">Sort By Rating:</h5>
-
-            {[...Array(5)].map((_, index) => {
-              return (
-                <span
-                  key={index}
-                  onClick={() =>
-                    filterDispatch({
-                      type: "FILTER_BY_RATING",
-                      payload: index + 1,
-                    })
-                  }
-                  style={{ color: "white" }}
-                >
-                  {" "}
-                  {byRating > index ? <IoStar /> : <FaRegStar />}{" "}
-                </span>
-              );
-            })}
-          </div>
-
-          {/* serach by entering the product name */}
-          <div className="input-group mb-3 mt-4">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Enter Product Name"
-              aria-label="Recipient's username"
-              aria-describedby="basic-addon2"
-              onChange={(e) =>
-                filterDispatch({
-                  type: "FILTER_BY_SEARCH",
-                  payload: e.target.value,
-                })
-              }
-            />
-          </div>
-
-          {/* clear filters button */}
-          <button
-            type="button"
-            className="btn btn-success  mt-5 w-100 mb-5"
-            onClick={() => filterDispatch({ type: "CLEAR_FILTERS" })}
-          >
-            Clear Filters
-          </button>
-
           {/* Make Payment Button */}
           {cart.length >= 1 ? (
             <div>
-              <h4 className="text-light">Total Amount:{totalAmount}</h4>
-
-              <RazorpayForm amount={totalAmount} />
+              <h4 className="text-light" style={{textAlign:"center"}}>Total Amount:{totalAmount}</h4>
+              <Link href="/paymentForm"
+                className="btn btn-success w-100 col-lg-3 mb-4 mt-5 col-12"
+                
+              >
+                Make Payment
+              </Link>
+              {/* <RazorpayForm amount={totalAmount} /> */}
             </div>
-          ) : null}
+          ) : (
+            <div>
+            <h4 className="text-light" style={{textAlign:"center"}}>Total Amount:{totalAmount}</h4>
+            <Link href=""
+              className="btn btn-success w-100 col-lg-3 mb-4 mt-5 col-12"
+            >
+              Make Payment
+            </Link>
+            {/* <RazorpayForm amount={totalAmount} /> */}
+          </div>
+          )}
         </div>
 
         <div
@@ -197,7 +88,7 @@ export default function Cart() {
           }}
         >
           {cart.length >= 1 ? (
-            transformProducts().map((item) => {
+            cart.map((item) => {
               // Use the product's ID as a key for the product's weight
               const productWeight = productWeights[item._id] || 1;
 
@@ -234,20 +125,20 @@ export default function Cart() {
                     })}
                   </div>
 
-                 
-                    {item.category[item.categoryIndex] &&
-                    item.category[item.categoryIndex].price !== undefined ? (
-                      <h4>
+                  {item.category[item.categoryIndex] &&
+                  item.category[item.categoryIndex].price !== undefined ? (
+                    <h4>
                       <strike className="me-2">
                         {item.category[item.categoryIndex].price + 100}Rs/kg
                       </strike>
-                       {item.category[item.categoryIndex].price} Rs/kg
-                       </h4>
-                    ) : null}
-                   
+                      {item.category[item.categoryIndex].price} Rs/kg
+                    </h4>
+                  ) : null}
+
                   <div>
                     {[...Array(5)].map((_, index) => {
-                      return item.category[item.categoryIndex].rating > index ? (
+                      return item.category[item.categoryIndex].rating >
+                        index ? (
                         <IoStar className="ms-1" />
                       ) : (
                         <FaRegStar className="ms-1" />
@@ -319,7 +210,9 @@ export default function Cart() {
                   {/* Total Amount */}
                   <h3 className="pt-2">
                     Total Amount:
-                    <span>{item.category[idPrice].price * productWeight}Rs.</span>
+                    <span>
+                      {item.category[idPrice].price * productWeight}Rs.
+                    </span>
                   </h3>
 
                   {/* buttons */}
@@ -358,7 +251,7 @@ export default function Cart() {
             <div className="empty-cart-container">
               <h2>Your Cart is Empty. Please Add Some Products..... </h2>
               <div>
-              <img src="/emptycart.webp" alt="empty cart" />
+                <img src="/emptycart.webp" alt="empty cart" />
               </div>
             </div>
           )}

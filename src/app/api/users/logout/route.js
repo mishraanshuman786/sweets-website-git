@@ -3,34 +3,37 @@ import { Cart } from "@/library/model/cart";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
-
 export async function POST(request) {
   try {
+    // Getting the id and cart data from the request
+    const { id, cart } = await request.json();
 
-    // getting the id so that we can store the cart data
-    const {id,cart} = await request.json();
+    // Connection with MongoDB
+    await mongoose.connect(connectionSrc, {
+      useNewUrlParser: true,
+    });
 
+    // Find the cart document for the given user ID
+    const existingCart = await Cart.findOne({ user: id });
+
+    if (existingCart) {
+      // If the cart for the user exists, update it
+      const updatedCart = await Cart.findOneAndUpdate(
+        { user: id },
+        { $set: { cartItems: cart } },
+        { new: true } // Return the updated document
+      );
+
+      console.log(`Cart updated for user with ID ${updatedCart.user}`);
+    } else {
+      console.log("Cart not found for the user.");// Add a log or handle as needed
+    }
+
+    // Setting the cookies
     const response = NextResponse.json({
-      message: "Logout Successfull.",
+      message: "Cart update successfull.",
       success: true,
     });
-
-    // updating the cart into the database
-
-     // Connection with MongoDB
-     await mongoose.connect(connectionSrc, {
-      useNewUrlParser: true,
-      
-    });
-    const result = await Cart.create(
-      {
-         user: id,
-        cartItems: [cart]
-     }
-    );
-    console.log(`Cart updated for user with ID ${result.user}`);
-
-    // setting the cookies
     response.cookies.set("token", "", { httpOnly: true, expires: new Date(0) });
 
     return response;

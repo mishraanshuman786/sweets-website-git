@@ -64,9 +64,9 @@ const Navbar = () => {
     const item = localStorage.getItem("loginStatus");
     const loginInfo = JSON.parse(item);
     setUserDetails(loginInfo);
-  },[]);
+  }, []);
 
-  console.log("Data stored:", userDetails);
+ 
   return (
     // Use motion.div for the animated container
     <motion.div
@@ -238,7 +238,11 @@ const Navbar = () => {
                   type="button"
                   className="btn me-5"
                   onClick={() => router.push("/login")}
-                  style={{ backgroundColor: "whitesmoke", color: "brown",zIndex:100 }}
+                  style={{
+                    backgroundColor: "whitesmoke",
+                    color: "brown",
+                    zIndex: 100,
+                  }}
                   onMouseEnter={() => setIsCartHovered(true)}
                   onMouseLeave={() => setIsCartHovered(false)}
                 >
@@ -289,21 +293,31 @@ const Navbar = () => {
                             id: userDetails.data.id,
                             cart: cart,
                           };
-                          if (userDetails.status) {
-                            const response = await axios.post(
-                              "api/users/logout",
-                              object
-                            );
-  
-                            // setting the localStorage
-                            const loginStatus = {
-                            data:{},
-                              status: false,
-                            };
-                            const jsonString = JSON.stringify(loginStatus);
-                            localStorage.setItem("loginStatus", jsonString);
-                            console.log("logout reponse:", response);
-                          }
+
+                          const response = await axios.post(
+                            "api/users/logout",
+                            object
+                          );
+
+                          // Retrieve the current state from localStorage
+                          const existingLoginStatusString =
+                            localStorage.getItem("loginStatus");
+                          const existingLoginStatus =
+                            JSON.parse(existingLoginStatusString) || {};
+
+                          // Modify the data
+                          existingLoginStatus.data = {};
+                          existingLoginStatus.status = false;
+
+                          // Update localStorage with the modified data
+                          const updatedLoginStatusString =
+                            JSON.stringify(existingLoginStatus);
+                          localStorage.setItem(
+                            "loginStatus",
+                            updatedLoginStatusString
+                          );
+                          setUserDetails(JSON.parse(updatedLoginStatusString));
+                          console.log("Logout response:", response);
                         }}
                       >
                         LogOut

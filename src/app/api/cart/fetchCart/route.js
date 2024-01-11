@@ -13,7 +13,7 @@ export async function POST(request){
         const {id}=reqBody;
 
         const data=await Cart.findOne({user:id})
-        console.log(data);
+        console.log("cart data fetched:",data.cartItems[0]);
         return NextResponse.json({status:true,data:data});
 
       }catch(error){

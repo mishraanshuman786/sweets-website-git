@@ -25,9 +25,8 @@ function Login() {
       e.preventDefault();
       setLoading(true);
       // Handle signup form submission logic here using the 'user' state
-      console.log("User Information:", user);
       const response = await axios.post("api/users/login", user);
-      console.log("Success:", response.data);
+  
       toast.success("Login Success.", { position: "top-right" });
 
       // setting the localStorage
@@ -40,10 +39,11 @@ function Login() {
 
       // fetching cart data from the particular user cart
       const cartObject= await axios.post("api/cart/fetchCart", response.data);
+      console.log("cartObject:",cartObject.data.data.cartItems);
        // Dispatch AUTH_SUCCESS action with user-specific cart data
-       if(cartObject.status===true && cartObject.data!=null)
+       if(cartObject.status===200 && cartObject.data.data.cartItems!=null)
        {
-        dispatch({ type: 'AUTH_SUCCESS', payload: { cart: cartObject.data.cartItems } });
+        dispatch({ type: 'AUTH_SUCCESS', payload: { cart: cartObject.data.data.cartItems } });
        }
        else{
         dispatch({ type: 'AUTH_SUCCESS', payload: { cart:[] } });
