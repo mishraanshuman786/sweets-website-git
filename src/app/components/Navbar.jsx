@@ -64,7 +64,7 @@ const Navbar = () => {
     const item = localStorage.getItem("loginStatus");
     const loginInfo = JSON.parse(item);
     setUserDetails(loginInfo);
-  });
+  },[]);
 
   console.log("Data stored:", userDetails);
   return (
