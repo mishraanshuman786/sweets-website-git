@@ -15,14 +15,17 @@ export const metadata = {
   description: "Hi, laddoo story is a very unique startup venture,laddoo story offers homemade laddu like,Besan laau , Motichoor laddoo , DRYFRUITS LADDOO, flaxseeds laddoo, coconut laddo and many more homemade veriety of products. Hygiene laddoo is a very important thing for us.",
 };
 
+
 export default function RootLayout({ children }) {
+
+ 
   return (
     <html lang="en">
        <Head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
       </Head>
-      <body className={inter.className}>
+      <body className={inter.className} >
         <ToastContainer />
         <AuthProvider>
           <div
