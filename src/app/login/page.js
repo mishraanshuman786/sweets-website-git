@@ -58,9 +58,7 @@ function Login() {
         password: "",
       });
     } catch (error) {
-      error
-        ? toast.error(error.message, { position: "top-right" })
-        : toast.error("Login Failed..", { position: "top-right" });
+      toast.error("Login Failed..", { position: "top-right" });
     } finally {
       setLoading(false);
     }

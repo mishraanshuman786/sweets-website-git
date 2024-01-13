@@ -189,7 +189,7 @@ export default function Cart() {
                         // Update the product's weight for the specific item
                         setProductWeights((prevWeights) => ({
                           ...prevWeights,
-                          [item._id]: productWeight > 1 ? productWeight - 1 : 1,
+                          [item._id]: productWeight > 0.25 ? productWeight - 0.25 : 0.25,
                         }));
                       }}
                     >
@@ -216,7 +216,7 @@ export default function Cart() {
                         setProductWeights((prevWeights) => ({
                           ...prevWeights,
                           [item._id]:
-                            productWeight < 50 ? productWeight + 1 : 50,
+                            productWeight < 50 ? productWeight + 0.25 : 50,
                         }))
                       }
                     >

@@ -1,12 +1,9 @@
-/* styles.css */
 
 .stylecontainer {
   display: flex;
   overflow-x: scroll;
-  /* border:1px solid grey; */
   border-radius: 6px;
 }
-
 
 .imagecontainer {
   border: 1px solid grey;
@@ -17,14 +14,25 @@
   padding-top: 10px;
   padding-left: 15px;
   padding-right: 15px;
+  transition: transform 0.3s ease-in-out; /* Added transition property */
+}
+
+.imagecontainer:hover {
+  transform: scale(1.05); /* Zoom-in effect on hover */
 }
 
 .imagecontainer img {
   border-radius: 10px;
   width: 220px;
   height: 240px;
+  transition: transform 0.3s ease-in-out; /* Added transition property */
 }
-.imagecontainer h4{
+
+.imagecontainer img:hover {
+  transform: scale(1.05); /* Zoom-in effect on hover */
+}
+
+.imagecontainer h4 {
   text-align: left;
 }
 
@@ -33,14 +41,63 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap; /* Ensure stars wrap to the next line */
-  margin-top: 10px;
+  margin-top: 1px;
 }
 
 .star {
   width: 20px;
   height: 20px;
-  
   margin-right: 5px;
+}
+
+
+.product-slider-button{
+  height:100%;
+}
+
+.previous-button{
+  position: absolute;
+  left: -100px;
+  top:50%;
+  background-color: grey;
+  font-size: 40px;
+ border-radius: 30px;
+  width: 60px;
+  height: 60px;
+  text-align:center;
+}
+
+.next-button{
+  position:absolute;
+  right:-100px;
+  top:50%;
+  background-color: grey;
+  font-size: 40px;
+  border-radius: 30px;
+  width: 60px;
+  height: 60px;
+  text-align:center;
+}
+
+/* ========================== responsive media query code ========================== */
+@media(max-width:1353px)
+{
+  .previous-button{
+    left: -80px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
+  .next-button{
+    right: -80px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
 }
 
 @media (max-width: 1113px) {
@@ -59,9 +116,87 @@
   }
 }
 
+@media (max-width:1098px){
+  .previous-button{
+    left: -60px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
+  .next-button{
+    right: -60px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
+}
+
 
 @media (max-width: 864px) {
   .collection {
     overflow-x: scroll;
+  }
+}
+
+
+@media (max-width:809px){
+  .previous-button{
+    left: -40px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
+  .next-button{
+    right: -40px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
+}
+
+@media (max-width:578px){
+  .previous-button{
+    left: -35px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
+  .next-button{
+    right: -35px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
+}
+
+
+@media (max-width:408px){
+  .previous-button{
+    left: -30px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
+  }
+  .next-button{
+    right: -30px;
+    font-size: 30px;
+    border-radius: 25px;
+     width: 50px;
+     height: 50px;
+     text-align:center;
   }
 }

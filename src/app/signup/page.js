@@ -38,7 +38,7 @@ function Signup() {
         password: "",
       });
     } catch (error) {
-     error? toast.error(error.message,{ position: "top-right" }) : toast.error("Signup Failed..",{ position: "top-right" });
+     toast.error("Signup Failed..",{ position: "top-right" });
     } finally{
       setLoading(false);
     }

@@ -1,7 +1,4 @@
-// ProductSlider.jsx
 "use client";
-
-// ProductSlider.jsx
 
 import React, { useState, useEffect, useRef } from "react";
 import "./styles/ProductSliderStyle.css";
@@ -11,17 +8,16 @@ import { useRouter } from "next/navigation";
 import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
 import { IoStar } from "react-icons/io5";
+import Link from "next/link";
 
 const ProductSlider = (props) => {
- 
   const imageContainerRef = useRef(null); // Ref for the image container
   const [scrollPosition, setScrollPosition] = useState(0);
- 
+
   const {
     state: { cart },
     dispatch,
   } = CartState();
-
 
   const handleNext = () => {
     const container = imageContainerRef.current;
@@ -59,7 +55,7 @@ const ProductSlider = (props) => {
           {props.data && props.data.result ? (
             props.data.result.map((element) => {
               let path = `/ProductImages/${element.images[props.index]}.jpg`;
-              let productsPath = `/products/${element._id}`;
+              let productPageUrl = `/products/${element._id}`;
 
               return (
                 <div
@@ -68,7 +64,13 @@ const ProductSlider = (props) => {
                   style={{ backgroundColor: "white" }}
                   key={element._id}
                 >
-                  <img src={path} alt={element.productName} />
+                  <Link href={productPageUrl}>
+                    <img
+                      style={{ marginTop: 10 }}
+                      src={path}
+                      alt={element.productName}
+                    />
+                  </Link>
                   <h4>{element.productName}</h4>
                   <h4>
                     {element.category &&
@@ -124,7 +126,6 @@ const ProductSlider = (props) => {
                                   productId: element._id,
                                 },
                               });
-                              
                             }}
                           >
                             Remove To Cart
@@ -146,13 +147,11 @@ const ProductSlider = (props) => {
                                 type: "ADD_TO_CART",
                                 payload: element,
                               });
-                              
                             }}
                           >
                             Add To Cart
                           </button>
                         )}
- 
                       </div>
                     </div>
                   </div>
@@ -168,38 +167,13 @@ const ProductSlider = (props) => {
           )}
         </div>
       </div>
+
       {/* Next and Previous buttons */}
-      <div style={{ height: "100%" }}>
-        <div
-          onClick={handlePrevious}
-          style={{
-            position: "absolute",
-            left: "-100px",
-            top: "50%",
-            backgroundColor: "grey",
-            fontSize: 40,
-            borderRadius: 30,
-            width: 60,
-            height: 60,
-            textAlign: "center",
-          }}
-        >
+      <div className="product-slider-button">
+        <div className="previous-button" onClick={handlePrevious}>
           <GrPrevious />
         </div>
-        <div
-          onClick={handleNext}
-          style={{
-            position: "absolute",
-            right: "-100px",
-            top: "50%",
-            backgroundColor: "grey",
-            fontSize: 40,
-            borderRadius: 30,
-            width: 60,
-            height: 60,
-            textAlign: "center",
-          }}
-        >
+        <div className="next-button" onClick={handleNext}>
           <GrNext />
         </div>
       </div>
