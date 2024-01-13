@@ -7,6 +7,9 @@ import "../products/products.css";
 import { motion } from "framer-motion";
 import { FaRegStar } from "react-icons/fa6";
 import { IoStar } from "react-icons/io5";
+import Link from "next/link";
+
+
 export default function Product() {
   useEffect(() => {
     getData();
@@ -39,14 +42,17 @@ export default function Product() {
           navProducts.result.map((element) => {
             let path;
             path = `/ProductImages/${element.images[0]}.jpg`;
+            let productPageUrl = `/products/${element._id}`;
 
             return (
+              <Link href={productPageUrl} style={{textDecoration:"none"}}>
               <motion.div
                 key={element._id}
                 whileHover={{ scale: 1.1 }}
                 className="card"
                 style={{ backgroundColor: "whitesmoke", width: "320px" }}
               >
+                
                 <Image
                   src={path}
                   width={280}
@@ -60,20 +66,20 @@ export default function Product() {
                   alt="1"
                 />
 
-                <div className="card-body">
+                <div className="card-body" >
                   <h3
                     className="card-title text-dark text-sm"
-                    style={{ textAlign: "left" }}
+                    style={{ textAlign: "left"}}
                   >
                     {element.productName}
                   </h3>
 
-                  {element.category && element.category.length > 0 && element.category[0].price ? (
+                  {element.category && element.category.length > 0 && element.category[element.categoryIndex].price ? (
                     <div>
-                    <h5><span style={{textDecoration:"line-through",marginRight:4,color:"grey"}}> 2000</span>{element.category[0].price}</h5>
+                    <h5 ><span style={{textDecoration:"line-through",marginRight:4,color:"grey"}}> {element.category[element.categoryIndex].price+100}</span>{element.category[element.categoryIndex].price}</h5>
                     <div>
                         {[...Array(5)].map((_, index) => {
-                          return element.category[0].rating > index ? (
+                          return element.category[element.categoryIndex].rating > index ? (
                             <IoStar />
                           ) : (
                             <FaRegStar />
@@ -87,6 +93,7 @@ export default function Product() {
                   <br />
                 </div>
               </motion.div>
+              </Link>
             );
           })
         ) : (
