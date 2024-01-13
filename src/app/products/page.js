@@ -39,13 +39,13 @@ export default function Product() {
       >
         {/* start */}
         {navProducts ? (
-          navProducts.result.map((element) => {
+          navProducts.result.map((element,index) => {
             let path;
             path = `/ProductImages/${element.images[0]}.jpg`;
             let productPageUrl = `/products/${element._id}`;
 
             return (
-              <Link href={productPageUrl} style={{textDecoration:"none"}}>
+              <Link key={index} href={productPageUrl} style={{textDecoration:"none"}}>
               <motion.div
                 key={element._id}
                 whileHover={{ scale: 1.1 }}
