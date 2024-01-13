@@ -14,6 +14,7 @@ export default function Cart() {
   const [totalAmount, setTotalAmount] = useState(0);
   // Define a state for product weights
   const [productWeights, setProductWeights] = useState({});
+  const [loginStatus,setLoginStatus]=useState(false);
 
   // cart data
   let {
@@ -32,6 +33,20 @@ export default function Cart() {
 
     setTotalAmount(calculatedTotalAmount);
   }, [cart, idPrice]);
+
+  useEffect(() => {
+    const fetchLoginStatus = async () => {
+      const item = localStorage.getItem("loginStatus");
+      if (item) {
+        const loginInfo = JSON.parse(item);
+        setLoginStatus(loginInfo.status);
+      }
+    };
+
+    fetchLoginStatus();
+  }, []); 
+
+  console.log("loginStatus:", loginStatus);
 
   return (
     <div style={{ marginTop: 170 }}>
@@ -55,7 +70,9 @@ export default function Cart() {
           }}
         >
           {/* Make Payment Button */}
-          {cart.length >= 1 ? (
+        
+          
+          {(cart.length >= 1) && (loginStatus) ? (
             <div>
               <h4 className="text-light" style={{textAlign:"center"}}>Total Amount:{totalAmount}</h4>
               <Link href="/paymentForm"
