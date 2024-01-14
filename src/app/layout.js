@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "./Providers";
 import Context from "../context/Context";
+import { PaymentProvider } from "@/context/PaymentContext";
 import Link from "next/link";
 import Head from "next/head";
 import { ToastContainer } from 'react-toastify';
@@ -47,6 +48,7 @@ export default function RootLayout({ children }) {
           </div>
         
           <Context>
+            <PaymentProvider>
             <div className="fixed-bottom" style={{ marginBottom: 90, marginLeft: 30,width:100 }}>
               <Link
                 className="show-tool-tip"
@@ -77,6 +79,7 @@ export default function RootLayout({ children }) {
               </Link>
             </div>
             {children}
+            </PaymentProvider>
           </Context>
         </AuthProvider>
        

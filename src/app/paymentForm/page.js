@@ -2,9 +2,13 @@
 import React, { useEffect, useState } from "react";
 import styles from "./PaymentForm.module.css";
 import Navbar from "../components/Navbar";
-import axios from 'axios';
+import axios from "axios";
+import { usePayment } from "@/context/PaymentContext";
 
 const PaymentForm = () => {
+
+  let {paymentAmount,updatePaymentAmount}=usePayment();
+
   const [addresses, setAddresses] = useState([]);
   const [newAddress, setNewAddress] = useState({
     name: "",
@@ -22,15 +26,15 @@ const PaymentForm = () => {
     fetchData();
   }, []);
 
-   // saving addresses to the database
-   const saveData = async () => {
+  // saving addresses to the database
+  const saveData = async () => {
     try {
       const item = localStorage.getItem("loginStatus");
       const loginInfo = JSON.parse(item);
       if (loginInfo.status) {
-        const response = await axios.post('/api/checkout/deliveryAddress', {
+        const response = await axios.post("/api/checkout/deliveryAddress", {
           userId: loginInfo.data.id,
-          address: newAddress
+          address: newAddress,
         });
 
         // fetching addresses from the database
@@ -38,7 +42,7 @@ const PaymentForm = () => {
         console.log("saving response", response);
       }
     } catch (error) {
-      console.error('Error saving data:', error.message);
+      console.error("Error saving data:", error.message);
     }
   };
 
@@ -48,19 +52,17 @@ const PaymentForm = () => {
       const item = localStorage.getItem("loginStatus");
       const loginInfo = JSON.parse(item);
       if (loginInfo.status) {
-        const response = await axios.post('/api/checkout/getDeliveryAddress', {
+        const response = await axios.post("/api/checkout/getDeliveryAddress", {
           userId: loginInfo.data.id,
         });
 
         setAddresses(response.data.data);
-
       }
     } catch (error) {
-      console.error('Error fetching data:', error.message);
+      console.error("Error fetching data:", error.message);
     }
   };
 
- 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -68,7 +70,7 @@ const PaymentForm = () => {
     if (Array.isArray(addresses)) {
       await setAddresses([...addresses, newAddress]);
     } else {
-      console.error('Addresses is not an array:', addresses);
+      console.error("Addresses is not an array:", addresses);
     }
 
     // Optionally, you can clear the form fields
@@ -85,8 +87,7 @@ const PaymentForm = () => {
     });
   };
 
-  console.log("address:", newAddress);
-  console.log("addresses:", addresses);
+  console.log("payment form totalAmount:", paymentAmount);
   return (
     <div style={{ marginTop: 170, backgroundColor: "whitesmoke" }}>
       <Navbar />
@@ -98,8 +99,8 @@ const PaymentForm = () => {
           <div className={styles.leftAddressList}>
             {
               // showing saved addresses
-              (addresses) ? (
-                addresses.map((element,index) => {
+              addresses ? (
+                addresses.map((element, index) => {
                   return (
                     <div key={index}>
                       <div
@@ -262,7 +263,11 @@ const PaymentForm = () => {
 
               {/* submit button */}
               <div style={{ marginLeft: 100 }}>
-                <button type="submit" onClick={saveData} className={styles.button}>
+                <button
+                  type="submit"
+                  onClick={saveData}
+                  className={styles.button}
+                >
                   Save Address
                 </button>
               </div>
@@ -281,7 +286,7 @@ const PaymentForm = () => {
             }}
           >
             <label style={{ fontSize: 25 }}>Price:</label>
-            <span style={{ fontSize: 25 }}>12000</span>
+            <span style={{ fontSize: 25 }}>{paymentAmount}</span>
           </div>
           <div
             style={{
@@ -291,7 +296,7 @@ const PaymentForm = () => {
             }}
           >
             <label style={{ fontSize: 25 }}>Delivery Charges:</label>
-            <span style={{ fontSize: 25 }}>49</span>
+            <span style={{ fontSize: 25 }}>0</span>
           </div>
           <div
             style={{
@@ -301,7 +306,7 @@ const PaymentForm = () => {
             }}
           >
             <label style={{ fontSize: 25 }}>Packaging Charges:</label>
-            <span style={{ fontSize: 25 }}>20</span>
+            <span style={{ fontSize: 25 }}>0</span>
           </div>
           <div style={{ borderTop: "2px dashed grey" }}></div>
           <div
@@ -314,7 +319,7 @@ const PaymentForm = () => {
             <label style={{ fontSize: 25, fontWeight: "bold" }}>
               Total Payable:
             </label>
-            <span style={{ fontSize: 25 }}>20</span>
+            <span style={{ fontSize: 25 }}>{paymentAmount}</span>
           </div>
           <hr />
           <button className={styles.button}>Cash On Delivery</button>
