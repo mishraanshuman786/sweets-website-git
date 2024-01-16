@@ -5,8 +5,8 @@ import nodemailer from "nodemailer";
 export async function POST(request) {
   try {
     const { userId, amount, address } = await request.json();
-    sendOrderConfirmationEmail(address.email, address.orderId);
-    sendDeliveryBoyEmail(address.email,address.orderId,userId,amount,address.address);
+       await sendOrderConfirmationEmail(address.email, address.orderId);
+   await sendDeliveryBoyEmail(address.orderId,userId,amount,address.address);
     return NextResponse.json({
       status: true,
       userId: userId,
@@ -47,7 +47,7 @@ function sendOrderConfirmationEmail(email, orderId) {
   });
 }
 
-function sendDeliveryBoyEmail(email, orderId, userId, amount, address) {
+function sendDeliveryBoyEmail(orderId, userId, amount, address) {
    
   
     const transporter = nodemailer.createTransport({
