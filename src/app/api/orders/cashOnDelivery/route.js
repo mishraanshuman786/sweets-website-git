@@ -66,7 +66,7 @@ function sendDeliveryBoyEmail(orderId, userId, amount, address) {
 
   const mailOptions = {
     from: "mishraanshuman619@gmail.com",
-    to: "mishraanshuman425@gmail.com",
+    to: "anshuman@hindsol.com",
     subject: "Order Confirmation",
     html: `
         <p>Thank you for placing your order!</p>
