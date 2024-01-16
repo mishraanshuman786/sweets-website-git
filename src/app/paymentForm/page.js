@@ -4,10 +4,17 @@ import styles from "./PaymentForm.module.css";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import { usePayment } from "@/context/PaymentContext";
+import { useRouter } from "next/navigation";
 
 const PaymentForm = () => {
+  let router=useRouter();
+  let routerbutton=useRouter();
+  let { paymentAmount, paymentAddress, updatePaymentAddress } = usePayment();
+  const [selectedAddressIndex, setSelectedAddressIndex] = useState(null);
 
-  let {paymentAmount,updatePaymentAmount}=usePayment();
+  const handleRadioChange = (index) => {
+    setSelectedAddressIndex(index);
+  };
 
   const [addresses, setAddresses] = useState([]);
   const [newAddress, setNewAddress] = useState({
@@ -24,22 +31,52 @@ const PaymentForm = () => {
 
   useEffect(() => {
     fetchData();
+    if(paymentAmount===0)
+    {
+      router.push("/");
+    }
   }, []);
+
+   // Display a warning message when the page is reloaded
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      const message = "Are you sure you want to leave? Your changes may not be saved.";
+      event.returnValue = message; // Standard for most browsers
+      return message; // For some older browsers
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
 
   // saving addresses to the database
   const saveData = async () => {
     try {
-      const item = localStorage.getItem("loginStatus");
-      const loginInfo = JSON.parse(item);
-      if (loginInfo.status) {
-        const response = await axios.post("/api/checkout/deliveryAddress", {
-          userId: loginInfo.data.id,
-          address: newAddress,
-        });
+      if (
+        newAddress.name != "" &&
+        newAddress.email != "" &&
+        newAddress.address != "" &&
+        newAddress.city !== "" &&
+        newAddress.landmark !== ""
+      ) {
+        const item = localStorage.getItem("loginStatus");
+        const loginInfo = JSON.parse(item);
+        if (loginInfo.status) {
+          const response = await axios.post("/api/checkout/deliveryAddress", {
+            userId: loginInfo.data.id,
+            address: newAddress,
+          });
 
-        // fetching addresses from the database
-        fetchData();
-        console.log("saving response", response);
+          // fetching addresses from the database
+          fetchData();
+          console.log("saving response", response);
+        }
+      } else {
+        alert("Please fill all the fileds.....");
       }
     } catch (error) {
       console.error("Error saving data:", error.message);
@@ -65,29 +102,37 @@ const PaymentForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    if (
+      newAddress.name != "" &&
+      newAddress.email != "" &&
+      newAddress.address != "" &&
+      newAddress.city !== "" &&
+      newAddress.landmark !== ""
+    ) {
+      // Update addresses state if it's an array
+      if (Array.isArray(addresses)) {
+        await setAddresses([...addresses, newAddress]);
+      } else {
+        console.error("Addresses is not an array:", addresses);
+      }
 
-    // Update addresses state if it's an array
-    if (Array.isArray(addresses)) {
-      await setAddresses([...addresses, newAddress]);
-    } else {
-      console.error("Addresses is not an array:", addresses);
+      // Optionally, you can clear the form fields
+      setNewAddress({
+        name: "",
+        mobileNumber: "",
+        pincode: "",
+        locality: "",
+        email: "",
+        address: "",
+        city: "",
+        landmark: "",
+        alternatePhone: "",
+      });
     }
-
-    // Optionally, you can clear the form fields
-    setNewAddress({
-      name: "",
-      mobileNumber: "",
-      pincode: "",
-      locality: "",
-      email: "",
-      address: "",
-      city: "",
-      landmark: "",
-      alternatePhone: "",
-    });
   };
 
   console.log("payment form totalAmount:", paymentAmount);
+  console.log("Payment Address:",paymentAddress);
   return (
     <div style={{ marginTop: 170, backgroundColor: "whitesmoke" }}>
       <Navbar />
@@ -112,7 +157,14 @@ const PaymentForm = () => {
                         }}
                       >
                         <div>
-                          <input type="radio" />
+                          <input
+                            type="radio"
+                            value={index + 1}
+                            name="radio"
+                            id={`address_${index}`}
+                            checked={selectedAddressIndex === index}
+                            onChange={() => handleRadioChange(index)}
+                          />
                         </div>
                         <div style={{ marginLeft: 16, marginRight: 16 }}>
                           {element.name}
@@ -154,6 +206,7 @@ const PaymentForm = () => {
                     placeholder="Name"
                     className={styles.input}
                     value={newAddress.name}
+                    required
                     onChange={(e) =>
                       setNewAddress({ ...newAddress, name: e.target.value })
                     }
@@ -165,6 +218,7 @@ const PaymentForm = () => {
                     placeholder="10 Digit Mobile Number"
                     className={styles.input}
                     value={newAddress.mobileNumber}
+                    required
                     onChange={(e) =>
                       setNewAddress({
                         ...newAddress,
@@ -181,6 +235,7 @@ const PaymentForm = () => {
                     placeholder="Pincode"
                     className={styles.input}
                     value={newAddress.pincode}
+                    required
                     onChange={(e) =>
                       setNewAddress({ ...newAddress, pincode: e.target.value })
                     }
@@ -192,6 +247,7 @@ const PaymentForm = () => {
                     placeholder="Locality"
                     className={styles.input}
                     value={newAddress.locality}
+                    required
                     onChange={(e) =>
                       setNewAddress({ ...newAddress, locality: e.target.value })
                     }
@@ -204,6 +260,7 @@ const PaymentForm = () => {
                   placeholder="Email"
                   className={styles.email}
                   value={newAddress.email}
+                  required
                   onChange={(e) =>
                     setNewAddress({ ...newAddress, email: e.target.value })
                   }
@@ -214,6 +271,7 @@ const PaymentForm = () => {
                   style={{ paddingLeft: 8, width: 540, borderRadius: 4 }}
                   placeholder="Address(Area and Street)"
                   rows={4}
+                  required
                   value={newAddress.address}
                   onChange={(e) =>
                     setNewAddress({ ...newAddress, address: e.target.value })
@@ -227,6 +285,7 @@ const PaymentForm = () => {
                     placeholder="City/District/Town"
                     className={styles.input}
                     value={newAddress.city}
+                    required
                     onChange={(e) =>
                       setNewAddress({ ...newAddress, city: e.target.value })
                     }
@@ -239,6 +298,7 @@ const PaymentForm = () => {
                     type="text"
                     placeholder="Landmark"
                     className={styles.input}
+                    required
                     value={newAddress.landmark}
                     onChange={(e) =>
                       setNewAddress({ ...newAddress, landmark: e.target.value })
@@ -251,6 +311,7 @@ const PaymentForm = () => {
                     placeholder="Alternate Phone"
                     className={styles.input}
                     value={newAddress.alternatePhone}
+                    required
                     onChange={(e) =>
                       setNewAddress({
                         ...newAddress,
@@ -322,7 +383,20 @@ const PaymentForm = () => {
             <span style={{ fontSize: 25 }}>{paymentAmount}</span>
           </div>
           <hr />
-          <button className={styles.button}>Cash On Delivery</button>
+          <button
+  className={styles.button}
+  onClick={() => {
+    if (selectedAddressIndex !== null) {
+        updatePaymentAddress(addresses[selectedAddressIndex]);
+        routerbutton.push("/payments/cashOnDelivery");
+     
+    } else {
+      alert("Please select an address");
+    }
+  }}
+>
+  Cash On Delivery
+</button>
         </div>
       </div>
     </div>
