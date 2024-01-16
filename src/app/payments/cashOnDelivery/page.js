@@ -4,9 +4,10 @@ import styles from './CashOnDelivery.module.css';
 import { usePayment } from "@/context/PaymentContext";
 import axios from 'axios';
 import { toast } from "react-toastify";
+import { useRouter } from 'next/navigation';
 
 const CashOnDelivery = () => {
-
+      let router=useRouter();
     let { paymentAmount, paymentAddress, updatePaymentAddress } = usePayment();
   const [formData, setFormData] = useState({
     name:paymentAddress.name,
@@ -55,6 +56,8 @@ const CashOnDelivery = () => {
 
         // Handle the response as needed
         console.log('Axios Response:', response.data);
+        router.push("/");
+
         toast.success(formData.email+" ,Your Order with OrderId:"+formData.orderId+" is Added Successfully." , { position: "top-right" });
         alert('Form submitted successfully');
        
