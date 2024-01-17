@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 const PaymentForm = () => {
   let router=useRouter();
   let routerbutton=useRouter();
-  let { paymentAmount, paymentAddress, updatePaymentAddress } = usePayment();
+  let { paymentAmount, paymentAddress, updatePaymentAddress,productDetails } = usePayment();
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(null);
 
   const handleRadioChange = (index) => {
@@ -131,8 +131,7 @@ const PaymentForm = () => {
     }
   };
 
-  console.log("payment form totalAmount:", paymentAmount);
-  console.log("Payment Address:",paymentAddress);
+  
   return (
     <div style={{ marginTop: 170, backgroundColor: "whitesmoke" }}>
       <Navbar />

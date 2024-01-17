@@ -13,26 +13,41 @@ import "./Cart.css";
 export default function Cart() {
   const [productWeights, setProductWeights] = useState({});
   const [loginStatus, setLoginStatus] = useState(false);
+  const [products,setProducts]=useState([]);
 
   let {
     state: { cart, idPrice },
     dispatch,
   } = CartState();
 
- let {paymentAmount, updatePaymentAmount}=usePayment();  
+  let { paymentAmount, updatePaymentAmount, addProductDetails } =
+    usePayment();
 
-  useEffect(() => {
-    let calculatedTotalAmount = 0;
-
-    if (cart.length >= 1) {
-      cart.forEach((item) => {
-        const weight = productWeights[item._id] || 1;
-        calculatedTotalAmount += item.category[item.categoryIndex].price * weight;
-      });
-    }
-
-    updatePaymentAmount(calculatedTotalAmount);
-  }, [cart, idPrice, productWeights]);
+    useEffect(() => {
+      let calculatedTotalAmount = 0;
+      let updatedProducts = [];
+  
+      if (cart.length >= 1) {
+        cart.forEach((item) => {
+          const weight = productWeights[item._id] || 1;
+          calculatedTotalAmount +=
+            item.category[item.categoryIndex].price * weight;
+  
+          // Add product details to the updatedProducts array
+          updatedProducts.push({
+            productName: item.productName,
+            price: item.category[item.categoryIndex].price,
+            weight: `${weight}kg`,
+          });
+        });
+  
+        // Update the products state with the updatedProducts array
+        setProducts(updatedProducts);
+      }
+  
+      updatePaymentAmount(calculatedTotalAmount);
+    }, [cart, idPrice, productWeights]);
+  
   useEffect(() => {
     const fetchLoginStatus = async () => {
       const item = localStorage.getItem("loginStatus");
@@ -46,6 +61,7 @@ export default function Cart() {
   }, []);
 
   console.log("loginStatus:", loginStatus);
+  console.log("Context Product Details:", products);
 
   return (
     <div style={{ marginTop: 170 }}>
@@ -75,8 +91,12 @@ export default function Cart() {
                 Total Amount:{paymentAmount}
               </h4>
               <Link
-                  href="/paymentForm"
+                href="/paymentForm"
                 className="btn btn-success w-100 col-lg-3 mb-4 mt-5 col-12"
+                onClick={()=>{
+                  addProductDetails(products);
+                 
+                }}
               >
                 Make Payment
               </Link>
@@ -111,6 +131,7 @@ export default function Cart() {
               // Use the product's ID as a key for the product's weight
               const productWeight = productWeights[item._id] || 1;
 
+             
               return (
                 <div
                   style={{
@@ -231,7 +252,8 @@ export default function Cart() {
                   <h3 className="pt-2">
                     Total Amount:
                     <span>
-                      {item.category[idPrice].price * productWeight}Rs.
+                      {item.category[item.categoryIndex].price * productWeight}
+                      Rs.
                     </span>
                   </h3>
 

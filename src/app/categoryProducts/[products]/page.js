@@ -120,13 +120,14 @@ export default function Products({ params }) {
               let path = `/ProductImages/${element.images[0]}.jpg`;
               let link=`/products/${element._id}`;
               return (
-                <Link href={link} key={element._id} style={{textDecoration:'none'}}>
+                
                 <div
                   key={element._id}
                   className="d-lg-flex justify-content-between"
                   style={{ border: "1px solid grey" }}
                 >
                   <div className="d-flex text-dark  w-100 text-content-column">
+                  <Link href={link} key={element._id} style={{textDecoration:'none'}}>
                     <div style={{ padding: 10 }}>
                       <Image
                         src={path}
@@ -136,6 +137,7 @@ export default function Products({ params }) {
                         alt="Product Image"
                       />
                     </div>
+                    </Link>
                     <div style={{ padding: 10, color: "brown" }}>
                       <h3>{element.productName}</h3>
 
@@ -152,63 +154,64 @@ export default function Products({ params }) {
                     </div>
                   </div>
                   <div style={{ display: "flex", flexDirection: "column" }}>
-                    {cart.some((p) => p._id === element._id) ? (
-                      <button
-                        style={{
-                          width: 145,
-                          height: 44,
-                          borderRadius: 6,
-                          fontSize: 14,
-                          color: "white",
-                          margin: 15,
-                          border: "none",
-                          backgroundColor: "brown",
-                          cursor:'pointer'
-                        }}
-                        onClick={(e) =>
-                          {
-                            e.preventDefault();
-                            dispatch({
-                              type: "REMOVE_FROM_CART",
-                              payload: { id: element._id },
-                            })
-                          }
-                       
-                        }
-                      >
-                        Remove To Cart
-                      </button>
-                    ) : (
-                      <button
-                        style={{
-                          width: 145,
-                          height: 44,
-                          borderRadius: 6,
-                          fontSize: 14,
-                          color: "white",
-                          margin: 15,
-                          border: "none",
-                          backgroundColor: "brown",
-                          zIndex:50,
-                          cursor:'pointer'
-                        }}
-                        onClick={(e) =>{
-                          e.preventDefault();
-                          dispatch({ type: "ADD_TO_CART", payload: element })
-                        }
-                         
-                        }
-                      >
-                        Add To Cart
-                      </button>
-                    )}
+                  {cart.some(
+                          (p) =>
+                            p._id === element._id &&
+                            p.categoryId === element.categoryId
+                        ) ? (
+                          <button
+                            style={{
+                              width: 145,
+                              height: 44,
+                              borderRadius: 6,
+                              fontSize: 14,
+                              color: "white",
+                              margin: 15,
+                              border: "none",
+                              backgroundColor: "brown",
+                            }}
+                            onClick={() => {
+                              dispatch({
+                                type: "REMOVE_FROM_CART",
+                                payload: {
+                                  productId: element._id,
+                                },
+                              });
+                            }}
+                          >
+                            Remove To Cart
+                          </button>
+                        ) : (
+                          <button
+                            style={{
+                              width: 145,
+                              height: 44,
+                              borderRadius: 6,
+                              fontSize: 14,
+                              color: "white",
+                              margin: 15,
+                              border: "none",
+                              backgroundColor: "brown",
+                            }}
+                            onClick={() => {
+                              dispatch({
+                                type: "ADD_TO_CART",
+                                payload: element,
+                              });
+                            }}
+                          >
+                            Add To Cart
+                          </button>
+                        )}
                   </div>
                 </div>
-                </Link>
+               
               );
             })}
           </div>
-        ) : null}
+        ) :<div class="spinner-border text-secondary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>}
       </div>
       {/* footer */}
       <Footer />

@@ -1,22 +1,45 @@
-// pages/api/orders.js
+import { connectionSrc } from "@/library/db";
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { Order } from "@/library/model/order";
+import mongoose from "mongoose";
 
 export async function POST(request) {
   try {
-    const { userId, amount, address } = await request.json();
-    await sendOrderConfirmationEmail(address.email, address.orderId);
+   
+    const { userId, amount, formdata ,productDetails} = await request.json();
+
+    //saving the order details to the database
+        // Connect to MongoDB
+      mongoose.connect(connectionSrc);
+      // Save the order details to MongoDB using Mongoose model
+    const order = new Order({
+      userId: userId,
+      orderId: formdata.orderId,
+      name: formdata.name,
+      mobile: formdata.mobile,
+      address: formdata.address,
+      amount: amount,
+      productDetails:productDetails
+    });
+ 
+     await order.save();
+
+
+    // ==================================================================
+    await sendOrderConfirmationEmail(formdata.email, formdata.orderId);
     await sendDeliveryBoyEmail(
-      address.orderId,
+      formdata.orderId,
       userId,
       amount,
-      address.address
+      formdata.address,
+      productDetails
     );
     return NextResponse.json({
       status: true,
       userId: userId,
       paymentAmount: amount,
-      paymentAddress: address,
+      paymentAddress: formdata.address,
     });
   } catch (error) {
     console.error("Error placing order:", error.message);
@@ -52,7 +75,7 @@ function sendOrderConfirmationEmail(email, orderId) {
   });
 }
 
-function sendDeliveryBoyEmail(orderId, userId, amount, address) {
+function sendDeliveryBoyEmail(orderId, userId, amount, address,productDetails) {
   const transporter = nodemailer.createTransport({
     // Configure your email service (SMTP settings)
     // Example using Gmail:
@@ -64,36 +87,47 @@ function sendDeliveryBoyEmail(orderId, userId, amount, address) {
     },
   });
 
-  const mailOptions = {
-    from: "mishraanshuman619@gmail.com",
-    to: "anshuman@hindsol.com",
-    subject: "Order Confirmation",
-    html: `
-        <p>Thank you for placing your order!</p>
-        <p>Your Order ID: ${orderId}</p>
-        <p>Please keep this ID for future reference.</p>
-        <button style="background-color: #4CAF50; /* Green */
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 5px;">
-<a href="https://laddoostory.com/Cart" style="color: white; text-decoration: none;">Click here to confirm your order</a>
-</button>
-        <p>Order Details:</p>
-        <ul>
-          <li>User ID: ${userId}</li>
-          <li>Amount: ${amount}</li>
-          <li>Address: ${JSON.stringify(address)}</li>
-        </ul>
-      `,
-  };
+  // Convert productDetails array to a formatted string
+  const productDetailsString = productDetails
+    .map(
+      (product) =>
+        `Product Name: ${product.productName}, Price: ${product.price}, Weight: ${product.weight}`
+    )
+    .join("\n");
 
+
+    const mailOptions = {
+      from: "mishraanshuman619@gmail.com",
+      to: "anshuman@hindsol.com",
+      subject: "Order Confirmation",
+      html: `
+          <p>Thank you for placing your order!</p>
+          <p>Your Order ID: ${orderId}</p>
+          <p>Please keep this ID for future reference.</p>
+          <button style="background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+          border-radius: 5px;">
+  <a href="https://laddoostory.com/OrderCompletion" style="color: white; text-decoration: none;">Click here to confirm your order</a>
+  </button>
+          <p>Order Details:</p>
+          <ul>
+            <li>User ID: ${userId}</li>
+            <li>Amount: ${amount}</li>
+            <li>Address: ${JSON.stringify(address)}</li>
+          </ul>
+          <p>Product Details:</p>
+          <pre>${productDetailsString}</pre>
+        `,
+    };
+  
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error("Error sending email:", error.message);

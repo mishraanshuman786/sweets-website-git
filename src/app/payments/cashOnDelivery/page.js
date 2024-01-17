@@ -8,7 +8,8 @@ import { useRouter } from 'next/navigation';
 
 const CashOnDelivery = () => {
       let router=useRouter();
-    let { paymentAmount, paymentAddress, updatePaymentAddress } = usePayment();
+      let router2=useRouter();
+    let { paymentAmount, paymentAddress, updatePaymentAddress,productDetails } = usePayment();
   const [formData, setFormData] = useState({
     name:paymentAddress.name,
     email:paymentAddress.email,
@@ -51,7 +52,8 @@ const CashOnDelivery = () => {
         const response = await axios.post('/api/orders/cashOnDelivery', {
             userId: storedOrderId.data.id,
             amount:paymentAmount,
-            address:formData
+            formdata:formData,
+            productDetails:productDetails
         });
 
         // Handle the response as needed
@@ -137,6 +139,7 @@ const CashOnDelivery = () => {
         <div className={styles.buttonGroup}>
           <button className={styles.button} onClick={generateOrderId}>Generate Order ID</button>
           <button className={styles.button} onClick={handleSubmit} disabled={formData.orderId === ''} >Cash On Delivery</button>
+          <button onClick={()=>router2.push("/orderCompletion")}>Delivery Status</button>
         </div>
       </div>
     </div>

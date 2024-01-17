@@ -3,8 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./styles/ProductSliderStyle.css";
 import { CartState } from "@/context/Context";
-import DialogBox from "./DialogBox";
-import { useRouter } from "next/navigation";
 import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
 import { IoStar } from "react-icons/io5";

@@ -1,4 +1,4 @@
-// cartModel.js
+
 import mongoose from 'mongoose';
 
 const deliveryAddressSchema = new mongoose.Schema({

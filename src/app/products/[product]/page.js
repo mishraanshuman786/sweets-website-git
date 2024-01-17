@@ -4,15 +4,11 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Footer from "@/app/components/Footer";
 import ProductReview from "@/app/components/ProductReview";
-
-
-
 export default function Product({ params }) {
-
   // state to store particular product data
   const [product, setProduct] = useState();
   let path;
-  
+
   useEffect(() => {
     getProduct();
   });
@@ -23,10 +19,9 @@ export default function Product({ params }) {
     data = await data.json();
     await setProduct(data);
   }
- 
- 
+
   return (
-    <div style={{marginTop:170}}>
+    <div style={{ marginTop: 170 }}>
       {/* // Navbar */}
       <Navbar />
       <div className="container-fluid">
@@ -41,54 +36,49 @@ export default function Product({ params }) {
           {product
             ? product.result.map((element) => {
                 path = `/ProductImages/${element.images[0]}.jpg`;
-               
+
                 return (
                   <div className="container-fluid row" key={element._id}>
                     {/* // image figcaption */}
-                    <figure className="figure col-3" >
+                    <figure className="figure col-12 col-md-3">
                       <Image
                         src={path}
-                        width={200}
-                        height={200}
+                        width={700}
+                        height={360}
                         className="mt-4 figure-img img-fluid rounded"
                         alt="Hello"
-                        style={{ border: "2px solid grey",height:360,width:700 }}
                       />
                       <figcaption className="figure-caption">
                         <h5 className="text-dark text-center">
-                         {element.productName}
+                          {element.productName}
                         </h5>
-                        {/* <h5>Category: {element.category}</h5> */}
                       </figcaption>
                     </figure>
 
-                    <div
-                      className="col-8 m-4"
+           {/* Content Container */}
+           <div
+                      className="col-12 col-md-8 mt-4"
                       style={{
                         border: "1px solid grey",
                         borderRadius: 10,
                         backgroundColor: "wheat",
+                        height: "auto",
                       }}
                     >
                       <h4 className="mt-5">{element.productName}</h4>
-                      {/* <p className="h5 mt-3 text-left container-fluid">
-                        {element.desc}
-                      </p> */}
-                          <div
+
+                      <div
                         className="h5 mt-3 text-left container-fluid"
                         dangerouslySetInnerHTML={{ __html: element.desc }}
-                      />
-                      
-
-                    
+                      ></div>
                     </div>
-
                     <ProductReview productId={element._id} products={product} />
-                
                   </div>
                 );
               })
-            : null}
+            : <div class="spinner-border text-secondary" style={{margin:"auto"}} role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>}
         </div>
       </div>
 
