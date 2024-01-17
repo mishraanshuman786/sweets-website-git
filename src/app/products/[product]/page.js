@@ -52,6 +52,63 @@ export default function Product({ params }) {
                         <h5 className="text-dark text-center">
                           {element.productName}
                         </h5>
+
+                        {/* cart button */}
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      <div style={{ display: "flex", flexDirection: "column" }}>
+                        {cart.some(
+                          (p) =>
+                            p._id === element._id &&
+                            p.categoryId === element.categoryId
+                        ) ? (
+                          <button
+                            style={{
+                              width: 145,
+                              height: 44,
+                              borderRadius: 6,
+                              fontSize: 14,
+                              color: "white",
+                              margin: 15,
+                              border: "none",
+                              backgroundColor: "brown",
+                            }}
+                            onClick={() => {
+                              dispatch({
+                                type: "REMOVE_FROM_CART",
+                                payload: {
+                                  productId: element._id,
+                                },
+                              });
+                            }}
+                          >
+                            Remove To Cart
+                          </button>
+                        ) : (
+                          <button
+                            style={{
+                              width: 145,
+                              height: 44,
+                              borderRadius: 6,
+                              fontSize: 14,
+                              color: "white",
+                              margin: 15,
+                              border: "none",
+                              backgroundColor: "brown",
+                            }}
+                            onClick={() => {
+                              dispatch({
+                                type: "ADD_TO_CART",
+                                payload: element,
+                              });
+                            }}
+                          >
+                            Add To Cart
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                       </figcaption>
                     </figure>
 

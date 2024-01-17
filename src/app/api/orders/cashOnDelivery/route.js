@@ -64,6 +64,15 @@ function sendOrderConfirmationEmail(email, orderId) {
     to: email, // Assuming you have the customer's email in the order details
     subject: "Order Confirmation",
     text: `Thank you for placing your order!\n\nYour Order ID: ${orderId}\n\nPlease keep this ID for future reference.`,
+    html:`<p>Order Details:</p>
+    <ul>
+      <li>User ID: ${userId}</li>
+      <li>Amount: ${amount}</li>
+      <li>Address: ${JSON.stringify(address)}</li>
+    </ul>
+    <p>Product Details:</p>
+    <pre>${productDetailsString}</pre>
+  `,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
