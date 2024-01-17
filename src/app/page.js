@@ -8,14 +8,13 @@ import Slider from "./components/Slider";
 import { CartState } from "@/context/Context";
 import { useRouter } from "next/navigation";
 
-import Popup from "./components/Popup";
+// import Popup from "./components/Popup";
 import ReviewSlider from "./components/ReviewSlider";
 import ProductSlider from "./components/ProductSlider";
 
-
 export default function Homepage() {
   const router = useRouter();
-  const router2=useRouter();
+  const router2 = useRouter();
 
   useEffect(() => {
     getCollections();
@@ -25,29 +24,18 @@ export default function Homepage() {
   }, []);
 
   useEffect(() => {
-    // Check if the popup has been shown before
-    const popupShownBefore = localStorage.getItem('popupShown');
-    
-    // If not shown before, display the popup
-    if (!popupShownBefore) {
-      setShowPopup(true);
-      // Set the flag in local storage to indicate that the popup has been shown
-      localStorage.setItem('popupShown', 'true');
-    }
-
     getCollections();
     // getProducts();
     getLaddooDesighee();
     getLaddooSugerfree();
   }, []);
 
-  
   const [collections, setCollections] = useState();
   // const [navProducts, setNavProducts] = useState();
-  const [laddooDesighee,setLaddooDesighee]=useState();
-  const [laddooSugerfree,setLaddooSugerfree]=useState();
-  const [showPopup, setShowPopup] = useState(true)
- 
+  const [laddooDesighee, setLaddooDesighee] = useState();
+  const [laddooSugerfree, setLaddooSugerfree] = useState();
+  // const [showPopup, setShowPopup] = useState(true);
+
   // =============================================================================
   // cart data
   const {
@@ -55,28 +43,25 @@ export default function Homepage() {
     dispatch,
   } = CartState();
 
- 
-
- 
-console.log("first:",collections);
-console.log("login status:",loginStatus);
+  console.log("first:", collections);
+  console.log("login status:", loginStatus);
   async function getCollections() {
     let collectionData = await fetch("api/collections");
     collectionData = await collectionData.json();
     await setCollections(collectionData);
   }
 
-  async function getLaddooDesighee(){
-    let api=`api/collections/656daabf41ff1afeaba93473`;
+  async function getLaddooDesighee() {
+    let api = `api/collections/656daabf41ff1afeaba93473`;
     let collection1 = await fetch(api);
-    collection1=await collection1.json();
+    collection1 = await collection1.json();
     await setLaddooDesighee(collection1);
   }
 
-  async function getLaddooSugerfree(){
-    let api=`api/collections/656dab9341ff1afeaba93474`;
+  async function getLaddooSugerfree() {
+    let api = `api/collections/656dab9341ff1afeaba93474`;
     let collection2 = await fetch(api);
-    collection2=await collection2.json();
+    collection2 = await collection2.json();
     await setLaddooSugerfree(collection2);
   }
 
@@ -97,13 +82,13 @@ console.log("login status:",loginStatus);
         <Navbar />
       </div>
 
-      {showPopup && (
+      {/* {showPopup && (
         <Popup
           title="Welcome to LadooStory - The Laddoo Store!"
           content="<p><h4>At LadooStory,</h4> we take immense pride in crafting and delivering the authentic flavors of traditional laddoos to your doorstep. </p>"
           onClose={() => setShowPopup(false)}
         />
-      )}
+      )} */}
       {/* =================================================================== */}
 
       {/* slider
@@ -116,7 +101,7 @@ console.log("login status:",loginStatus);
         {/* categories */}
         <div>
           <div>
-            <h3 style={{ color: "brown", padding: 10, }}>
+            <h3 style={{ color: "brown", padding: 10 }}>
               Curated Collections In Trend
             </h3>
           </div>
@@ -160,11 +145,19 @@ console.log("login status:",loginStatus);
         {/* products
            <ProductSlider data={navProducts} title="Grab The Deals" /> */}
         <hr />
-         {/* laddo desighee collections products*/}
-         <ProductSlider data={laddooDesighee} title="Laddoo Desighee Collections" index={0} />
+        {/* laddo desighee collections products*/}
+        <ProductSlider
+          data={laddooDesighee}
+          title="Laddoo Desighee Collections"
+          index={0}
+        />
         <hr />
-         {/* laddo sugerfree collections products*/}
-         <ProductSlider data={laddooSugerfree} title="Laddoo Sugerfree Collections" index={1} />
+        {/* laddo sugerfree collections products*/}
+        <ProductSlider
+          data={laddooSugerfree}
+          title="Laddoo Sugerfree Collections"
+          index={1}
+        />
         <hr />
         {/* Description */}
         <div className="container">

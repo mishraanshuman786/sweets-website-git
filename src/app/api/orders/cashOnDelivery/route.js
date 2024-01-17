@@ -54,8 +54,8 @@ function sendOrderConfirmationEmail(email, orderId) {
     host: "smtp.gmail.com",
     port: 587,
     auth: {
-      user: "mishraanshuman619@gmail.com",
-      pass: "jyhb wxoz oprc uozj",
+      user: "indiankissanvns@gmail.com",
+      pass: "bjoo sxat hbtb auta",
     },
   });
 
@@ -82,8 +82,8 @@ function sendDeliveryBoyEmail(orderId, userId, amount, address,productDetails) {
     host: "smtp.gmail.com",
     port: 587,
     auth: {
-      user: "mishraanshuman619@gmail.com",
-      pass: "jyhb wxoz oprc uozj",
+      user: "indiankissanvns@gmail.com",
+      pass: "bjoo sxat hbtb auta",
     },
   });
 

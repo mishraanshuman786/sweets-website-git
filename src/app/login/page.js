@@ -114,7 +114,7 @@ function Login() {
 
             <div className={styles["form-group"]}>
               <button type="submit" disabled={buttonDisabled}>
-                Sign Up
+                Log In
               </button>
               <p style={{ fontSize: 20, fontWeight: "normal", marginTop: 10 }}>
                 If you are not already Registered. Go To{" "}

@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation';
 
 const CashOnDelivery = () => {
       let router=useRouter();
-      let router2=useRouter();
     let { paymentAmount, paymentAddress, updatePaymentAddress,productDetails } = usePayment();
   const [formData, setFormData] = useState({
     name:paymentAddress.name,
@@ -139,7 +138,7 @@ const CashOnDelivery = () => {
         <div className={styles.buttonGroup}>
           <button className={styles.button} onClick={generateOrderId}>Generate Order ID</button>
           <button className={styles.button} onClick={handleSubmit} disabled={formData.orderId === ''} >Cash On Delivery</button>
-          <button onClick={()=>router2.push("/orderCompletion")}>Delivery Status</button>
+         
         </div>
       </div>
     </div>
