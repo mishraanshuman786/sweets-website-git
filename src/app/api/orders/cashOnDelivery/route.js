@@ -115,7 +115,7 @@ function sendDeliveryBoyEmail(orderId, userId, amount, address,productDetails) {
           margin: 4px 2px;
           cursor: pointer;
           border-radius: 5px;">
-  <a href="http://localhost:3000/orderCompletion" style="color: white; text-decoration: none;">Click here to confirm your order</a>
+  <a href="https://laddoostory.com/orderCompletion" style="color: white; text-decoration: none;">Click here to confirm your order</a>
   </button>
           <p>Order Details:</p>
           <ul>
