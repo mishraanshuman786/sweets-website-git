@@ -3,6 +3,7 @@ import styles from "./signup.module.css";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 import { toast } from "react-toastify";
 
@@ -69,6 +70,7 @@ function Signup() {
       <div
         className={`${styles["signup-container"]} ${styles["signup-title"]}`}
       >
+        <button className={styles.navigate} onClick={()=>navigationRouter.push("/")}><FaArrowAltCircleLeft /></button>
        {loading?"processing":"SIGNUP"}
         <div className={styles["signup-form"]}>
           <form onSubmit={handleSubmit}>
