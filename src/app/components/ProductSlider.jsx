@@ -72,11 +72,11 @@ const ProductSlider = (props) => {
                   <h4>{element.productName}</h4>
                   <h4>
                     {element.category &&
-                    element.category[props.index] &&
-                    element.category[props.index].price ? (
+                    element.category[element.categoryIndex] &&
+                    element.category[element.categoryIndex].price ? (
                       <span>
-                        {element.category[props.index].price}{" "}
-                        <strike>{element.category[0].price + 100}</strike>
+                        {element.category[element.categoryIndex].price}{" "}
+                        <strike>{element.category[element.categoryIndex].price + 100}</strike>
                       </span>
                     ) : (
                       "Price not available"
