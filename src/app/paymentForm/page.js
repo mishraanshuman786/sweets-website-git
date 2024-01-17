@@ -199,8 +199,8 @@ const PaymentForm = () => {
               </h2>
             </div>
             <form onSubmit={handleFormSubmit}>
-              <div style={{ marginLeft: 100 }}>
-                <span style={{ marginRight: 40 }}>
+              <div  className={styles.spanStyle}>
+                <span style={{ marginRight: 40 }} >
                   <input
                     type="text"
                     placeholder="Name"
@@ -228,8 +228,8 @@ const PaymentForm = () => {
                   />
                 </span>
               </div>
-              <div style={{ marginLeft: 100 }}>
-                <span style={{ marginRight: 40 }}>
+              <div className={styles.spanStyle}>
+                <span style={{ marginRight: 40 }} >
                   <input
                     type="text"
                     placeholder="Pincode"
@@ -241,7 +241,7 @@ const PaymentForm = () => {
                     }
                   />
                 </span>
-                <span>
+                <span >
                   <input
                     type="text"
                     placeholder="Locality"
@@ -254,19 +254,19 @@ const PaymentForm = () => {
                   />
                 </span>
               </div>
-              <div style={{ marginLeft: 100 }}>
+              <div  className={styles.spanStyle}>
                 <input
                   type="email"
                   placeholder="Email"
                   className={styles.email}
                   value={newAddress.email}
                   required
-                  onChange={(e) =>
+                  onChange={(e) => 
                     setNewAddress({ ...newAddress, email: e.target.value })
                   }
                 />
               </div>
-              <div style={{ marginLeft: 100 }}>
+              <div className={styles.spanStyle}>
                 <textarea
                   style={{ paddingLeft: 8, width: 540, borderRadius: 4 ,width:"90%"}}
                   placeholder="Address(Area and Street)"
@@ -278,7 +278,7 @@ const PaymentForm = () => {
                   }
                 ></textarea>
               </div>
-              <div style={{ marginLeft: 100 }}>
+              <div  className={styles.spanStyle}>
                 <span style={{ marginRight: 40 }}>
                   <input
                     type="text"
@@ -292,7 +292,7 @@ const PaymentForm = () => {
                   />
                 </span>
               </div>
-              <div style={{ marginLeft: 100 }}>
+              <div  className={styles.spanStyle}>
                 <span style={{ marginRight: 40 }}>
                   <input
                     type="text"
@@ -305,7 +305,7 @@ const PaymentForm = () => {
                     }
                   />
                 </span>
-                <span>
+                <span >
                   <input
                     type="text"
                     placeholder="Alternate Phone"
@@ -323,7 +323,7 @@ const PaymentForm = () => {
               </div>
 
               {/* submit button */}
-              <div style={{ marginLeft: 100 }}>
+              <div className={styles.spanStyle}>
                 <button
                   type="submit"
                   onClick={saveData}
