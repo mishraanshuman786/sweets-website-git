@@ -52,7 +52,7 @@ const ProductSlider = (props) => {
         >
           {props.data && props.data.result ? (
             props.data.result.map((element) => {
-              let path = `/ProductImages/${element.images[props.index]}.jpg`;
+              let path = `/ProductImages/${element.images[element.categoryIndex]}.jpg`;
               let productPageUrl = `/products/${element._id}`;
 
               return (
@@ -85,10 +85,10 @@ const ProductSlider = (props) => {
 
                   <div className="rating">
                     {element.category &&
-                    element.category[props.index] &&
-                    element.category[props.index].rating
+                    element.category[element.categoryIndex] &&
+                    element.category[element.categoryIndex].rating
                       ? Array.from(
-                          { length: element.category[props.index].rating },
+                          { length: element.category[element.categoryIndex].rating },
                           (_, i) => (
                             <span key={i} className="star">
                               <IoStar />

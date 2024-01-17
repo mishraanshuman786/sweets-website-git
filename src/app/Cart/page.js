@@ -168,6 +168,7 @@ export default function Cart() {
                   {item.category[item.categoryIndex] &&
                   item.category[item.categoryIndex].price !== undefined ? (
                     <h4>
+                      <span>&#8377;</span>
                       <strike className="me-2">
                         {item.category[item.categoryIndex].price + 100}Rs/kg
                       </strike>

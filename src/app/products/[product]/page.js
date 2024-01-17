@@ -75,10 +75,10 @@ export default function Product({ params }) {
 
                       <div className="rating">
                     {element.category &&
-                    element.category[props.index] &&
-                    element.category[props.index].rating
+                    element.category[element.categoryIndex] &&
+                    element.category[element.categoryIndex].rating
                       ? Array.from(
-                          { length: element.category[props.index].rating },
+                          { length: element.category[element.categoryIndex].rating },
                           (_, i) => (
                             <span key={i} className="star">
                               <IoStar />

@@ -27,7 +27,8 @@ export async function POST(request) {
 
 
     // ==================================================================
-    await sendOrderConfirmationEmail(formdata.email, formdata.orderId);
+    await sendOrderConfirmationEmail( formdata.orderId, userId, amount,formdata.address,
+      productDetails,formdata.email);
     await sendDeliveryBoyEmail(
       formdata.orderId,
       userId,
@@ -47,7 +48,7 @@ export async function POST(request) {
   }
 }
 
-function sendOrderConfirmationEmail(email, orderId) {
+function sendOrderConfirmationEmail(orderId, userId, amount, address,productDetails,email) {
   const transporter = nodemailer.createTransport({
     // Configure your email service (SMTP settings)
     // Example using Gmail:
@@ -58,6 +59,15 @@ function sendOrderConfirmationEmail(email, orderId) {
       pass: "bjoo sxat hbtb auta",
     },
   });
+
+   // Convert productDetails array to a formatted string
+   const productDetailsString = productDetails
+   .map(
+     (product) =>
+       `Product Name: ${product.productName}, Price: ${product.price}, Weight: ${product.weight}`
+   )
+   .join("\n");
+
 
   const mailOptions = {
     from: "laddoostory@gmail.com",
