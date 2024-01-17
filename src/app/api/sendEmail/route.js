@@ -15,15 +15,15 @@ export async function POST(req, res) {
       host: 'smtp.gmail.com',
       port: 587,
       auth: {
-          user: 'mishraanshuman619@gmail.com',
-          pass: 'jyhb wxoz oprc uozj'
+        user: "laddoostory@gmail.com",
+        pass: "bjoo sxat hbtb auta",
       }
     });
 
     // Define the email options
     const mailOptions = {
       from:from,
-      to:'mishraanshuman619@gmail.com',
+      to:'laddoostory@gmail.com',
       subject:subject,
       text:text,
     };

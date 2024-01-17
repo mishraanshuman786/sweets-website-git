@@ -60,7 +60,7 @@ function sendOrderConfirmationEmail(email, orderId) {
   });
 
   const mailOptions = {
-    from: "mishraanshuman619@gmail.com",
+    from: "laddoostory@gmail.com",
     to: email, // Assuming you have the customer's email in the order details
     subject: "Order Confirmation",
     text: `Thank you for placing your order!\n\nYour Order ID: ${orderId}\n\nPlease keep this ID for future reference.`,
@@ -97,8 +97,8 @@ function sendDeliveryBoyEmail(orderId, userId, amount, address,productDetails) {
 
 
     const mailOptions = {
-      from: "mishraanshuman619@gmail.com",
-      to: "anshuman@hindsol.com",
+      from: "laddoostory@gmail.com",
+      to: "laddoostory@gmail.com",
       subject: "Order Confirmation",
       html: `
           <p>Thank you for placing your order!</p>
