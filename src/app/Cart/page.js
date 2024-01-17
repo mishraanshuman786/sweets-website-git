@@ -105,7 +105,7 @@ export default function Cart() {
           ) : (
             <div>
               <h4 className="text-light" style={{ textAlign: "center" }}>
-                Total Amount:<span>&#8377;</span>{paymentAmount}
+                Total Amount:&#8377;{paymentAmount}
               </h4>
               <Link
                 href=""
