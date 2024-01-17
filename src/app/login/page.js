@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { CartState } from "@/context/Context";
 
 function Login() {
+  const navigationRouter=useRouter();
   const router = useRouter();
   // State for user information
   const [user, setUser] = useState({
@@ -86,7 +87,7 @@ function Login() {
       <div
         className={`${styles["signup-container"]} ${styles["signup-title"]}`}
       >
-         <button className={styles.navigate}><FaArrowAltCircleLeft /></button>
+         <button className={styles.navigate} onClick={()=>navigationRouter.push("/")}><FaArrowAltCircleLeft /></button>
         {loading ? "processing" : "LOGIN"}
         <div className={styles["signup-form"]}>
           <form onSubmit={handleSubmit}>
