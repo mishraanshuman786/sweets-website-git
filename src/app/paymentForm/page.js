@@ -61,6 +61,7 @@ const PaymentForm = () => {
         newAddress.email != "" &&
         newAddress.address != "" &&
         newAddress.city !== "" &&
+        newAddress.mobileNumber !== "" &&
         newAddress.landmark !== ""
       ) {
         const item = localStorage.getItem("loginStatus");
@@ -133,7 +134,7 @@ const PaymentForm = () => {
 
   
   return (
-    <div style={{ marginTop: 170, backgroundColor: "whitesmoke" }}>
+    <div className="head" style={{ marginTop: 170}}>
       <Navbar />
       <div className={styles.container}>
         <div className={styles.leftContainer}>
@@ -267,7 +268,7 @@ const PaymentForm = () => {
               </div>
               <div style={{ marginLeft: 100 }}>
                 <textarea
-                  style={{ paddingLeft: 8, width: 540, borderRadius: 4 }}
+                  style={{ paddingLeft: 8, width: 540, borderRadius: 4 ,width:"90%"}}
                   placeholder="Address(Area and Street)"
                   rows={4}
                   required

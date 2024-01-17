@@ -2,11 +2,12 @@
 import { useState } from 'react';
 import axios from 'axios';
 import './OrderCompletion.css';
+import { toast } from "react-toastify";
 
 const OrderCompletion = () => {
   const [orderId, setOrderId] = useState('');
   const [orderStatus, setOrderStatus] = useState(false);
-  const [productDetails, setProductDetails] = useState(null);
+  const [details, setDetails] = useState(null);
 
   const handleSearchOrder = async () => {
     try {
@@ -20,11 +21,12 @@ const OrderCompletion = () => {
       const response = await axios.post('/api/orders/searchOrder', { orderId:orderId });
 
       // Check if the order is found
-      if (response.data.order) {
-        setProductDetails(response.data.order.productDetails);
-        setOrderStatus(true);
+      if (response.data) {
+        setDetails(response.data.order);
+        console.log(response.data)
+        setOrderStatus(!response.data.order.orderCompleted);
       } else {
-        setProductDetails(null);
+        setDetails(null);
         setOrderStatus(false);
       }
 
@@ -34,11 +36,30 @@ const OrderCompletion = () => {
     }
   };
 
-  const handleCompleteTransaction = () => {
-    // Implement logic to complete the transaction and update order status
-    // For simplicity, let's just log the completion status for now
-    console.log('Transaction completed for order:', orderId);
-    setOrderStatus(true);
+  const handleCompleteTransaction =async () => {
+    try {
+      // Check if orderId is entered before making the request
+      if (!orderId) {
+        console.log('Please enter an Order ID.');
+        return;
+      }
+
+      // Make an Axios POST request to the searchOrder API
+      const response = await axios.post('/api/orders/completeOrder', { orderId:orderId });
+
+      // Check if the order is found
+      if (response.data) {
+        toast.success("Order Delivered Successfully. Thank you.....", { position: "top-right" });
+        setOrderStatus(!response.data.order.orderCompleted);
+      } else {
+        toast.error("There is some problem in completing the order.", { position: "top-right" });
+        setDetails(null);
+      }
+
+      console.log('Search Order Response:', response.data);
+    } catch (error) {
+      console.error('Error searching for order:', error.message);
+    }
   };
 
   return (
@@ -61,21 +82,33 @@ const OrderCompletion = () => {
         >
           Search Order
         </button>
-        <button type="button" className="button" onClick={handleCompleteTransaction}>
+        <button
+          type="button"
+          className="button"
+          onClick={handleCompleteTransaction}
+          disabled={!orderStatus}  // Disable the button if orderStatus is false
+        >
           Complete Transaction
         </button>
       </form>
-      {orderStatus && (
+      {(
         <div className="orderDetails">
           <h3>Order Details</h3>
-          <ul>
-            {productDetails &&
-              productDetails.map((product, index) => (
-                <li key={index}>
-                  {`Product Name: ${product.productName}, Price: ${product.price}, Weight: ${product.weight}`}
-                </li>
-              ))}
-          </ul>
+          
+            {details ? (
+              <ul>
+              <li>
+                {`User Id: ${details.userId}`} 
+              </li>
+              <li>{` Order Id: ${details.orderId}`}</li>
+              <li>{`Name: ${details.name}`}</li>
+              <li>{`Amount: ${details.amount}`}</li>
+              <li>{`Address: ${details.address}`}</li>
+              </ul>
+            ) : <ul> <li>
+                  <h4>No Details Found with this Order Id.</h4>
+          </li></ul>}
+          
         </div>
       )}
     </div>
