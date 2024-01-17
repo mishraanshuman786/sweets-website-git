@@ -75,7 +75,7 @@ const ProductSlider = (props) => {
                     element.category[element.categoryIndex] &&
                     element.category[element.categoryIndex].price ? (
                       <span>
-                        {element.category[element.categoryIndex].price}{" "}
+                        <span>&#8377;</span>{element.category[element.categoryIndex].price}{" "}
                         <strike>{element.category[element.categoryIndex].price + 100}</strike>
                       </span>
                     ) : (

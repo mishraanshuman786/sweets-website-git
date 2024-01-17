@@ -1,6 +1,7 @@
 "use client";
 import Navbar from "@/app/components/Navbar";
 import { useState, useEffect } from "react";
+import { IoStar } from "react-icons/io5";
 import { CartState } from "@/context/Context";
 import Image from "next/image";
 import Footer from "@/app/components/Footer";
@@ -64,13 +65,28 @@ export default function Product({ params }) {
                         element.category[element.categoryIndex] &&
                         element.category[element.categoryIndex].price ? (
                           <span>
-                            {element.category[element.categoryIndex].price}{" "}
+                            <span>&#8377;</span>{element.category[element.categoryIndex].price}{" "}
                             <strike>{element.category[element.categoryIndex].price + 100}</strike>
                           </span>
                         ) : (
                           "Price not available"
                         )}
                       </h4>
+
+                      <div className="rating">
+                    {element.category &&
+                    element.category[props.index] &&
+                    element.category[props.index].rating
+                      ? Array.from(
+                          { length: element.category[props.index].rating },
+                          (_, i) => (
+                            <span key={i} className="star">
+                              <IoStar />
+                            </span>
+                          )
+                        )
+                      : "Rating not available"}
+                  </div>
 
                       {/* cart button */}
                       <div style={{ display: "flex", flexDirection: "column" }}>
