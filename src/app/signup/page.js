@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 
 function Signup() {
   const router = useRouter();
+  const routerNavigation=useRouter();
   // State for user information
   const [user, setUser] = useState({
     email: "",
@@ -70,7 +71,7 @@ function Signup() {
       <div
         className={`${styles["signup-container"]} ${styles["signup-title"]}`}
       >
-        <button className={styles.navigate} onClick={()=>navigationRouter.push("/")}><FaArrowAltCircleLeft /></button>
+        <button className={styles.navigate} onClick={()=>routerNavigation.push("/login")}><FaArrowAltCircleLeft /></button>
        {loading?"processing":"SIGNUP"}
         <div className={styles["signup-form"]}>
           <form onSubmit={handleSubmit}>
