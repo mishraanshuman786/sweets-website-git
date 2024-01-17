@@ -9,6 +9,7 @@ import { usePayment } from "@/context/PaymentContext";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import "./Cart.css";
+import { toast } from "react-toastify";
 
 export default function Cart() {
   const [productWeights, setProductWeights] = useState({});
@@ -110,6 +111,7 @@ export default function Cart() {
               <Link
                 href=""
                 className="btn btn-success w-100 col-lg-3 mb-4 mt-5 col-12"
+                onClick={()=>toast.error("Please Add Products In the Cart.", { position: "top-left" })}
               >
                 Make Payment
               </Link>
