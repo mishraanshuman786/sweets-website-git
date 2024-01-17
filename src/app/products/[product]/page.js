@@ -1,6 +1,7 @@
 "use client";
 import Navbar from "@/app/components/Navbar";
 import { useState, useEffect } from "react";
+import { CartState } from "@/context/Context";
 import Image from "next/image";
 import Footer from "@/app/components/Footer";
 import ProductReview from "@/app/components/ProductReview";
@@ -12,6 +13,11 @@ export default function Product({ params }) {
   useEffect(() => {
     getProduct();
   });
+
+  const {
+    state: { cart },
+    dispatch,
+  } = CartState();
 
   async function getProduct() {
     let url = `/api/products/${params.product}`;
