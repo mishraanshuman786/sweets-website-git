@@ -10,6 +10,7 @@ import { motion, useAnimation } from "framer-motion";
 import { PiUserCircleGearFill } from "react-icons/pi";
 import { FaUserCheck } from "react-icons/fa6";
 import axios from "axios";
+import { FaCircleUser } from "react-icons/fa6";
 
 const Navbar = () => {
   const router = useRouter();
@@ -244,11 +245,17 @@ const Navbar = () => {
               </motion.div>
 
               {/* cart component end */}
+
               <motion.div
                 style={{ position: "relative" }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
+                 <div
+        style={{ position: "relative" }}
+        onTouchStart={() => setIsCartHovered(true)}
+        onTouchEnd={() => setIsCartHovered(false)}
+      ></div>
                 <button
                   type="button"
                   className="btn me-5"
@@ -293,7 +300,9 @@ const Navbar = () => {
                 >
                   {userDetails.status ? (
                     <div style={{ margin: 0, marginBottom: 10 }}>
+                      <div><h2><FaCircleUser style={{fontSize:35,marginRight:10}} />{userDetails.data.username}</h2></div>
                       <h5>Thank You for Logging In.</h5>
+                    
                       <button
                         style={{
                           backgroundColor: "brown",
@@ -345,6 +354,7 @@ const Navbar = () => {
                   )}
                 </div>
               ) : null}
+            
 
               {/* <div>
             <Link  href={"https://www.facebook.com/profile.php?id=61554135820905&mibextid=kFxxJD"} > <ImFacebook2 className="btnhover"  style={{width:40,height:33,color:"brown"}}/></Link>

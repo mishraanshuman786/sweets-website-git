@@ -141,7 +141,7 @@ export default function Products({ params }) {
                     <div style={{ padding: 10, color: "brown" }}>
                       <h3>{element.productName}</h3>
 
-                      <h4>Price: {element.category[element.categoryIndex].price} Rs/Kg</h4>
+                      <h4>Price: <span>&#8377;</span>{element.category[element.categoryIndex].price} Rs/Kg</h4>
                       <div>
                         {[...Array(5)].map((_, index) => {
                           return element.category[element.categoryIndex].rating > index ? (

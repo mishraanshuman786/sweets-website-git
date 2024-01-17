@@ -96,7 +96,7 @@ export default function Product() {
                             }}
                           >
                             {" "}
-                            {element.category[element.categoryIndex].price +
+                            <span>&#8377;</span>{element.category[element.categoryIndex].price +
                               100}
                           </span>
                           {element.category[element.categoryIndex].price}

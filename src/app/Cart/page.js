@@ -105,7 +105,7 @@ export default function Cart() {
           ) : (
             <div>
               <h4 className="text-light" style={{ textAlign: "center" }}>
-                Total Amount:{paymentAmount}
+                Total Amount:<span>&#8377;</span>{paymentAmount}
               </h4>
               <Link
                 href=""
@@ -172,7 +172,7 @@ export default function Cart() {
                       <strike className="me-2">
                         {item.category[item.categoryIndex].price + 100}Rs/kg
                       </strike>
-                      {item.category[item.categoryIndex].price} Rs/kg
+                      <span>&#8377;</span>{item.category[item.categoryIndex].price} Rs/kg
                     </h4>
                   ) : null}
 
@@ -253,7 +253,7 @@ export default function Cart() {
                   <h3 className="pt-2">
                     Total Amount:
                     <span>
-                      {item.category[item.categoryIndex].price * productWeight}
+                    &#8377;{item.category[item.categoryIndex].price * productWeight}
                       Rs.
                     </span>
                   </h3>

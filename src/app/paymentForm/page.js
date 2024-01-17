@@ -347,7 +347,7 @@ const PaymentForm = () => {
             }}
           >
             <label style={{ fontSize: 25 }}>Price:</label>
-            <span style={{ fontSize: 25 }}>{paymentAmount}</span>
+            <span style={{ fontSize: 25 }}>&#8377;{paymentAmount}</span>
           </div>
           <div
             style={{
@@ -357,7 +357,7 @@ const PaymentForm = () => {
             }}
           >
             <label style={{ fontSize: 25 }}>Delivery Charges:</label>
-            <span style={{ fontSize: 25 }}>0</span>
+            <span style={{ fontSize: 25 }}>&#8377;0</span>
           </div>
           <div
             style={{
@@ -367,7 +367,7 @@ const PaymentForm = () => {
             }}
           >
             <label style={{ fontSize: 25 }}>Packaging Charges:</label>
-            <span style={{ fontSize: 25 }}>0</span>
+            <span style={{ fontSize: 25 }}>&#8377;0</span>
           </div>
           <div style={{ borderTop: "2px dashed grey" }}></div>
           <div
@@ -380,7 +380,7 @@ const PaymentForm = () => {
             <label style={{ fontSize: 25, fontWeight: "bold" }}>
               Total Payable:
             </label>
-            <span style={{ fontSize: 25 }}>{paymentAmount}</span>
+            <span style={{ fontSize: 25 }}>&#8377;{paymentAmount}</span>
           </div>
           <hr />
           <button
