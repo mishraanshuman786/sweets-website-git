@@ -90,7 +90,7 @@ export default function Footer() {
 
             }}
           >
-            <li style={{ marginRight: "5%" }}><Link style={{textDecoration:"none",color:"white"}} href="/contact">About Us</Link></li>
+            <li style={{ marginRight: "5%" }}><Link style={{textDecoration:"none",color:"white"}} href="/about">About Us</Link></li>
             <li style={{ marginRight: "5%" }}><Link style={{textDecoration:"none",color:"white"}} href="/contact">Contact Us</Link></li>
             <li style={{ marginRight: "5%" }}><Link style={{textDecoration:"none",color:"white"}} href="/privacyPolicy">Privacy Policy</Link></li>
             <li style={{ marginRight: "5%" }}><Link style={{textDecoration:"none",color:"white"}} href="/refundPolicy">Refund Policy</Link></li>
@@ -145,8 +145,7 @@ export default function Footer() {
           <p>
             We source these authentic desi flavours and regional savours from
             the best regional vendors who are known for generations for these
-            amazing delicacies. The name SweeDesi is comes from “Sweets + Desi”
-            i.e. the Sweets and flavours which are Traditional, Authentic,
+            amazing delicacies. The name LaddooStory is comes from the Sweets and flavours which are Traditional, Authentic,
             Unadulterated with no preservatives. In the current busy and hectic
             life, the ready availability of our hometown flavours gives us a
             nostalgic feeling and closeness to our roots.
