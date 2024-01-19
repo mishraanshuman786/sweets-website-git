@@ -6,7 +6,7 @@ import { IoStar } from "react-icons/io5";
 import Link from "next/link";
 import { CartState } from "@/context/Context";
 import { usePayment } from "@/context/PaymentContext";
-import Navbar from "@/app/components/Navbar";
+import CustomNavbar from "@/app/components/CustomNavbar";
 import Footer from "@/app/components/Footer";
 import "./Cart.css";
 import { toast } from "react-toastify";
@@ -65,9 +65,9 @@ export default function Cart() {
   console.log("Context Product Details:", products);
 
   return (
-    <div style={{ marginTop: 170 }}>
+    <div style={{ marginTop: 200 }}>
       {/* navbar */}
-      <Navbar />
+      <CustomNavbar />
 
       {/* filter content */}
       <div className="row m-3 m-sm-5">
@@ -109,9 +109,9 @@ export default function Cart() {
                 Total Amount:&#8377;{paymentAmount}
               </h4>
               <Link
-                href=""
+                href="/login"
                 className="btn btn-success w-100 col-lg-3 mb-4 mt-5 col-12"
-                onClick={()=>toast.error("Please Add Products In the Cart.", { position: "top-left" })}
+                
               >
                 Make Payment
               </Link>
@@ -293,7 +293,7 @@ export default function Cart() {
               );
             })
           ) : (
-            <div className="empty-cart-container">
+            <div className="empty-cart-container" style={{marginTop:15}}>
               <h2>Your Cart is Empty. Please Add Some Products..... </h2>
               <div>
                 <img src="/emptycart.webp" alt="empty cart" />

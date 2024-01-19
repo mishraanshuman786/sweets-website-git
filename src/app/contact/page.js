@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Navbar from "../components/Navbar";
+import CustomNavbar from "../components/CustomNavbar";
 import Footer from "../components/Footer";
 
 export default function Contact() {
@@ -38,7 +38,7 @@ export default function Contact() {
   return (
     <div style={{ backgroundImage: "/public/images/background.jpg",marginTop:170 }}>
       {/* Navbar */}
-      <Navbar />
+      <CustomNavbar />
       {/* content */}
       <div style={{ backgroundColor: "wheat" }}>
         <div

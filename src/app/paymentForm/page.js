@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import styles from "./PaymentForm.module.css";
-import Navbar from "../components/Navbar";
+import CustomNavbar from "../components/CustomNavbar";
 import axios from "axios";
 import { usePayment } from "@/context/PaymentContext";
 import { useRouter } from "next/navigation";
@@ -135,7 +135,7 @@ const PaymentForm = () => {
   
   return (
     <div className="head" style={{ marginTop: 170}}>
-      <Navbar />
+      <CustomNavbar />
       <div className={styles.container}>
         <div className={styles.leftContainer}>
           <div className={styles.leftHeading}>

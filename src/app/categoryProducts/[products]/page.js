@@ -1,5 +1,5 @@
 "use client";
-import Navbar from "@/app/components/Navbar";
+import CustomNavbar from "@/app/components/CustomNavbar";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import "./Category.css";
@@ -44,9 +44,9 @@ export default function Products({ params }) {
   }
 
   return (
-    <div style={{marginTop:170}}>
+    <div style={{marginTop:200}}>
       {/* navbar */}
-      <Navbar />
+      <CustomNavbar />
       <div className="row m-3 m-sm-5">
         {content ? (
           <div

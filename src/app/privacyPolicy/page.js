@@ -1,5 +1,5 @@
 // PrivacyPolicy.js
-import Navbar from '../components/Navbar';
+import CustomNavbar from '../components/CustomNavbar';
 import Footer from '../components/Footer';
 import React from 'react';
 import styles from './PrivacyPolicy.module.css';
@@ -9,7 +9,7 @@ const PrivacyPolicy = () => {
         <div style={{marginTop:170}}>
 
             {/* Navbar */}
-            <Navbar />
+            <CustomNavbar />
 
             {/* =================================================== */}
         <div className={styles.container}>

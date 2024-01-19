@@ -1,5 +1,5 @@
 "use client";
-import Navbar from "../components/Navbar";
+import CustomNavbar from "../components/CustomNavbar";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Footer from "../components/Footer";
@@ -30,9 +30,9 @@ export default function Product() {
   }
 
   return (
-    <div style={{ marginTop: 170 }}>
+    <div style={{ marginTop: 225 }}>
       {/* Navbar */}
-      <Navbar />
+      <CustomNavbar />
 
       <div
         className="products md:container mt-4 mb-4 ms-lg-4 ms-sm-5 ms-4"

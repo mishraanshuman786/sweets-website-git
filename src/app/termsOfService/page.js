@@ -2,16 +2,16 @@
 
 import React from 'react';
 import styles from './TermsOfService.module.css';
-import Navbar from '../components/Navbar';
+import CustomNavbar from '../components/CustomNavbar';
 
 import Footer from '../components/Footer';
 
 const TermsOfService = () => {
   return (
-    <div style={{marginTop:170}}>
+    <div style={{marginTop:200}}>
 
       {/* Navbar component */}
-      <Navbar/>
+      <CustomNavbar/>
     <div className={styles.container}>
       <h2>Terms of Service</h2>
       <p><strong>Services Overview</strong></p>

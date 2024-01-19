@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Navbar from "./components/Navbar";
+import CustomNavbar from "./components/CustomNavbar";
 import Footer from "./components/Footer";
 import "./components/styles/page.css";
 import Link from "next/link";
@@ -66,20 +66,15 @@ export default function Homepage() {
   }
 
   // fetching review and rating from products to show the slider in the homepage
-  const reviewsData = [
-    { rating: 4, comment: "Great product! Loved it." },
-    { rating: 5, comment: "Excellent service and quality." },
-    { rating: 3, comment: "Excellent service and quality." },
-    // Add more reviews as needed
-  ];
+  
 
   // ===========================================
 
   return (
-    <div style={{ backgroundColor: "#FFEBEE" }}>
-      <div className="sticky-top ">
+    <div style={{ backgroundColor: "#FFEBEE",marginTop:170 }}>
+      <div >
         {/* Navbar */}
-        <Navbar />
+        <CustomNavbar />
       </div>
 
       {/* {showPopup && (
@@ -164,31 +159,7 @@ export default function Homepage() {
           <h2 style={{ textAlign: "center", color: "brown" }}>
             Ladoo Story- Flavours of India
           </h2>
-          <p
-            style={{
-              textAlign: "justify",
-              padding: 12,
-              color: "black",
-              fontSize: 18,
-            }}
-          >
-            For a person, it is a challenging feat to distance oneself from one
-            s roots, culture and the real flavors of pure laddu of one s home
-            mother. Although we may physically move away from these elements,
-            the nostalgia and memories remain, ultimately creating a craving for
-            the familiar flavors of home. In the bustling lifestyle of big
-            cities today, LADDOO STORY acts as a bridge, reviving these
-            memories, nostalgia and flavors and bringing them closer to you. We
-            are creating an ecosystem that takes care of both our health and
-            taste equally. The name Ladoo Story originates from the combination
-            of LADDOO + STORY, representing traditional, authentic and
-            unadulterated flavors without preservatives. Amidst the present busy
-            and chaotic life, the instant availability of the flavors of our
-            hometown creates a feeling of nostalgia and connection with our
-            roots We believe that we should eat better, there are many sweets
-            available in the market but they are making us sick, so homemade
-            sweets will take care of you. We will take care of you.
-          </p>
+          
           <p
             style={{
               textAlign: "justify",
@@ -244,7 +215,7 @@ export default function Homepage() {
       {/* ============================================================= */}
 
       {/* slider for showing review and rating */}
-      <ReviewSlider reviews={reviewsData} />
+      <ReviewSlider  />
 
       {/* =============================================================== */}
 

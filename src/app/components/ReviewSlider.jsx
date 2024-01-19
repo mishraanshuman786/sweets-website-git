@@ -1,11 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { IoStar } from 'react-icons/io5';
+import React, { useState, useEffect } from "react";
+import { IoStar } from "react-icons/io5";
 import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
-import styles from './styles/ReviewSlider.module.css';
+import styles from "./styles/ReviewSlider.module.css";
 
-const ReviewSlider = ({ reviews }) => {
+const ReviewSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Review data================
+  const reviews = [
+    { rating: 4,username:"" ,comment: "Great product! Loved it." },
+    { rating: 5,username:"" ,comment: "Excellent service and quality." },
+    { rating: 3,username:"" ,comment: "Excellent service and quality." },
+    // Add more reviews as needed
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -24,16 +32,23 @@ const ReviewSlider = ({ reviews }) => {
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length
+    );
   };
 
   return (
     <div className={styles.slider}>
-      <div className={styles.slides} style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+      <div
+        className={styles.slides}
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
         {reviews.map((review, index) => (
           <div
             key={index}
-            className={`${styles.slide} ${index === currentIndex ? styles.active : ''}`}
+            className={`${styles.slide} ${
+              index === currentIndex ? styles.active : ""
+            }`}
           >
             <div className={styles.contentContainer}>
               <p className={styles.comment}>{review.comment}</p>
@@ -49,18 +64,26 @@ const ReviewSlider = ({ reviews }) => {
         ))}
       </div>
       <div className={styles.navButtons}>
-        <button className={`${styles.navButton} ${styles.prev}`} onClick={prevSlide}>
-        <GrPrevious />
+        <button
+          className={`${styles.navButton} ${styles.prev}`}
+          onClick={prevSlide}
+        >
+          <GrPrevious />
         </button>
-        <button  className={`${styles.navButton} ${styles.next}`} onClick={nextSlide}>
-        <GrNext />
+        <button
+          className={`${styles.navButton} ${styles.next}`}
+          onClick={nextSlide}
+        >
+          <GrNext />
         </button>
       </div>
       <div className={styles.dots}>
         {reviews.map((_, index) => (
           <span
             key={index}
-            className={`${styles.dot} ${index === currentIndex ? styles.activeDot : ''}`}
+            className={`${styles.dot} ${
+              index === currentIndex ? styles.activeDot : ""
+            }`}
             onClick={() => goToSlide(index)}
           ></span>
         ))}

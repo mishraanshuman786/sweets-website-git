@@ -1,12 +1,14 @@
-"use client";
-import Navbar from "@/app/components/Navbar";
+"use client"
 import { useState, useEffect } from "react";
 import { IoStar } from "react-icons/io5";
 import { CartState } from "@/context/Context";
 import Image from "next/image";
 import Footer from "@/app/components/Footer";
 import ProductReview from "@/app/components/ProductReview";
+import { useRouter } from "next/navigation";
+import CustomNavbar from "@/app/components/CustomNavbar";
 export default function Product({ params }) {
+  const payNowRouter = useRouter();
   // state to store particular product data
   const [product, setProduct] = useState();
   let path;
@@ -28,9 +30,9 @@ export default function Product({ params }) {
   }
 
   return (
-    <div style={{ marginTop: 170 }}>
+    <div style={{ marginTop: 200 }}>
       {/* // Navbar */}
-      <Navbar />
+      <CustomNavbar/>
       <div className="container-fluid">
         <div
           className="container m-5 mx-auto"
@@ -65,8 +67,12 @@ export default function Product({ params }) {
                         element.category[element.categoryIndex] &&
                         element.category[element.categoryIndex].price ? (
                           <span>
-                            <span>&#8377;</span>{element.category[element.categoryIndex].price}{" "}
-                            <strike>{element.category[element.categoryIndex].price + 100}</strike>
+                            <span>&#8377;</span>
+                            {element.category[element.categoryIndex].price}{" "}
+                            <strike>
+                              {element.category[element.categoryIndex].price +
+                                100}
+                            </strike>
                           </span>
                         ) : (
                           "Price not available"
@@ -74,19 +80,23 @@ export default function Product({ params }) {
                       </h4>
 
                       <div className="rating">
-                    {element.category &&
-                    element.category[element.categoryIndex] &&
-                    element.category[element.categoryIndex].rating
-                      ? Array.from(
-                          { length: element.category[element.categoryIndex].rating },
-                          (_, i) => (
-                            <span key={i} className="star">
-                              <IoStar />
-                            </span>
-                          )
-                        )
-                      : "Rating not available"}
-                  </div>
+                        {element.category &&
+                        element.category[element.categoryIndex] &&
+                        element.category[element.categoryIndex].rating
+                          ? Array.from(
+                              {
+                                length:
+                                  element.category[element.categoryIndex]
+                                    .rating,
+                              },
+                              (_, i) => (
+                                <span key={i} className="star">
+                                  <IoStar />
+                                </span>
+                              )
+                            )
+                          : "Rating not available"}
+                      </div>
 
                       {/* cart button */}
                       <div style={{ display: "flex", flexDirection: "column" }}>
@@ -103,12 +113,13 @@ export default function Product({ params }) {
                             ) ? (
                               <button
                                 style={{
-                                  width: 145,
+                                  width: 300,
                                   height: 44,
                                   borderRadius: 6,
                                   fontSize: 14,
                                   color: "white",
                                   margin: 15,
+                                  marginLeft: 0,
                                   border: "none",
                                   backgroundColor: "brown",
                                 }}
@@ -126,12 +137,13 @@ export default function Product({ params }) {
                             ) : (
                               <button
                                 style={{
-                                  width: 145,
+                                  width: 300,
                                   height: 44,
                                   borderRadius: 6,
                                   fontSize: 14,
                                   color: "white",
                                   margin: 15,
+                                  marginLeft: 0,
                                   border: "none",
                                   backgroundColor: "brown",
                                 }}
@@ -148,6 +160,38 @@ export default function Product({ params }) {
                           </div>
                         </div>
                       </div>
+                      <button
+                        style={{
+                          width: 300,
+                          height: 44,
+                          borderRadius: 6,
+                          fontSize: 14,
+                          color: "white",
+                          margin: 15,
+                          marginLeft: 0,
+                          border: "none",
+                          backgroundColor: "green",
+                        }}
+                        onClick={() => {
+                          if (
+                            cart.some(
+                              (p) =>
+                                p._id === element._id &&
+                                p.categoryId === element.categoryId
+                            )
+                          ) {
+                            payNowRouter.push("/Cart");
+                          } else {
+                            dispatch({
+                              type: "ADD_TO_CART",
+                              payload: element,
+                            });
+                            payNowRouter.push("/Cart");
+                          }
+                        }}
+                      >
+                        Buy Now
+                      </button>
                     </figcaption>
                   </figure>
 

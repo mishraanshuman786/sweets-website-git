@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './about.module.css';
-import Navbar from '../components/Navbar';
+import CustomNavbar from '../components/CustomNavbar';
 import Footer from '../components/Footer';
 
 const About = () => {
   return (
-    <div style={{marginTop:170}}>
+    <div style={{marginTop:200}}>
       {/* Navbar */}
-      <Navbar />
+      <CustomNavbar />
     <div className={styles.container}>
       <h1 className={styles.h1}>Hello Laddoos lovers!</h1>
       <p className={styles.p}>Your most welcome in LADDOO STORY family. Our ‘Homemade’ box of Laddoos, carries a ‘token of love’ for you, your family & friends. Yes, it is indeed a ‘token of love’ because we at Simply Laddoos nurture our sweets with love combined with finest ingredients cooked in very hygienic conditions.</p>

@@ -2,14 +2,14 @@
 
 import React from 'react';
 import styles from './RefundPolicy.module.css';
-import Navbar from '../components/Navbar';
+import CustomNavbar from '../components/CustomNavbar';
 import Footer from '../components/Footer';
 
 const RefundPolicy = () => {
     return (
         <div style={{marginTop:170}}>
             {/* Navbar component */}
-            <Navbar />
+            <CustomNavbar />
             {/* ================================== */}
             <div className={styles.container}>
                 <h2>Refund Policy</h2>

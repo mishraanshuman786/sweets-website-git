@@ -1,12 +1,12 @@
 import React from 'react'
 import styles from "./shiping-policy.module.css";
 import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
+import CustomNavbar from '../components/CustomNavbar';
 function ShipingPolicy() {
   return (
-    <div style={{marginTop:170}}>
+    <div style={{marginTop:200}}>
       {/* Navbar component */}
-      <Navbar/>
+      <CustomNavbar/>
       {/* =================================== */}
 
     <div className={styles.body}>

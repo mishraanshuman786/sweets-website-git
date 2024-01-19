@@ -42,18 +42,7 @@ const Navbar = () => {
     getData();
   }, [navCollections]);
 
-  // // fetching the user data
-  // useEffect(()=>{
-  //   getUsername();
-  // },[userDetails]);
-
-  // async function getUsername(){
-  //   const response = await axios("/api/users/user", {
-  //     method: "POST", // or other HTTP method
-  //     data: loginStatus.email,
-  //   });
-  //   setUserDetails(response);
-  // }
+ 
 
   async function getData() {
     let data = await fetch("api/collections");
@@ -103,27 +92,24 @@ const Navbar = () => {
           className="navbar navbar-expand-lg "
         >
           <div className="container-fluid">
-            <Link className="navbar-brand text-light btnhover" href="/">
-              {/* Apply the bounce effect to the logo */}
-              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                <Image src="/logo.png" alt="logo" width="100" height="100" />
-              </motion.div>
-            </Link>
-            <button
-              className="navbar-toggler "
-              style={{ backgroundColor: "brown", borderColor: "brown" }}
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span
-                className="navbar-toggler-icon"
-                style={{ color: "brown" }}
-              ></span>
-            </button>
+          <button
+            className="navbar-toggler "
+            style={{ backgroundColor: "brown", borderColor: "brown" }}
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <Image src="/logo.png" alt="logo" width="100" height="100" />
+          </button>
+          <Link className="navbar-brand text-light btnhover ms-auto" href="/">
+            {/* Apply the bounce effect to the logo */}
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+              <Image src="/logo.png" alt="logo" width="100" height="100" />
+            </motion.div>
+          </Link>
             <div
               className="collapse navbar-collapse"
               id="navbarSupportedContent"
@@ -205,11 +191,9 @@ const Navbar = () => {
                   </Link>
                 </li>
               </ul>
-              {/* cart Component */}
-              {/* Apply the bounce effect to the cart icon */}
-              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                <div style={{ position: "relative" }}>
-                  <div
+
+              {/* cart numbers */}
+               <div
                     className="btnhover"
                     style={{
                       position: "absolute",
@@ -222,12 +206,20 @@ const Navbar = () => {
                       justifyContent: "center",
                       borderRadius: 18,
                       fontWeight: "bold",
-                      left: 30,
+                      left: 20,
                       top: 5,
                     }}
                   >
                     {cart.length}
                   </div>
+
+
+              {/* cart numbers end */}
+              {/* cart Component */}
+              {/* Apply the bounce effect to the cart icon */}
+              <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                <div style={{ position: "relative" }}>
+                 
 
                   <Link
                     type="button"
@@ -238,7 +230,7 @@ const Navbar = () => {
                     style={{ backgroundColor: "whitesmoke" }}
                   >
                     <span style={{ fontSize: 60, color: "brown" }}>
-                      <TiShoppingCart />
+                      <TiShoppingCart style={{fontSize:30}} />
                     </span>
                   </Link>
                 </div>
