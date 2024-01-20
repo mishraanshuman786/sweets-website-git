@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
               zIndex:100
             }}
           >
-            <p>Free Delivery Available Over All India After 999. Rs Shopping.</p>
+            <p>Powered By NAGINA FOODS</p>
           </div>
         
           <Context>
