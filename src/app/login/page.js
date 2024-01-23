@@ -1,5 +1,5 @@
 "use client";
-import styles from "./login.module.css";
+import styles from "./login.css";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
@@ -83,15 +83,15 @@ function Login() {
     }
   }, [user]);
   return (
-    <div className={styles["signup-container"]}>
+    <div className="signup-container">
       <div
-        className={`${styles["signup-container"]} ${styles["signup-title"]}`}
+        className="signup-container signup-title"
       >
-         <button className={styles.navigate} onClick={()=>navigationRouter.push("/")}><FaArrowAltCircleLeft /></button>
+         <button className="navigate" onClick={()=>navigationRouter.push("/")}><FaArrowAltCircleLeft /></button>
         {loading ? "processing" : "LOGIN"}
-        <div className={styles["signup-form"]}>
+        <div className="signup-form">
           <form onSubmit={handleSubmit}>
-            <div className={styles["form-group"]}>
+            <div className="form-group">
              
               <label>Email</label>
               <input
@@ -104,7 +104,7 @@ function Login() {
               />
             </div>
 
-            <div className={styles["form-group"]}>
+            <div className="form-group">
               <label>Password</label>
               <input
                 type="password"
@@ -116,7 +116,7 @@ function Login() {
               />
             </div>
 
-            <div className={styles["form-group"]}>
+            <div className="form-group">
               <button type="submit" disabled={buttonDisabled}>
                 Log In
               </button>

@@ -12,9 +12,7 @@ export function middleware(request) {
     return NextResponse.redirect(new URL("/", request.nextUrl.origin).toString(), request.nextUrl);
   }
 
-  if (!isPublicPath && !token) {
-    return NextResponse.redirect(new URL("/login"), request.nextUrl);
-  }
+  
 }
 
 // See "Matching Paths" below to learn more
