@@ -9,6 +9,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    padding-top: 0;
+    padding-bottom: 0;
     z-index: 20;
     background-color: whitesmoke;
     color: #333; /* Adjust text color */

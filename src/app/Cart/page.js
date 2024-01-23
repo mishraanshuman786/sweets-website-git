@@ -73,7 +73,7 @@ export default function Cart() {
       <div className="row m-3 m-sm-5">
         {/* Filters Component */}
         <div
-          className="col-lg-3 mb-4 mt-5 col-12"
+          className="col-lg-3 mb-4 mt-5 col-12 order-2"
           style={{
             border: "1px solid grey",
             borderRadius: 6,
@@ -83,7 +83,7 @@ export default function Cart() {
             flexDirection: "column",
             justifyContent: "center",
           }}
-        >
+          >
           {/* Make Payment Button */}
 
           {cart.length >= 1 && loginStatus ? (
@@ -121,13 +121,13 @@ export default function Cart() {
         </div>
 
         <div
-          className="container col-lg-8 col-12"
+          className="container col-lg-8 col-12 order-1"
           style={{
             border: "1px solid grey",
             borderRadius: 6,
             backgroundColor: "whitesmoke",
           }}
-        >
+          >
           {cart.length >= 1 ? (
             cart.map((item) => {
               // Use the product's ID as a key for the product's weight

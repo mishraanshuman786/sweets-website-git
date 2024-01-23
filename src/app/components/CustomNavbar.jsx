@@ -324,13 +324,13 @@ const CustomNavbar= () => {
                 justifyContent: "center",
                 borderRadius: 18,
                 fontWeight: "bold",
-                top: 22,
+                top: 10,
                 right: 88,
               }}
             >
               {cart.length}
             </div>
-            <Link href="/Cart" className={styles.iconButton}>
+            <Link href="/Cart" className={styles.iconButton} >
               <FaShoppingCart style={{ fontSize: 40, color: "brown" }} />
             </Link>
           </div>
@@ -459,8 +459,8 @@ const CustomNavbar= () => {
                 justifyContent: "center",
                 borderRadius: 18,
                 fontWeight: "bold",
-                top: 18,
-                right: 72,
+                top: 3,
+                right: 76,
               }}
             >
               {cart.length}
