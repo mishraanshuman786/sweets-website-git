@@ -8,18 +8,37 @@ import styles from "../components/styles/Navbar2.module.css";
 // ===================================================
 
 import "./styles/Navbar.css";
-import { TiShoppingCart } from "react-icons/ti";
 import { useRouter } from "next/navigation";
 import { CartState } from "@/context/Context";
-import { motion, useAnimation } from "framer-motion";
-import { PiUserCircleGearFill } from "react-icons/pi";
-import { FaUserCheck } from "react-icons/fa6";
+import { useAnimation } from "framer-motion";
 import axios from "axios";
 import { FaCircleUser } from "react-icons/fa6";
 
 const CustomNavbar= () => {
   const router = useRouter();
-  const [navCollections, setNavCollections] = useState();
+  let result =[
+      {
+        _id:"656daabf41ff1afeaba93473", 
+        name:"Laddoos Desighee Collection"
+      },
+      {
+        _id:"656dab9341ff1afeaba93474", 
+        name:"Sugarfree Laddoos Collection"
+      },
+      {
+        _id:"656dabc341ff1afeaba93475",
+        name:"Energy Ladoos(No Ghee, No Oil, No Refined, No Sugar"
+      },
+      {
+        _id:"656dabe841ff1afeaba93476",
+        name:"Snacks Collections"
+      },
+      {
+        _id:"6576adb22b0af7822a4eac99",
+        name:"Pickle Collections"
+      }
+  ];
+  const [navCollections, setNavCollections] = useState({result:[...result]});
   const [userDetails, setUserDetails] = useState({});
   const [isLoginClicked, setIsLoginClicked] = useState(false);
 
@@ -102,6 +121,7 @@ const CustomNavbar= () => {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+  console.log("collections:",navCollections);
 
   return (
     <nav className={styles.navbar}>

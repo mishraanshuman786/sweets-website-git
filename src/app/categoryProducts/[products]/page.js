@@ -45,8 +45,8 @@ export default function Products({ params }) {
 
   return (
     <div style={{marginTop:200}}>
-      {/* navbar */}
-      <CustomNavbar />
+      {/* Customnavbar*/}
+      <CustomNavbar/>
       <div className="row m-3 m-sm-5">
         {content ? (
           <div

@@ -5,28 +5,25 @@ import Context from "../context/Context";
 import { PaymentProvider } from "@/context/PaymentContext";
 import Link from "next/link";
 import Head from "next/head";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "LADDOOSTORY-ONLINE SWEETS",
-  description: "Hi, laddoo story is a very unique startup venture,laddoo story offers homemade laddu like,Besan laau , Motichoor laddoo , DRYFRUITS LADDOO, flaxseeds laddoo, coconut laddo and many more homemade veriety of products. Hygiene laddoo is a very important thing for us.",
+  description:
+    "Hi, laddoo story is a very unique startup venture,laddoo story offers homemade laddu like,Besan laau , Motichoor laddoo , DRYFRUITS LADDOO, flaxseeds laddoo, coconut laddo and many more homemade veriety of products. Hygiene laddoo is a very important thing for us.",
 };
 
-
 export default function RootLayout({ children }) {
-
- 
   return (
     <html lang="en">
-       <Head>
+      <Head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
       </Head>
-      <body className={inter.className} >
+      <body className={inter.className}>
         <ToastContainer />
         <AuthProvider>
           <div
@@ -40,51 +37,43 @@ export default function RootLayout({ children }) {
               justifyContent: "center",
               borderBottom: "1px solid grey",
               paddingTop: 10,
-              position:"fixed",
-              zIndex:100
+              position: "fixed",
+              zIndex: 100,
             }}
           >
             <p>Powered By NAGINA FOODS</p>
           </div>
-        
+
           <Context>
             <PaymentProvider>
-            <div className="fixed-bottom" style={{ marginBottom: 90, marginLeft: 30,width:100 }}>
-              <Link
-                className="show-tool-tip"
-                href="https://wa.me/916307010388"
-                style={{ textDecoration: "none" }}
-                target="_blank"
+              <div
+                className="fixed-bottom"
+                style={{ marginBottom: 90, marginLeft: 1600, width: 100 }}
               >
-                {/* <div
-                  className="whatsapp"
-                  style={{
-                    width: 200,
-                    color: "white",
-                    backgroundColor: "green",
-                    fontSize: 15,
-                    borderRadius: 6,
-                    padding: 10,
-                    animation: "bounce 1s infinite", // Apply the bouncing animation
-                  }}
+                <Link
+                  className="show-tool-tip"
+                  href="https://wa.me/916307010388"
+                  style={{ textDecoration: "none" }}
+                  target="_blank"
                 >
-                  <p>If you want Customized Product.</p>
-                  <p>Chat With Us To Get Customized Products.</p>
-                </div> */}
-
-                <img src="/whatsapp.svg" alt="whatsapp"
-                  className="bounce" // Apply the bounce class here
-                  style={{ width: 80, height: 80, color: "green", animation: "bounce 1s infinite" }} // Apply the bouncing animation
-                />
-              </Link>
-            </div>
-            {children}
+                  <img
+                    src="/whatsapp.svg"
+                    alt="whatsapp"
+                    className="bounce" // Apply the bounce class here
+                    style={{
+                      width: 60,
+                      height: 60,
+                      color: "green",
+                      animation: "bounce 1s infinite",
+                    }} // Apply the bouncing animation
+                  />
+                </Link>
+              </div>
+              {children}
             </PaymentProvider>
           </Context>
         </AuthProvider>
-       
       </body>
     </html>
   );
 }
-
