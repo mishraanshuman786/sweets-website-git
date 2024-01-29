@@ -1,25 +1,37 @@
-"use client"
-import React, { useState } from 'react';
-import styles from './CashOnDelivery.module.css';
+"use client";
+import React, { useState } from "react";
+import styles from "./CashOnDelivery.module.css";
 import { usePayment } from "@/context/PaymentContext";
-import axios from 'axios';
+import axios from "axios";
 import { toast } from "react-toastify";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 const CashOnDelivery = () => {
-      let router=useRouter();
-    let { paymentAmount, paymentAddress, updatePaymentAddress,productDetails } = usePayment();
+  let router = useRouter();
+  let { paymentAmount, paymentAddress, updatePaymentAddress, productDetails } =
+    usePayment();
   const [formData, setFormData] = useState({
-    name:paymentAddress.name,
-    email:paymentAddress.email,
-    phone:paymentAddress.mobileNumber,
-    address:paymentAddress.locality+", "+paymentAddress.landmark+", "+paymentAddress.city+". "+paymentAddress.pincode,
-    orderId: '',
+    name: paymentAddress.name,
+    email: paymentAddress.email,
+    phone: paymentAddress.mobileNumber,
+    address:
+      paymentAddress.locality +
+      ", " +
+      paymentAddress.landmark +
+      ", " +
+      paymentAddress.city +
+      ". " +
+      paymentAddress.pincode,
+    orderId: "",
   });
 
   const generateRandomString = (length) => {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    return Array.from({ length }, () => characters[Math.floor(Math.random() * characters.length)]).join('');
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    return Array.from(
+      { length },
+      () => characters[Math.floor(Math.random() * characters.length)]
+    ).join("");
   };
 
   const generateOrderId = () => {
@@ -37,48 +49,52 @@ const CashOnDelivery = () => {
   const handleSubmit = async () => {
     // Handle form submission, e.g., initiate cash on delivery payment
     try {
-        updatePaymentAddress(formData);
-        
-        // Assuming you have the order ID stored in localStorage under the key 'orderId'
-        const storedOrderId =JSON.parse(localStorage.getItem('loginStatus'));
+      updatePaymentAddress(formData);
 
-        if (!storedOrderId.status) {
-            alert('User ID not found in localStorage.');
-            return;
-        }
+      // Assuming you have the order ID stored in localStorage under the key 'orderId'
+      const storedOrderId = JSON.parse(localStorage.getItem("loginStatus"));
 
-        // Sending the order ID with the axios post request
-        const response = await axios.post('/api/orders/cashOnDelivery', {
-            userId: storedOrderId.data.id,
-            amount:paymentAmount,
-            formdata:formData,
-            productDetails:productDetails
-        });
+      if (!storedOrderId.status) {
+        alert("User ID not found in localStorage.");
+        return;
+      }
 
-        // Handle the response as needed
-        console.log('Axios Response:', response.data);
-        router.push("/");
+      // Sending the order ID with the axios post request
+      const response = await axios.post("/api/orders/cashOnDelivery", {
+        userId: storedOrderId.data.id,
+        amount: paymentAmount,
+        formdata: formData,
+        productDetails: productDetails,
+      });
 
-        toast.success(formData.email+" ,Your Order with OrderId:"+formData.orderId+" is Added Successfully." , { position: "top-right" });
-        alert('Form submitted successfully');
-       
-        
-        
+      // Handle the response as needed
+      console.log("Axios Response:", response.data);
+      router.push("/");
+
+      toast.success(
+        formData.email +
+          " ,Your Order with OrderId:" +
+          formData.orderId +
+          " is Added Successfully.",
+        { position: "top-right" }
+      );
+      alert("Form submitted successfully");
     } catch (error) {
-        console.error('Error submitting form:', error.message);
-        toast.error("Error in Generating Order", { position: "top-right" });
+      console.error("Error submitting form:", error.message);
+      toast.error("Error in Generating Order", { position: "top-right" });
     }
-};
+  };
 
   return (
     <div className={styles.container}>
-        
       <div className={styles.form}>
-      <h2 style={{textAlign:"center"}}>Payment Details</h2>
+        <h2 style={{ textAlign: "center" }}>Payment Details</h2>
         <div className={styles.inputGroup}>
-          <label className={styles.label} htmlFor="name">Name:</label>
+          <label className={styles.label} htmlFor="name">
+            Name:
+          </label>
           <input
-          className={styles.input}
+            className={styles.input}
             type="text"
             id="name"
             name="name"
@@ -88,9 +104,11 @@ const CashOnDelivery = () => {
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label} htmlFor="email">Email:</label>
+          <label className={styles.label} htmlFor="email">
+            Email:
+          </label>
           <input
-          className={styles.input}
+            className={styles.input}
             type="email"
             id="email"
             name="email"
@@ -100,9 +118,11 @@ const CashOnDelivery = () => {
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label} htmlFor="phone">Phone:</label>
+          <label className={styles.label} htmlFor="phone">
+            Phone:
+          </label>
           <input
-          className={styles.input}
+            className={styles.input}
             type="text"
             id="phone"
             name="phone"
@@ -112,9 +132,11 @@ const CashOnDelivery = () => {
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label} htmlFor="address">Address:</label>
+          <label className={styles.label} htmlFor="address">
+            Address:
+          </label>
           <input
-          className={styles.input}
+            className={styles.input}
             type="text"
             id="address"
             name="address"
@@ -124,9 +146,11 @@ const CashOnDelivery = () => {
         </div>
 
         <div className={styles.inputGroup}>
-          <label className={styles.label} htmlFor="orderId">Order ID:</label>
+          <label className={styles.label} htmlFor="orderId">
+            Order ID:
+          </label>
           <input
-          className={styles.input}
+            className={styles.input}
             type="text"
             id="orderId"
             name="orderId"
@@ -136,9 +160,16 @@ const CashOnDelivery = () => {
         </div>
 
         <div className={styles.buttonGroup}>
-          <button className={styles.button} onClick={generateOrderId}>Generate Order ID</button>
-          <button className={styles.button} onClick={handleSubmit} disabled={formData.orderId === ''} >Cash On Delivery</button>
-         
+          <button className={styles.button} onClick={generateOrderId}>
+            Generate Order ID
+          </button>
+          <button
+            className={styles.button}
+            onClick={handleSubmit}
+            disabled={formData.orderId === ""}
+          >
+            Cash On Delivery
+          </button>
         </div>
       </div>
     </div>

@@ -1,16 +1,25 @@
-// Pay.js
-
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./onlinePayment.module.css";
+import { usePayment } from "@/context/PaymentContext";
 
 const Pay = () => {
+  let { paymentAmount, paymentAddress, updatePaymentAddress, productDetails } =
+    usePayment();
   const [formData, setFormData] = useState({
-    name: "",
-    mobile: "",
-    amount: "",
+    name: paymentAddress.name,
+    mobile: paymentAddress.mobileNumber,
+    amount: paymentAmount,
     muid: "",
+    address: paymentAddress.locality +
+    ", " +
+    paymentAddress.landmark +
+    ", " +
+    paymentAddress.city +
+    ". " +
+    paymentAddress.pincode,
+    email: paymentAddress.email,
   });
 
   const router = useRouter();
@@ -88,7 +97,7 @@ const Pay = () => {
             type="E-mail"
             className={styles.input}
             name="Email"
-            value={formData.mail}
+            value={formData.email}
             onChange={handleChange}
             placeholder="E-mail Address"
           />
@@ -101,7 +110,7 @@ const Pay = () => {
             type="text"
             className={styles.input}
             name="Address"
-            value={formData.Address}
+            value={formData.address}
             onChange={handleChange}
             placeholder="Address"
           />
