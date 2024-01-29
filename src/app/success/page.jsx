@@ -2,8 +2,8 @@ import React from 'react';
 
 export const Success = () => {
   return (
-    <div className='flex justify-center items-center text-center'>
-        Your payment has been done successfully
+    <div style={{display:"flex",marginTop:100,justifyContent:"center",alignItems:"center"}} >
+        <h1 style={{textAlign:"center"}}>Your payment has been done successfully.</h1>
         </div>
   )
 }
