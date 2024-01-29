@@ -12,13 +12,10 @@ export const Success = () => {
       router.push("/"); // Change this to the actual path of your home page
     }, 5000);
 
-    // Update the countdown every second
-    const interval = setInterval(() => {
-      setCountdown((prevCountdown) =>{
-        if(prevCountdown!=0){
-        prevCountdown - 1;
-      }});
-    }, 1000);
+   // Update the countdown every second
+   const interval = setInterval(() => {
+    setCountdown((prevCountdown) => (prevCountdown > 0 ? prevCountdown - 1 : 0));
+  }, 1000);
 
     // Clear the timer and interval if the component unmounts
     return () => {
@@ -31,6 +28,7 @@ export const Success = () => {
     <div
       style={{
         display: "flex",
+        flexDirection:"column",
         marginTop: 100,
         justifyContent: "center",
         alignItems: "center",
@@ -40,7 +38,7 @@ export const Success = () => {
         Your payment has been done successfully.
       </h1>
       <p style={{ marginTop: 20, fontSize: 18 }}>
-        Redirecting to home page in {countdown} seconds...
+        <strong>Redirecting to home page in {countdown} seconds...</strong>
       </p>
     </div>
   );
