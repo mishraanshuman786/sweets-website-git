@@ -31,6 +31,7 @@ export default function RootLayout({ children }) {
             style={{
               color: "white",
               backgroundColor: "#761700",
+              width:"100%",
               height: 40,
               display: "flex",
               alignItems: "center",
