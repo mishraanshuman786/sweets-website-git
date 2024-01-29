@@ -68,7 +68,7 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>Order Id:</strong>
           <input
-            style={{marginLeft:28}}
+            style={{marginLeft:24}}
             type="text"
             className={styles.input}
             name="name"

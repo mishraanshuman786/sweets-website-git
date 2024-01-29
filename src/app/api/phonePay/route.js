@@ -4,17 +4,17 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
 
-async function callPhonePey(data) {
+async function callPhonePey(muid,mobile,amount) {
   const transactionId = "MT-" + uuidv4().toString(36).slice(-6);
   const payload = {
     merchantId: "PGTESTPAYUAT91",
     merchantTransactionId: transactionId,
-    merchantUserId: data.muid,
-    amount: data.amount*100,
+    merchantUserId: muid,
+    amount: amount*100,
     redirectUrl: `https://laddoostory.com/api/status/${transactionId}`,
     redirectMode: "POST",
     callbackUrl: `https://laddoostory.com/api/status/${transactionId}`,
-    mobileNumber: data.mobile,
+    mobileNumber: mobile,
     paymentInstrument: {
       type: "PAY_PAGE",
     },
@@ -61,10 +61,10 @@ async function callPhonePey(data) {
 
 export async function POST(request) {
   try {
-    const formdata = await request.json();
-    console.log("Data:", data);
+    const {muid , mobile , amount} = await request.json();
+   
 
-    const response = await callPhonePey(formdata);
+    const response = await callPhonePey(muid,mobile,amount);
     console.log(response);
 
     if (response) {
