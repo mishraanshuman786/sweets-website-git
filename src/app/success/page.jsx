@@ -1,4 +1,6 @@
-import React from "react";
+"use client"
+import React,{useEffect,useState} from "react";
+import { useRouter } from "next/navigation";
 
 export const Success = () => {
   const router = useRouter();
