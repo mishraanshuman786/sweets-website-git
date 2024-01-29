@@ -25,7 +25,7 @@ export async function POST(req, res) {
 
     const options = {
       method: "POST",
-      url: `https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/status/${merchantId}/${transactionId}`,
+      url: `https://apps-uat.phonepe.com/v3/transaction/${merchantId}/${transactionId}/status`,
       headers: {
         accept: "application/json",
         "Content-Type": "application/json",
