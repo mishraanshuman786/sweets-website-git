@@ -11,9 +11,9 @@ async function callPhonePey() {
     merchantTransactionId: transactionId,
     merchantUserId: "MUID123",
     amount: 10000,
-    redirectUrl: `http://localhost:3000/api/status/${transactionId}`,
+    redirectUrl: `https://laddoostory.com/api/status/${transactionId}`,
     redirectMode: "POST",
-    callbackUrl: `http://localhost:3000/api/status/${transactionId}`,
+    callbackUrl: `https://laddoostory.com/api/status/${transactionId}`,
     mobileNumber: "9999999999",
     paymentInstrument: {
       type: "PAY_PAGE",

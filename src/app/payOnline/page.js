@@ -32,7 +32,7 @@ const Pay = () => {
 
   const makePayment = async () => {
     try {
-      const response = await fetch("/api/phonePey/", {
+      const response = await fetch("/api/phonePay/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
