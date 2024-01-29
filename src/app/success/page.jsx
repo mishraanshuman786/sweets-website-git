@@ -14,7 +14,10 @@ export const Success = () => {
 
     // Update the countdown every second
     const interval = setInterval(() => {
-      setCountdown((prevCountdown) => prevCountdown - 1);
+      setCountdown((prevCountdown) =>{
+        if(prevCountdown!=0){
+        prevCountdown - 1;
+      }});
     }, 1000);
 
     // Clear the timer and interval if the component unmounts
