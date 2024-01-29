@@ -397,6 +397,20 @@ const PaymentForm = () => {
 >
   Cash On Delivery
 </button>
+<button
+  className={styles.button}
+  onClick={() => {
+    if (selectedAddressIndex !== null) {
+        updatePaymentAddress(addresses[selectedAddressIndex]);
+        routerbutton.push("/payOnline");
+     
+    } else {
+      alert("Please select an address");
+    }
+  }}
+>
+  Pay Online
+</button>
         </div>
       </div>
     </div>

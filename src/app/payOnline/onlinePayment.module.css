@@ -1,0 +1,49 @@
+/* onlinePayment.module.css */
+
+.container {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+  }
+  
+  .form {
+    text-align: center;
+    background-color: #5210c5;
+    width: 650px;
+    height: 450px;
+    border-radius: 10px;
+  }
+  
+  .heading {
+    font-size: 26px;
+    margin-top: 32px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .label {
+    color: white;
+    font-weight: bold;
+  }
+  
+  .input {
+    background-color: white;
+    color: black;
+    width: 300px;
+    height: 40px;
+    margin-left: 32px;
+    margin-top: 12px;
+    border-radius: 5px;
+    padding-left: 10px;
+  }
+  
+  .button {
+    color: black;
+    background-color: white;
+    margin-top: 12px;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+  }
+  
