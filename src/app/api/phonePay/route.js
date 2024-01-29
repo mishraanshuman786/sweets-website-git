@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 async function callPhonePey(muid,mobile,amount) {
   const transactionId = "MT-" + uuidv4().toString(36).slice(-6);
   const payload = {
-    merchantId:process.env.NEXT_PUBLIC-MERCHANT_ID,
+    merchantId:process.env.NEXT_MERCHANT_ID,
     merchantTransactionId: transactionId,
     merchantUserId: muid,
     amount: amount*100,
@@ -25,7 +25,7 @@ async function callPhonePey(muid,mobile,amount) {
   const dataBase64 = Buffer.from(datapayload, "utf-8").toString("base64");
 
   // calculate x-verify/checksum header
-  const saltKey = process.env.NEXT_PUBLIC_SALT_KEY;
+  const saltKey = process.env.NEXT_SALT_KEY;
   const fullURL = dataBase64 + "/pg/v1/pay" + saltKey;
   const dataSHa256 = sha256(fullURL);
 
