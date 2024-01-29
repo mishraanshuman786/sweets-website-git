@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./onlinePayment.module.css";
 import { usePayment } from "@/context/PaymentContext";
+import { v4 as uuidv4 } from "uuid";
 
 const Pay = () => {
   let { paymentAmount, paymentAddress, updatePaymentAddress, productDetails } =
@@ -11,7 +12,7 @@ const Pay = () => {
     name: paymentAddress.name,
     mobile: paymentAddress.mobileNumber,
     amount: paymentAmount,
-    muid: "",
+    muid: "MUID-" + uuidv4().toString(36).slice(-6),
     address: paymentAddress.locality +
     ", " +
     paymentAddress.landmark +
@@ -65,6 +66,20 @@ const Pay = () => {
       <form className={styles.form} onSubmit={handleSubmit}>
         <h2 className={styles.heading}>Payment Form</h2>
         <label>
+          <strong className={styles.label}>Order Id:</strong>
+          <input
+            style={{marginLeft:32}}
+            type="text"
+            className={styles.input}
+            name="name"
+            value={formData.muid}
+            onChange={handleChange}
+            placeholder="Name"
+            disabled
+          />
+        </label>
+        <br />
+        <label>
           <strong className={styles.label}>Name:</strong>
           <input
             style={{marginLeft:32}}
@@ -74,6 +89,7 @@ const Pay = () => {
             value={formData.name}
             onChange={handleChange}
             placeholder="Name"
+            disabled
           />
         </label>
         <br />
@@ -87,6 +103,7 @@ const Pay = () => {
             value={formData.mobile}
             onChange={handleChange}
             placeholder="Mobile Number"
+            disabled
           />
         </label>
         <br />
@@ -100,6 +117,7 @@ const Pay = () => {
             value={formData.email}
             onChange={handleChange}
             placeholder="E-mail Address"
+            disabled
           />
         </label>
         <br />
@@ -113,6 +131,7 @@ const Pay = () => {
             value={formData.address}
             onChange={handleChange}
             placeholder="Address"
+            disabled
           />
         </label>
         <br />
@@ -126,6 +145,7 @@ const Pay = () => {
             value={formData.amount}
             onChange={handleChange}
             placeholder="Payment Amount"
+            disabled
           />
         </label>
         <br />
