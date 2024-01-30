@@ -1,22 +1,13 @@
 "use client"
 import React,{useEffect,useState} from "react";
 import { useRouter } from "next/navigation";
-import { usePayment } from "@/context/PaymentContext";
+
 const Success = () => {
-  let {
-    paymentAmount,
-    paymentAddress,
-    updatePaymentAddress,
-    productDetails,
-  } = usePayment();
+ 
   const router = useRouter();
   const [countdown, setCountdown] = useState(5);
 
-  useEffect(()=>{
-    console.log("payment amount:", paymentAmount);
-    console.log("payment address:", paymentAddress);
-    console.log("payment details:", productDetails);
-  },[]);
+  
 
   // Redirect to the home page after 5 seconds
   useEffect(() => {

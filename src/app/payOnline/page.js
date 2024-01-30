@@ -35,6 +35,13 @@ const Pay = () => {
 
   const router = useRouter();
 
+  useEffect(() => {
+    // Save payment information to session storage
+    sessionStorage.setItem('paymentAmount', paymentAmount);
+    sessionStorage.setItem('paymentAddress', JSON.stringify(paymentAddress));
+    sessionStorage.setItem('productDetails', JSON.stringify(productDetails));
+  }, [paymentAmount, paymentAddress, productDetails]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -66,6 +73,10 @@ const Pay = () => {
 
       const responseData = await response.json();
       console.log("server response from custom phonepey:", responseData);
+
+      // saving the payment context to session storage
+
+
       router.push(responseData.data);
     } catch (error) {
       console.error("Error making payment:", error.message);
