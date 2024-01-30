@@ -24,7 +24,7 @@ const Success = () => {
       //  // Clear the session storage
       //  sessionStorage.removeItem("paymentContext");
      }
-  },[paymentAddress,paymentAmount,productDetails]);
+  },[paymentAddress,paymentAmount,productDetails,setPaymentAddress,setProductDetails,setPaymentAmount]);
   
 
   // Redirect to the home page after 5 seconds
