@@ -2,8 +2,7 @@
 import React,{useEffect,useState} from "react";
 import { useRouter } from "next/navigation";
 import { usePayment } from "@/context/PaymentContext";
-
-export const Success = () => {
+const Success = () => {
   let {
     paymentAmount,
     paymentAddress,
@@ -13,17 +12,19 @@ export const Success = () => {
   const router = useRouter();
   const [countdown, setCountdown] = useState(5);
 
+  useEffect(()=>{
+    console.log("payment amount:", paymentAmount);
+    console.log("payment address:", paymentAddress);
+    console.log("payment details:", productDetails);
+  },[]);
+
   // Redirect to the home page after 5 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       router.push("/"); // Change this to the actual path of your home page
     }, 5000);
  
-    useEffect(()=>{
-      console.log("payment amount:", paymentAmount);
-      console.log("payment address:", paymentAddress);
-      console.log("payment details:", productDetails);
-    },[]);
+    
    
 
    // Update the countdown every second
