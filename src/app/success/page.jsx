@@ -6,11 +6,27 @@ const Success = () => {
  
   const router = useRouter();
   const [countdown, setCountdown] = useState(5);
+  const [paymentAmount, setPaymentAmount] = useState(0);
+  const [paymentAddress,setPaymentAddress]=useState();
+  const [productDetails,setProductDetails]=useState();
 
   
 
   // Redirect to the home page after 5 seconds
   useEffect(() => {
+     // Retrieve payment details from session storage
+     const storedPaymentAmount = sessionStorage.getItem("paymentAmount");
+     const storedPaymentAddress = sessionStorage.getItem("paymentAddress");
+     const storedProductDetails=sessionStorage.getItem("productDetails");
+     if (storedPaymentAmount && storedProductDetails && storedPaymentAddress) {
+      setPaymentAddress( JSON.parse(storedPaymentAddress));
+      setProductDetails(JSON.parse(storedProductDetails));
+      setPaymentAmount(storedPaymentAmount);
+       
+ 
+      //  // Clear the session storage
+      //  sessionStorage.removeItem("paymentContext");
+     }
     const timer = setTimeout(() => {
       router.push("/"); // Change this to the actual path of your home page
     }, 5000);
@@ -30,6 +46,9 @@ const Success = () => {
     };
   }, [router]);
 
+  console.log("Payment Amount:",paymentAmount);
+  console.log("Payment Address:",paymentAddress);
+  console.log("Product Details:",productDetails);
   return (
     <div
       style={{
