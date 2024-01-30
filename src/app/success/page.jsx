@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -9,45 +9,44 @@ const Success = () => {
   const [paymentAddress, setPaymentAddress] = useState();
   const [productDetails, setProductDetails] = useState();
 
+  // Redirect to the home page after 5 seconds
   useEffect(() => {
-    // Retrieve payment details from session storage
-    const storedPaymentAmount = sessionStorage.getItem("paymentAmount");
-    const storedPaymentAddress = sessionStorage.getItem("paymentAddress");
-    const storedProductDetails = sessionStorage.getItem("productDetails");
+    const timer = setTimeout(() => {
+      const interval2 = setInterval(() => {
+        // Retrieve payment details from session storage
+        const storedPaymentAmount = sessionStorage.getItem("paymentAmount");
+        const storedPaymentAddress = sessionStorage.getItem("paymentAddress");
+        const storedProductDetails = sessionStorage.getItem("productDetails");
 
-    
-      setPaymentAddress(JSON.parse(storedPaymentAddress));
-      setProductDetails(JSON.parse(storedProductDetails));
-      setPaymentAmount(storedPaymentAmount);
-   
-  }, [setPaymentAddress,setProductDetails,setPaymentAmount]); // No dependencies here
+        setPaymentAddress(JSON.parse(storedPaymentAddress));
+        setProductDetails(JSON.parse(storedProductDetails));
+        setPaymentAmount(storedPaymentAmount);
 
-  // Polling interval to check for changes
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Check if data is available
-      if (paymentAmount && paymentAddress && productDetails) {
+        //  // Clear the session storage
+        //  sessionStorage.removeItem("paymentContext");
+
         console.log("Payment Amount:", paymentAmount);
         console.log("Payment Address:", paymentAddress);
         console.log("Product Details:", productDetails);
-        clearInterval(interval); // Stop polling once data is available
-        router.push("/"); // Redirect to the home page
-      }
-    }, 1000);
+      },1000);
 
-    // Clear the interval if the component unmounts
-    return () => clearInterval(interval);
-  }, [paymentAmount, paymentAddress, productDetails, router]);
+      router.push("/"); // Change this to the actual path of your home page
+    }, 5000);
 
-  // Update the countdown every second
-  useEffect(() => {
+    // Update the countdown every second
     const interval = setInterval(() => {
-      setCountdown((prevCountdown) => (prevCountdown > 0 ? prevCountdown - 1 : 0));
+      setCountdown((prevCountdown) =>
+        prevCountdown > 0 ? prevCountdown - 1 : 0
+      );
     }, 1000);
 
-    // Clear the interval if the component unmounts
-    return () => clearInterval(interval);
-  }, []);
+    // Clear the timer and interval if the component unmounts
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+      clearInterval(interval2);
+    };
+  }, [router]);
 
   return (
     <div
@@ -63,7 +62,7 @@ const Success = () => {
         Your payment has been done successfully.
       </h1>
       <p style={{ marginTop: 20, fontSize: 18 }}>
-        <strong>Redirecting to the home page in {countdown} seconds...</strong>
+        <strong>Redirecting to home page in {countdown} seconds...</strong>
       </p>
     </div>
   );
