@@ -20,7 +20,7 @@ const Success = () => {
       setProductDetails(JSON.parse(storedProductDetails));
       setPaymentAmount(storedPaymentAmount);
     }
-  }, []); // No dependencies here
+  }, [setPaymentAddress,setProductDetails,setPaymentAmount]); // No dependencies here
 
   // Polling interval to check for changes
   useEffect(() => {
