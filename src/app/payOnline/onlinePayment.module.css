@@ -53,6 +53,6 @@
 /* Media Query for smaller screens */
 @media (max-width: 600px) {
   .form {
-    width: 90%;  
+    width: 90%;
   }
 }

@@ -147,7 +147,7 @@ const Pay = () => {
             placeholder="Payment Amount"
             disabled
           />
-        </label>  
+        </label>
         <br />
         <button className={styles.button} type="submit">
           <strong>Pay Now</strong>
