@@ -15,11 +15,11 @@ const Success = () => {
     const storedPaymentAddress = sessionStorage.getItem("paymentAddress");
     const storedProductDetails = sessionStorage.getItem("productDetails");
 
-    if (storedPaymentAmount && storedProductDetails && storedPaymentAddress) {
+    
       setPaymentAddress(JSON.parse(storedPaymentAddress));
       setProductDetails(JSON.parse(storedProductDetails));
       setPaymentAmount(storedPaymentAmount);
-    }
+   
   }, [setPaymentAddress,setProductDetails,setPaymentAmount]); // No dependencies here
 
   // Polling interval to check for changes
