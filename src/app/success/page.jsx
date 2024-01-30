@@ -24,13 +24,16 @@ const Success = () => {
       //  // Clear the session storage
       //  sessionStorage.removeItem("paymentContext");
      }
-  },[paymentAddress,paymentAmount,productDetails,setPaymentAddress,setProductDetails,setPaymentAmount]);
+  });
   
 
   // Redirect to the home page after 5 seconds
   useEffect(() => {
     
     const timer = setTimeout(() => {
+      console.log("Payment Amount:",paymentAmount);
+      console.log("Payment Address:",paymentAddress);
+      console.log("Product Details:",productDetails);
       router.push("/"); // Change this to the actual path of your home page
     }, 5000);
  
@@ -49,9 +52,7 @@ const Success = () => {
     };
   }, [router]);
 
-  console.log("Payment Amount:",paymentAmount);
-  console.log("Payment Address:",paymentAddress);
-  console.log("Product Details:",productDetails);
+ 
   return (
     <div
       style={{
