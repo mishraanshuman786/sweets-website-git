@@ -12,8 +12,6 @@ const Success = () => {
   // Redirect to the home page after 5 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
-     
-
       router.push("/"); // Change this to the actual path of your home page
     }, 5000);
 
@@ -28,7 +26,6 @@ const Success = () => {
     return () => {
       clearTimeout(timer);
       clearInterval(interval);
-      
     };
   }, [router]);
 

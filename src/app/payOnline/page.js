@@ -37,9 +37,9 @@ const Pay = () => {
 
   useEffect(() => {
     // Save payment information to session storage
-    sessionStorage.setItem('paymentAmount', paymentAmount);
-    sessionStorage.setItem('paymentAddress', JSON.stringify(paymentAddress));
-    sessionStorage.setItem('productDetails', JSON.stringify(productDetails));
+    localStorage.setItem('paymentAmount', paymentAmount);
+    localStorage.setItem('paymentAddress', JSON.stringify(paymentAddress));
+    localStorage.setItem('productDetails', JSON.stringify(productDetails));
   }, [paymentAmount, paymentAddress, productDetails]);
 
   const handleChange = (e) => {
