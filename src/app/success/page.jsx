@@ -12,23 +12,7 @@ const Success = () => {
   // Redirect to the home page after 5 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
-      const interval2 = setInterval(() => {
-        // Retrieve payment details from session storage
-        const storedPaymentAmount = sessionStorage.getItem("paymentAmount");
-        const storedPaymentAddress = sessionStorage.getItem("paymentAddress");
-        const storedProductDetails = sessionStorage.getItem("productDetails");
-
-        setPaymentAddress(JSON.parse(storedPaymentAddress));
-        setProductDetails(JSON.parse(storedProductDetails));
-        setPaymentAmount(storedPaymentAmount);
-
-        //  // Clear the session storage
-        //  sessionStorage.removeItem("paymentContext");
-
-        console.log("Payment Amount:", paymentAmount);
-        console.log("Payment Address:", paymentAddress);
-        console.log("Product Details:", productDetails);
-      },1000);
+     
 
       router.push("/"); // Change this to the actual path of your home page
     }, 5000);
@@ -44,7 +28,7 @@ const Success = () => {
     return () => {
       clearTimeout(timer);
       clearInterval(interval);
-      clearInterval(interval2);
+      
     };
   }, [router]);
 
