@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./onlinePayment.module.css";
 import { usePayment } from "@/context/PaymentContext";
@@ -9,7 +9,6 @@ const Pay = () => {
   let {
     paymentAmount,
     paymentAddress,
-    updatePaymentAddress,
     productDetails,
   } = usePayment();
   const [formData, setFormData] = useState({
@@ -27,6 +26,12 @@ const Pay = () => {
       paymentAddress.pincode,
     email: paymentAddress.email,
   });
+
+  useEffect(()=>{
+    console.log("payment amount:", paymentAmount);
+    console.log("payment address:", paymentAddress);
+    console.log("payment details:", productDetails);
+  },[]);
 
   const router = useRouter();
 
