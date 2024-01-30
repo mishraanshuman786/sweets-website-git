@@ -1,4 +1,4 @@
-"use client"
+// use client is not needed for the provided code snippet, so it has been removed
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./onlinePayment.module.css";
@@ -84,7 +84,71 @@ const Pay = () => {
           />
         </label>
         <br />
-        {/* Other label and input elements remain unchanged */}
+        <label>
+          <strong className={styles.label}>Name:</strong>
+          <input
+            type="text"
+            className={styles.input}
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Name"
+            disabled
+          />
+        </label>
+        <br />
+        <label>
+          <strong className={styles.label}>Mobile:</strong>
+          <input
+            type="number"
+            className={styles.input}
+            name="mobile"
+            value={formData.mobile}
+            onChange={handleChange}
+            placeholder="Mobile Number"
+            disabled
+          />
+        </label>
+        <br />
+        <label>
+          <strong className={styles.label}>E-mail:</strong>
+          <input
+            type="email"
+            className={styles.input}
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="E-mail Address"
+            disabled
+          />
+        </label>
+        <br />
+        <label>
+          <strong className={styles.label}>Address:</strong>
+          <input
+            type="text"
+            className={styles.input}
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            placeholder="Address"
+            disabled
+          />
+        </label>
+        <br />
+        <label>
+          <strong className={styles.label}>Amount:</strong>
+          <input
+            type="number"
+            className={styles.input}
+            name="amount"
+            value={formData.amount}
+            onChange={handleChange}
+            placeholder="Payment Amount"
+            disabled
+          />
+        </label>
+        <br />
         <button className={styles.button} type="submit">
           <strong>Pay Now</strong>
         </button>
