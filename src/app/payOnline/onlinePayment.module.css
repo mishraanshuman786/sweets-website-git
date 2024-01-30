@@ -32,7 +32,7 @@
   color: black;
   width: 300px;
   height: 40px;
-  margin-left: 32px;
+  margin-left: 28px;
   margin-top: 12px;
   border-radius: 5px;
   padding-left: 10px;
@@ -63,8 +63,8 @@
     padding: 20px;
     border-radius: 10px;
     box-sizing: border-box;
-    border: 1px solid black;
-  }
+    margin-Top: 20px;
+    }
 
   .heading {
     font-size: 22px;
