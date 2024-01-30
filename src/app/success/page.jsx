@@ -1,8 +1,16 @@
 "use client"
 import React,{useEffect,useState} from "react";
 import { useRouter } from "next/navigation";
+import { Order } from "@/library/model/order";
+import { usePayment } from "@/context/PaymentContext";
 
 export const Success = () => {
+  let {
+    paymentAmount,
+    paymentAddress,
+    updatePaymentAddress,
+    productDetails,
+  } = usePayment();
   const router = useRouter();
   const [countdown, setCountdown] = useState(5);
 
@@ -11,6 +19,10 @@ export const Success = () => {
     const timer = setTimeout(() => {
       router.push("/"); // Change this to the actual path of your home page
     }, 5000);
+
+    console.log("payment amount:", paymentAmount);
+    console.log("payment address:", paymentAddress);
+    console.log("payment details:", productDetails);
 
    // Update the countdown every second
    const interval = setInterval(() => {
