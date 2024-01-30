@@ -63,7 +63,7 @@
     padding: 20px;
     border-radius: 10px;
     box-sizing: border-box;
-    margin-Top: 20px;
+    margin-Top: 40px;
     }
 
   .heading {
@@ -73,6 +73,7 @@
 
   .label {
     font-size: 16px;
+    margin-bottom: 0;
   }
 
   .input {
