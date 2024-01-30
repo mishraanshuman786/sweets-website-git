@@ -1,4 +1,4 @@
-// use client is not needed for the provided code snippet, so it has been removed
+"use client"
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./onlinePayment.module.css";
@@ -147,7 +147,7 @@ const Pay = () => {
             placeholder="Payment Amount"
             disabled
           />
-        </label>
+        </label>  
         <br />
         <button className={styles.button} type="submit">
           <strong>Pay Now</strong>
