@@ -15,6 +15,42 @@ function Success() {
  
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // saving the data to the order database
+       // Sending the order ID with the axios post request
+       if(presentOrderId && presentUserId && presentPaymentAddress && presentPaymentAmount && presentProductDetails){
+        console.log("api called");
+        const response = await axios.post("/api/orders/payOnline", {
+          userId: presentUserId,
+          orderId:presentOrderId,
+          amount: presentPaymentAmount,
+          paymentAddress: presentPaymentAddress,
+          productDetails:presentProductDetails,
+        });
+  
+        // Handle the response as needed
+        console.log("Axios Response Success Page:", response.data);
+       }else{
+        console.log("api not called");
+       }
+       
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  
+    fetchData();
+  }, [
+    presentPaymentAmount,
+    presentPaymentAddress,
+    presentProductDetails,
+    presentOrderId,
+    presentUserId,
+  ]);
+  
+
   const generateRandomString = (length) => {
     const characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -50,23 +86,7 @@ function Success() {
       setPresentOrderId(generateOrderId);
       setPresentUserId(storedUserId.data.id);
 
-      // saving the data to the order database
-       // Sending the order ID with the axios post request
-       if(presentOrderId && presentUserId && presentPaymentAddress && presentPaymentAmount && presentProductDetails){
-        console.log("api called");
-        const response = await axios.post("/api/orders/payOnline", {
-          userId: presentUserId,
-          orderId:presentOrderId,
-          amount: presentPaymentAmount,
-          paymentAddress: presentPaymentAddress,
-          productDetails:presentProductDetails,
-        });
-  
-        // Handle the response as needed
-        console.log("Axios Response Success Page:", response.data);
-       }else{
-        console.log("api not called");
-       }
+     
       
 
 
