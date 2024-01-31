@@ -52,16 +52,16 @@ const CashOnDelivery = () => {
       updatePaymentAddress(formData);
 
       // Assuming you have the order ID stored in localStorage under the key 'orderId'
-      const storedOrderId = JSON.parse(localStorage.getItem("loginStatus"));
+      const storedUserId = JSON.parse(localStorage.getItem("loginStatus"));
 
-      if (!storedOrderId.status) {
+      if (!storedUserId.status) {
         alert("User ID not found in localStorage.");
         return;
       }
 
       // Sending the order ID with the axios post request
       const response = await axios.post("/api/orders/cashOnDelivery", {
-        userId: storedOrderId.data.id,
+        userId: storedUserId.data.id,
         amount: paymentAmount,
         formdata: formData,
         productDetails: productDetails,

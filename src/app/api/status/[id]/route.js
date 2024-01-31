@@ -39,11 +39,11 @@ export async function POST(req, res) {
     console.log("response:", response.data.code);
 
     if (response.data.code === "PAYMENT_SUCCESS") {
-      return NextResponse.redirect("https://laddoostory.com/success", {
+      return NextResponse.redirect("http://localhost:3000/success", {
         status: 301,
       });
     } else {
-      return NextResponse.redirect("https://laddoostory.com/failure", {
+      return NextResponse.redirect("http://localhost:3000/failure", {
         status: 301,
       });
     }

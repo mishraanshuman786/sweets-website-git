@@ -1,46 +1,29 @@
-"use client"
-import React, { useState, useEffect } from "react";
+"use client";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./onlinePayment.module.css";
 import { usePayment } from "@/context/PaymentContext";
 import { v4 as uuidv4 } from "uuid";
 
 const Pay = () => {
-  let {
-    paymentAmount,
-    paymentAddress,
-    productDetails,
-  } = usePayment();
+  let { paymentAmount, paymentAddress, updatePaymentAddress, productDetails } =
+    usePayment();
   const [formData, setFormData] = useState({
     name: paymentAddress.name,
     mobile: paymentAddress.mobileNumber,
     amount: paymentAmount,
     muid: "MUID-" + uuidv4().toString(36).slice(-6),
-    address:
-      paymentAddress.locality +
-      ", " +
-      paymentAddress.landmark +
-      ", " +
-      paymentAddress.city +
-      ". " +
-      paymentAddress.pincode,
+    address: paymentAddress.locality +
+    ", " +
+    paymentAddress.landmark +
+    ", " +
+    paymentAddress.city +
+    ". " +
+    paymentAddress.pincode,
     email: paymentAddress.email,
   });
 
-  useEffect(()=>{
-    console.log("payment amount:", paymentAmount);
-    console.log("payment address:", paymentAddress);
-    console.log("payment details:", productDetails);
-  },[]);
-
   const router = useRouter();
-
-  useEffect(() => {
-    // Save payment information to session storage
-    localStorage.setItem('paymentAmount', paymentAmount);
-    localStorage.setItem('paymentAddress', JSON.stringify(paymentAddress));
-    localStorage.setItem('productDetails', JSON.stringify(productDetails));
-  }, [paymentAmount, paymentAddress, productDetails]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,7 +35,10 @@ const Pay = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can perform any additional logic here with the submitted data
+    
+    localStorage.setItem("paymentAmount",paymentAmount);
+    localStorage.setItem("paymentAddress",JSON.stringify(paymentAddress));
+    localStorage.setItem("productDetails",JSON.stringify(productDetails));
     console.log("Form submitted:", formData);
     makePayment();
   };
@@ -73,16 +59,11 @@ const Pay = () => {
 
       const responseData = await response.json();
       console.log("server response from custom phonepey:", responseData);
-
-      // saving the payment context to session storage
-
-
       router.push(responseData.data);
     } catch (error) {
       console.error("Error making payment:", error.message);
     }
   };
-
   return (
     <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -90,6 +71,7 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>Order Id:</strong>
           <input
+            style={{marginLeft:19}}
             type="text"
             className={styles.input}
             name="name"
@@ -103,6 +85,7 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>Name:</strong>
           <input
+            style={{marginLeft:32}}
             type="text"
             className={styles.input}
             name="name"
@@ -116,6 +99,7 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>Mobile:</strong>
           <input
+           style={{marginLeft:28}}
             type="number"
             className={styles.input}
             name="mobile"
@@ -127,11 +111,12 @@ const Pay = () => {
         </label>
         <br />
         <label>
-          <strong className={styles.label}>E-mail:</strong>
+          <strong  className={styles.label}>E-mail:</strong>
           <input
-            type="email"
+            style={{marginLeft:28}}
+            type="E-mail"
             className={styles.input}
-            name="email"
+            name="Email"
             value={formData.email}
             onChange={handleChange}
             placeholder="E-mail Address"
@@ -142,9 +127,10 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>Address:</strong>
           <input
+            style={{marginLeft:16}}
             type="text"
             className={styles.input}
-            name="address"
+            name="Address"
             value={formData.address}
             onChange={handleChange}
             placeholder="Address"
@@ -155,6 +141,7 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>Amount:</strong>
           <input
+            style={{marginLeft:20}}
             type="number"
             className={styles.input}
             name="amount"
