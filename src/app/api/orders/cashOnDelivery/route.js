@@ -19,6 +19,7 @@ export async function POST(request) {
       name: formdata.name,
       mobile: formdata.mobile,
       address: formdata.address,
+      paymentMode:"cash on delivery",
       amount: amount,
       productDetails:productDetails
     });

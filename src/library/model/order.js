@@ -6,23 +6,27 @@ const orderSchema = new mongoose.Schema({
     ref: 'User', // Assuming you have a User schema
     required: true,
   },
-  orderId:{
-    type:String,
-    unique:true
+  orderId: {
+    type: String,
+    unique: true
   },
-  name:{
-    type:String,
+  name: {
+    type: String,
   },
-  mobile:{
-    type:String
+  mobile: {
+    type: String
   },
-  address:{
-    type:String
+  address: {
+    type: String
   },
-  amount:{
-    type:Number
+  amount: {
+    type: Number
   },
-  productDetails:[],
+  productDetails: [],
+  paymentMode: {
+    type: String,
+    enum: ['cash on delivery', 'pay online'] // Use 'enum' to specify allowed values
+  },
   orderCompleted: {
     type: Boolean,
     default: false // Set default value to false, indicating that the order is not completed initially
@@ -31,10 +35,6 @@ const orderSchema = new mongoose.Schema({
     type: Date,
     default: Date.now // Set default value to the current date and time
   },
-
 });
 
 export const Order = mongoose.models.order || mongoose.model('order', orderSchema);
-
-
-

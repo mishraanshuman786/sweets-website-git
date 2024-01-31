@@ -6,11 +6,12 @@ function Success() {
   const [presentPaymentAmount, setPresentPaymentAmount] = useState(null);
   const [presentPaymentAddress, setPresentPaymentAddress] = useState();
   const [presentProductDetails, setPresentProductDetails] = useState();
+  const [presentOrderId,setPresentOrderId]=useState();
+  const [presentUserId,setPresentUserId]=useState();
 
   useEffect(() => {
     getData();
-    const orderId=generateOrderId();
-    console.log("oreder Id:",orderId);
+ 
   }, []);
 
   const generateRandomString = (length) => {
@@ -32,12 +33,26 @@ function Success() {
 
   async function getData() {
     try {
+      // getting the paymentAmount, paymentAddress, productDetails from the localStorage
       let amount = await localStorage.getItem("paymentAmount");
       let address= await localStorage.getItem("paymentAddress");
       let details=await localStorage.getItem("productDetails");
+
+      // getting the userId
+       // Assuming you have the user ID stored in localStorage under the key 'loginStatus'
+       const storedUserId = JSON.parse(localStorage.getItem("loginStatus"));
+
+      // setting the data in the states
       setPresentPaymentAmount(JSON.parse(amount));
       setPresentPaymentAddress(JSON.parse(address));
       setPresentProductDetails(JSON.parse(details));
+      setPresentOrderId(generateOrderId);
+      setPresentUserId(storedUserId.data.id);
+
+      // saving the data to the order database
+      
+
+
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -45,6 +60,9 @@ function Success() {
 
   console.log("present Payment Address:",presentPaymentAddress);
   console.log("present ProductDetails:",presentProductDetails);
+  console.log("present Payment Amount:",presentPaymentAmount);
+  console.log("present User Id:",presentUserId);
+  console.log("present order id:",presentOrderId);
 
   return (
     <div className="container">

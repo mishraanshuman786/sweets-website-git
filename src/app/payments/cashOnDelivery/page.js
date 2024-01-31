@@ -51,7 +51,7 @@ const CashOnDelivery = () => {
     try {
       updatePaymentAddress(formData);
 
-      // Assuming you have the order ID stored in localStorage under the key 'orderId'
+      // Assuming you have the user ID stored in localStorage under the key 'loginStatus'
       const storedUserId = JSON.parse(localStorage.getItem("loginStatus"));
 
       if (!storedUserId.status) {
