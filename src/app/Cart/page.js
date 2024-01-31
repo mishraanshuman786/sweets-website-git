@@ -31,8 +31,7 @@ export default function Cart() {
       if (cart.length >= 1) {
         cart.forEach((item) => {
           const weight = productWeights[item._id] || 1;
-          calculatedTotalAmount +=
-            item.category[item.categoryIndex].price * weight;
+          calculatedTotalAmount +=calculateTotalAmount(item, weight);
   
           // Add product details to the updatedProducts array
           updatedProducts.push({
@@ -61,9 +60,29 @@ export default function Cart() {
     fetchLoginStatus();
   }, []);
 
-  console.log("loginStatus:", loginStatus);
-  console.log("Context Product Details:", products);
-
+  const calculateTotalAmount = (item, productWeight) => {
+    console.log("method runs",item.categoryId);
+    const price = item.category[item.categoryIndex].price;
+    const categoryId = item.categoryId;
+  
+    // Apply discounts based on categoryId and weight
+    switch (categoryId) {
+      case "656daabf41ff1afeaba93473":
+        return price * productWeight * (productWeight >= 1 ? 0.9 : 1);
+      case "656dab9341ff1afeaba93474":
+        return price * productWeight * (productWeight >= 1 ? 0.85 : 1);
+      case "656dabc341ff1afeaba93475":
+        return price * productWeight * (productWeight >= 1 ? 0.9 : 1);
+      case "656dabe841ff1afeaba93476":
+        return price * productWeight * (productWeight >= 1 ? 0.9 : 1);
+      // Add more cases for other categories if needed
+  
+      default:
+        // Default case (no discount)
+        return price * productWeight;
+    }
+  };
+  
   return (
     <div style={{ marginTop: 200 }}>
       {/* navbar */}
@@ -170,11 +189,7 @@ export default function Cart() {
                   {item.category[item.categoryIndex] &&
                   item.category[item.categoryIndex].price !== undefined ? (
                     <h4>
-                      <span>&#8377;</span>
-                      <strike className="me-2">
-                        {item.category[item.categoryIndex].price + 100}Rs/kg
-                      </strike>
-                      <span>&#8377;</span>{item.category[item.categoryIndex].price} Rs/kg
+                      <span style={{marginLeft:20}}>&#8377;</span>{item.category[item.categoryIndex].price} Rs/kg
                     </h4>
                   ) : null}
 
@@ -255,8 +270,7 @@ export default function Cart() {
                   <h3 className="pt-2">
                     Total Amount:
                     <span>
-                    &#8377;{item.category[item.categoryIndex].price * productWeight}
-                      Rs.
+                    &#8377;<strike>{item.category[item.categoryIndex].price * productWeight}</strike><span style={{marginLeft:10}}>&#8377;{calculateTotalAmount(item, productWeight)} Rs.</span>
                     </span>
                   </h3>
 
