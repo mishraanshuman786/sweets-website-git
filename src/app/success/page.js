@@ -50,19 +50,22 @@ function Success() {
       setPresentOrderId(generateOrderId);
       setPresentUserId(storedUserId.data.id);
 
+      // Delay the API call by 2000 milliseconds (2 seconds)
+    setTimeout(async () => {
       // saving the data to the order database
-       // Sending the order ID with the axios post request
-       const response = await axios.post("/api/orders/payOnline", {
+      // Sending the order ID with the axios post request
+      const response = await axios.post("/api/orders/payOnline", {
         userId: presentUserId,
-        orderId:presentOrderId,
+        orderId: presentOrderId,
         amount: presentPaymentAmount,
         paymentAddress: presentPaymentAddress,
-        productDetails:presentProductDetails,
+        productDetails: presentProductDetails,
       });
 
       // Handle the response as needed
       console.log("Axios Response Success Page:", response.data);
-      
+    }, 2000); // Adjust the delay time as needed
+
 
 
     } catch (error) {
