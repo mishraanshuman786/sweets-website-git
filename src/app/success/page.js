@@ -44,15 +44,16 @@ function Success() {
        const storedUserId = JSON.parse(localStorage.getItem("loginStatus"));
 
       // setting the data in the states
-     await setPresentPaymentAmount(JSON.parse(amount));
-     await setPresentPaymentAddress(JSON.parse(address));
-     await setPresentProductDetails(JSON.parse(details));
-     await setPresentOrderId(generateOrderId);
-     await setPresentUserId(storedUserId.data.id);
+      setPresentPaymentAmount(JSON.parse(amount));
+      setPresentPaymentAddress(JSON.parse(address));
+      setPresentProductDetails(JSON.parse(details));
+      setPresentOrderId(generateOrderId);
+      setPresentUserId(storedUserId.data.id);
 
       // saving the data to the order database
        // Sending the order ID with the axios post request
        if(presentOrderId && presentUserId && presentPaymentAddress && presentPaymentAmount && presentProductDetails){
+        console.log("api called");
         const response = await axios.post("/api/orders/payOnline", {
           userId: presentUserId,
           orderId:presentOrderId,
@@ -63,6 +64,8 @@ function Success() {
   
         // Handle the response as needed
         console.log("Axios Response Success Page:", response.data);
+       }else{
+        console.log("api not called");
        }
       
 
