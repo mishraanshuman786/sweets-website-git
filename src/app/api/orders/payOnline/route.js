@@ -38,11 +38,11 @@ export async function POST(request){
         // );
         return NextResponse.json({
           status: true,
-          userId: userId,
-          orderId: orderId,
-          paymentAmount: amount,
-          paymentAddress: paymentAddress,
-          productDetails:productDetails
+          userId:await userId,
+          orderId:await orderId,
+          paymentAmount:await amount,
+          paymentAddress:await paymentAddress,
+          productDetails:await productDetails
         });
       }catch(error){
         console.error(error);
