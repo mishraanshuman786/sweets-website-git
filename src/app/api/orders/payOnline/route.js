@@ -20,7 +20,8 @@ export async function POST(request){
           address: paymentAddress.address,
           paymentMode:"pay online",
           amount: amount,
-          productDetails:productDetails
+          productDetails:productDetails,
+          orderCompleted:true
         });
      
          await order.save();
