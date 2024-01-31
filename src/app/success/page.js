@@ -63,8 +63,8 @@ function Success() {
       });
 
       // Handle the response as needed
-      console.log("Axios Response Success Page:", response.data);
-    }, 2000); // Adjust the delay time as needed
+      console.log("Axios Response Success Page:", response);
+    }, 3000); // Adjust the delay time as needed
 
 
 
