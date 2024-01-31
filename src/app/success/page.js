@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect } from "react";
 import "./Success.css";
+import axios from "axios";
 
 function Success() {
   const [presentPaymentAmount, setPresentPaymentAmount] = useState(null);
@@ -50,6 +51,17 @@ function Success() {
       setPresentUserId(storedUserId.data.id);
 
       // saving the data to the order database
+       // Sending the order ID with the axios post request
+       const response = await axios.post("/api/orders/payOnline", {
+        userId: presentUserId,
+        orderId:presentOrderId,
+        amount: presentPaymentAmount,
+        paymentAddress: presentPaymentAddress,
+        productDetails:presentProductDetails,
+      });
+
+      // Handle the response as needed
+      console.log("Axios Response Success Page:", response.data);
       
 
 
