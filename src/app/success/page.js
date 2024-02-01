@@ -14,7 +14,8 @@ function Success() {
 
   useEffect(() => {
     // Add event listener for the popstate event
-    const handlePopstate = () => {
+    const handlePopstate = (event) => {
+      event.preventDefault();
       // Run your replace method when the browser back button is clicked
       backButtonRouter.replace("/Cart");
     };
