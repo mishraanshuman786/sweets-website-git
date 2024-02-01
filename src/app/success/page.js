@@ -40,7 +40,7 @@ function Success() {
 
           // Redirect to the home page after 5 seconds
           const intervalId = setInterval(() => {
-            setTimer((prevTimer) => prevTimer - 1);
+            setTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0));
           }, 1000);
 
           setTimeout(() => {
@@ -97,7 +97,7 @@ function Success() {
 
       // Redirect to the home page after 5 seconds
       const intervalId = setInterval(() => {
-        setTimer((prevTimer) => prevTimer - 1);
+        setTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0));
       }, 1000);
 
       setTimeout(() => {
