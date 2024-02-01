@@ -72,7 +72,7 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>Order Id:</strong>
           <input
-            style={{ marginLeft: 19 }}
+            
             type="text"
             className={styles.input}
             name="name"
@@ -86,7 +86,7 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>Name:</strong>
           <input
-            style={{ marginLeft: 32 }}
+          
             type="text"
             className={styles.input}
             name="name"
@@ -100,7 +100,7 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>Mobile:</strong>
           <input
-            style={{ marginLeft: 28 }}
+          
             type="number"
             className={styles.input}
             name="mobile"
@@ -114,7 +114,7 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>E-mail:</strong>
           <input
-            style={{ marginLeft: 28 }}
+         
             type="E-mail"
             className={styles.input}
             name="Email"
@@ -128,7 +128,7 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>Address:</strong>
           <input
-            style={{ marginLeft: 16 }}
+          
             type="text"
             className={styles.input}
             name="Address"
@@ -142,7 +142,7 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>Amount:</strong>
           <input
-            style={{ marginLeft: 20 }}
+            
             type="number"
             className={styles.input}
             name="amount"
