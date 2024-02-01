@@ -69,7 +69,7 @@ export default function Cart() {
 
   const calculateTotalAmount = (item, productWeight) => {
     const price = item.category[item.categoryIndex].price;
-    return price * productWeight;
+    return price * productWeight-calculateDiscount(item,productWeight);
   };
 
   const calculateDiscount = (item, productWeight) => {
