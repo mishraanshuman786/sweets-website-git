@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { usePayment } from "@/context/PaymentContext";
 import { v4 as uuidv4 } from "uuid";
 import CustomNavbar from "./components/CustomNavbar";
+import Footer from "../components/Footer";
 
 const Pay = () => {
   let { paymentAmount, paymentAddress, updatePaymentAddress, productDetails } =
@@ -163,6 +164,7 @@ const Pay = () => {
         </button>
       </form>
     </div>
+    <Footer/>
     </div>
   );
 };
