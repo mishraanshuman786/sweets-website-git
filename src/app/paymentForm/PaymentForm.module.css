@@ -99,10 +99,7 @@
   
   }
 
-  .ButtonContainer{
-    display: flex;
-    flex-direction: column;
-  }
+  
 
   .leftContainer {
     width: 90%;
