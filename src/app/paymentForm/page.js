@@ -370,7 +370,7 @@ const PaymentForm = () => {
               justifyContent: "space-between",
             }}
           >
-            <label style={{ fontSize: 25 }}>Packaging Charges:</label>
+            <label style={{ fontSize: 25 }}>Discount:</label>
             <span style={{ fontSize: 25 }}>&#8377;0</span>
           </div>
           <div style={{ borderTop: "2px dashed grey" }}></div>
