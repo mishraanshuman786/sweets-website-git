@@ -1,4 +1,4 @@
-/* styles.css */
+@import "bootstrap/dist/css/bootstrap.min.css";
 
 .stylecontainer::-webkit-scrollbar {
   display: none;
