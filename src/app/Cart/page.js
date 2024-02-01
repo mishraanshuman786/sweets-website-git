@@ -9,7 +9,7 @@ import { usePayment } from "@/context/PaymentContext";
 import CustomNavbar from "@/app/components/CustomNavbar";
 import Footer from "@/app/components/Footer";
 import "./Cart.css";
-import { toast } from "react-toastify";
+
 
 export default function Cart() {
   const [productWeights, setProductWeights] = useState({});
@@ -52,7 +52,7 @@ export default function Cart() {
   }, [cart, idPrice, productWeights]);
 
   useEffect(() => {
-    localStorage.setItem("totalDiscount", JSON.stringify(totalDiscount));
+    localStorage.setItem("totalDiscount", JSON.stringify(totalDiscount.toFixed(2)));
   }, [totalDiscount]);
 
   useEffect(() => {
