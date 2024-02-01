@@ -2,32 +2,16 @@
 import React, { useState, useEffect } from "react";
 import "./Success.css";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 
 function Success() {
-  const backButtonRouter = useRouter();
+  
   const [presentPaymentAmount, setPresentPaymentAmount] = useState(null);
   const [presentPaymentAddress, setPresentPaymentAddress] = useState();
   const [presentProductDetails, setPresentProductDetails] = useState();
   const [presentOrderId, setPresentOrderId] = useState();
   const [presentUserId, setPresentUserId] = useState();
 
-  useEffect(() => {
-    // Use router.beforePopState directly
-    const handleBeforePopState = ({ url, as, options }) => {
-      console.log("Back button clicked");
-      // Add your logic here
-      return true; // Allow the pop state
-    };
-
-    // Listen for the beforePopState event
-    backButtonRouter.beforePopState(handleBeforePopState);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      router.beforePopState(() => {}); // Remove the event listener
-    };
-  }, [backButtonRouter]);
+  
 
 
   useEffect(() => {
