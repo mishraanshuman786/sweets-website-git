@@ -114,6 +114,7 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>E-mail:</strong>
           <input
+         
             type="E-mail"
             className={styles.input}
             name="Email"
