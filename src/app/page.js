@@ -14,9 +14,10 @@ import ProductSlider from "./components/ProductSlider";
 
 export default function Homepage() {
   const router = useRouter();
-  const router2 = useRouter();
-
+  const reload=useRouter();
+ 
   useEffect(() => {
+    reload.refresh();
     getCollections();
     // getProducts();
     getLaddooDesighee();
@@ -77,17 +78,10 @@ export default function Homepage() {
         <CustomNavbar />
       </div>
 
-      {/* {showPopup && (
-        <Popup
-          title="Welcome to LadooStory - The Laddoo Store!"
-          content="<p><h4>At LadooStory,</h4> we take immense pride in crafting and delivering the authentic flavors of traditional laddoos to your doorstep. </p>"
-          onClose={() => setShowPopup(false)}
-        />
-      )} */}
+  
       {/* =================================================================== */}
 
-      {/* slider
-   <Slider/> */}
+   
       <div>
         <Slider />
       </div>
@@ -137,8 +131,7 @@ export default function Homepage() {
 
         <hr />
 
-        {/* products
-           <ProductSlider data={navProducts} title="Grab The Deals" /> */}
+       
         <hr />
         {/* laddo desighee collections products*/}
         <ProductSlider

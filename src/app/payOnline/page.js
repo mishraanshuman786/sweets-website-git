@@ -68,7 +68,7 @@ const Pay = () => {
  
 
   return (
-    <div>
+    <div style={{marginTop:200}}>
       {/* navbar  */}
       <CustomNavbar />
     <div className="container mt-5">
