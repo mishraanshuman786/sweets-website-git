@@ -102,7 +102,7 @@ function Success() {
 
       setTimeout(() => {
         clearInterval(intervalId);
-        router.push("/");
+        router.replace("/");
       }, 5000);
     } catch (error) {
       console.error("Error fetching data:", error);
