@@ -45,7 +45,7 @@ function Success() {
 
           setTimeout(() => {
             clearInterval(intervalId);
-            router.push("/");
+            router.push("/Cart");
           }, 5000);
         } else {
           console.log("api not called");
