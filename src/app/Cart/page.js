@@ -31,7 +31,7 @@ export default function Cart() {
       if (cart.length >= 1) {
         cart.forEach((item) => {
           const weight = productWeights[item._id] || 1;
-          calculatedTotalAmount +=(calculateTotalAmount(item, weight)).toFixed(2);
+          calculatedTotalAmount +=calculateTotalAmount(item, weight);
   
           // Add product details to the updatedProducts array
           updatedProducts.push({
@@ -68,18 +68,18 @@ export default function Cart() {
     // Apply discounts based on categoryId and weight
     switch (categoryId) {
       case "656daabf41ff1afeaba93473":
-        return price * productWeight * (productWeight >= 1 ? 0.9 : 1);
+        return (price * productWeight * (productWeight >= 1 ? 0.9 : 1)).toFixed(2);
       case "656dab9341ff1afeaba93474":
-        return price * productWeight * (productWeight >= 1 ? 0.85 : 1);
+        return (price * productWeight * (productWeight >= 1 ? 0.85 : 1)).toFixed(2);
       case "656dabc341ff1afeaba93475":
-        return price * productWeight * (productWeight >= 1 ? 0.9 : 1);
+        return (price * productWeight * (productWeight >= 1 ? 0.9 : 1)).toFixed(2);
       case "656dabe841ff1afeaba93476":
-        return price * productWeight * (productWeight >= 1 ? 0.9 : 1);
+        return (price * productWeight * (productWeight >= 1 ? 0.9 : 1)).toFixed(2);
       // Add more cases for other categories if needed
   
       default:
         // Default case (no discount)
-        return price * productWeight;
+        return (price * productWeight).toFixed(2);
     }
   };
   
