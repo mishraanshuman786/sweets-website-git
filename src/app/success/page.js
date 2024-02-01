@@ -17,14 +17,15 @@ function Success() {
     const handlePopstate = (event) => {
       event.preventDefault();
       // Run your replace method when the browser back button is clicked
+      console.log("back button clicked")
       backButtonRouter.replace("/Cart");
     };
 
-    window.addEventListener("popstate", handlePopstate);
+    backButtonRouter.addEventListener("popstate", handlePopstate);
 
     // Cleanup the event listener on component unmount
     return () => {
-      window.removeEventListener("popstate", handlePopstate);
+      backButtonRouter.removeEventListener("popstate", handlePopstate);
     };
   }, [backButtonRouter]);
 
