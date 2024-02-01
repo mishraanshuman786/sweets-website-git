@@ -28,10 +28,10 @@ export async function POST(request){
     
     
         // ==================================================================
-        // await sendOrderConfirmationEmail( paymentAddress.orderId, userId, amount,paymentAddress.address,
+        // await sendOrderConfirmationEmail( orderId, userId, amount,paymentAddress.address,
         //   productDetails,paymentAddress.email);
         // await sendDeliveryBoyEmail(
-        //   paymentAddress.orderId,
+        //   orderId,
         //   userId,
         //   amount,
         //   paymentAddress.address,
@@ -49,4 +49,55 @@ export async function POST(request){
         console.error(error);
         return NextResponse.json({ status: false, error: error.message });
       }
+}
+
+
+function sendDeliveryBoyEmail(orderId, userId, amount, address,productDetails) {
+  const transporter = nodemailer.createTransport({
+    // Configure your email service (SMTP settings)
+    // Example using Gmail:
+    host: "smtp.gmail.com",
+    port: 587,
+    auth: {
+      user: "laddoostory@gmail.com",
+      pass: "bjoo sxat hbtb auta",
+    },
+  });
+
+  // Convert productDetails array to a formatted string
+  const productDetailsString = productDetails
+    .map(
+      (product) =>
+        `Product Name: ${product.productName}, Price: ${product.price}, Weight: ${product.weight}`
+    )
+    .join("\n");
+
+
+    const mailOptions = {
+      from: "laddoostory@gmail.com",
+      to: "laddoostory@gmail.com",
+      subject: "Order Confirmation",
+      html: `
+          <p>Thank you for placing your order!</p>
+          <p>Your Order ID: ${orderId}</p>
+          <p>Please keep this ID for future reference.</p>
+          
+          <p>Order Details:</p>
+          <ul>
+            <li>User ID: ${userId}</li>
+            <li>Amount: ${amount}</li>
+            <li>Address: ${JSON.stringify(address)}</li>
+          </ul>
+          <p>Product Details:</p>
+          <pre>${productDetailsString}</pre>
+        `,
+    };
+  
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error("Error sending email:", error.message);
+    } else {
+      console.log("Email sent:", info.response);
+    }
+  });
 }
