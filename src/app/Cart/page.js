@@ -108,7 +108,7 @@ export default function Cart() {
           {cart.length >= 1 && loginStatus ? (
             <div>
               <h4 className="text-light" style={{ textAlign: "center" }}>
-                Total Amount:{paymentAmount.toFixed(2)}
+                Total Amount:{(paymentAmount).toFixed(2)}
               </h4>
               <Link
                 href="/paymentForm"
