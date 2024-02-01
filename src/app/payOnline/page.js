@@ -67,7 +67,7 @@ const Pay = () => {
 
   return (
     <div className="container mt-5">
-      <form className="bg-primary text-white p-4 rounded" onSubmit={handleSubmit}>
+      <form className="text-white p-4 rounded" style={{backgroundColor:"violet"}} onSubmit={handleSubmit}>
         <h2 className="text-center mb-4">Payment Form</h2>
         <div className="mb-3">
           <label className="form-label">
