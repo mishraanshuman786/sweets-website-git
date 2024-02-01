@@ -130,10 +130,12 @@ export default function Cart() {
               </h4>
               <Link
                 href="/paymentForm"
+                replace
                 className="btn btn-success w-100 col-lg-3 mb-4 mt-5 col-12"
                 onClick={() => {
                   addProductDetails(products);
                 }}
+                
               >
                 Make Payment
               </Link>

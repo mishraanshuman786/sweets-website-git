@@ -53,7 +53,7 @@ const PaymentForm = () => {
   useEffect(() => {
     fetchData();
     if (paymentAmount === 0) {
-      router.push("/");
+      router.replace("/");
     }
   }, []);
 
@@ -413,7 +413,7 @@ const PaymentForm = () => {
             onClick={() => {
               if (selectedAddressIndex !== null) {
                 updatePaymentAddress(addresses[selectedAddressIndex]);
-                routerbutton.push("/payments/cashOnDelivery");
+                routerbutton.replace("/payments/cashOnDelivery");
               } else {
                 alert("Please select an address");
               }
@@ -426,7 +426,7 @@ const PaymentForm = () => {
             onClick={() => {
               if (selectedAddressIndex !== null) {
                 updatePaymentAddress(addresses[selectedAddressIndex]);
-                routerbutton.push("/payOnline");
+                routerbutton.replace("/payOnline");
               } else {
                 alert("Please select an address");
               }
