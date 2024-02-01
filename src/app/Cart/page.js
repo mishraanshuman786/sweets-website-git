@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
 "use client"
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaRegStar } from "react-icons/fa6";
 import { IoStar } from "react-icons/io5";
