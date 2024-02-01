@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./onlinePayment.module.css";
@@ -13,13 +12,14 @@ const Pay = () => {
     mobile: paymentAddress.mobileNumber,
     amount: paymentAmount,
     muid: "MUID-" + uuidv4().toString(36).slice(-6),
-    address: paymentAddress.locality +
-    ", " +
-    paymentAddress.landmark +
-    ", " +
-    paymentAddress.city +
-    ". " +
-    paymentAddress.pincode,
+    address:
+      paymentAddress.locality +
+      ", " +
+      paymentAddress.landmark +
+      ", " +
+      paymentAddress.city +
+      ". " +
+      paymentAddress.pincode,
     email: paymentAddress.email,
   });
 
@@ -35,10 +35,10 @@ const Pay = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    localStorage.setItem("paymentAmount",paymentAmount);
-    localStorage.setItem("paymentAddress",JSON.stringify(paymentAddress));
-    localStorage.setItem("productDetails",JSON.stringify(productDetails));
+
+    localStorage.setItem("paymentAmount", paymentAmount);
+    localStorage.setItem("paymentAddress", JSON.stringify(paymentAddress));
+    localStorage.setItem("productDetails", JSON.stringify(productDetails));
     console.log("Form submitted:", formData);
     makePayment();
   };
@@ -71,7 +71,7 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>Order Id:</strong>
           <input
-            style={{marginLeft:19}}
+            style={{ marginLeft: 19 }}
             type="text"
             className={styles.input}
             name="name"
@@ -85,7 +85,7 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>Name:</strong>
           <input
-            style={{marginLeft:32}}
+            style={{ marginLeft: 32 }}
             type="text"
             className={styles.input}
             name="name"
@@ -99,7 +99,7 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>Mobile:</strong>
           <input
-           style={{marginLeft:28}}
+            style={{ marginLeft: 28 }}
             type="number"
             className={styles.input}
             name="mobile"
@@ -111,9 +111,9 @@ const Pay = () => {
         </label>
         <br />
         <label>
-          <strong  className={styles.label}>E-mail:</strong>
+          <strong className={styles.label}>E-mail:</strong>
           <input
-            style={{marginLeft:28}}
+            style={{ marginLeft: 28 }}
             type="E-mail"
             className={styles.input}
             name="Email"
@@ -127,7 +127,7 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>Address:</strong>
           <input
-            style={{marginLeft:16}}
+            style={{ marginLeft: 16 }}
             type="text"
             className={styles.input}
             name="Address"
@@ -141,7 +141,7 @@ const Pay = () => {
         <label>
           <strong className={styles.label}>Amount:</strong>
           <input
-            style={{marginLeft:20}}
+            style={{ marginLeft: 20 }}
             type="number"
             className={styles.input}
             name="amount"
