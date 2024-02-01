@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { usePayment } from "@/context/PaymentContext";
 import { v4 as uuidv4 } from "uuid";
-import CustomNavbar from "./components/CustomNavbar";
+import CustomNavbar from "../components/CustomNavbar";
 import Footer from "../components/Footer";
-
 const Pay = () => {
   let { paymentAmount, paymentAddress, updatePaymentAddress, productDetails } =
     usePayment();
