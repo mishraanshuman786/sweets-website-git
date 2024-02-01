@@ -14,7 +14,7 @@ export async function POST(request){
           // Save the order details to MongoDB using Mongoose model
         const order = new Order({
           userId: userId,
-          orderId: paymentAddress.orderId,
+          orderId: orderId,
           name: paymentAddress.name,
           mobile: paymentAddress.mobile,
           address: paymentAddress.address,
