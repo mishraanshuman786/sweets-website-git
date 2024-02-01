@@ -13,20 +13,9 @@ function Success() {
   const [presentUserId, setPresentUserId] = useState();
 
   useEffect(() => {
-    // Add event listener for the popstate event
-    const handlePopstate = (event) => {
-      event.preventDefault();
-      // Run your replace method when the browser back button is clicked
-      console.log("back button clicked")
-      backButtonRouter.replace("/Cart");
-    };
-
-    backButtonRouter.addEventListener("popstate", handlePopstate);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      backButtonRouter.removeEventListener("popstate", handlePopstate);
-    };
+      backButtonRouter.beforePopState(()=>{
+        console.log("back button clicked")
+      })
   }, [backButtonRouter]);
 
   useEffect(() => {
