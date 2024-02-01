@@ -387,6 +387,7 @@ const PaymentForm = () => {
             <span style={{ fontSize: 25 }}>&#8377;{paymentAmount}</span>
           </div>
           <hr />
+          <div className={styles.ButtonContainer}>
           <button
             className={styles.button}
             onClick={() => {
@@ -413,6 +414,7 @@ const PaymentForm = () => {
           >
             Pay Online
           </button>
+          </div>
         </div>
       </div>
     </div>

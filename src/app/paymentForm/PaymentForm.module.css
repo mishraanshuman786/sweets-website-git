@@ -61,16 +61,21 @@
   border: 1px solid grey;
   font-size: 18px;
 }
+
+.ButtonContainer{
+  display: flex;
+
+}
 .button{
  margin-left: 40px;
- display: flex;
  height:55px;
- font-size: 16px;
+ font-size: 14px;
  padding: 4px;
  background-color: brown;
  color: white;
  border-radius: 4px;
- width:160px;
+ width:127px;
+
 }
 .button:hover{
   margin-left: 40px;
@@ -91,6 +96,12 @@
   .container {
     display: flex;
     flex-direction: column; /* Adjust to a row layout for larger screens */
+  
+  }
+
+  .ButtonContainer{
+    display: flex;
+    flex-direction: column;
   }
 
   .leftContainer {
