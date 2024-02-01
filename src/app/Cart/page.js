@@ -31,7 +31,7 @@ export default function Cart() {
       if (cart.length >= 1) {
         cart.forEach((item) => {
           const weight = productWeights[item._id] || 1;
-          calculatedTotalAmount +=calculateTotalAmount(item, weight);
+          calculatedTotalAmount +=(calculateTotalAmount(item, weight)).toFixed(2);
   
           // Add product details to the updatedProducts array
           updatedProducts.push({
@@ -108,7 +108,7 @@ export default function Cart() {
           {cart.length >= 1 && loginStatus ? (
             <div>
               <h4 className="text-light" style={{ textAlign: "center" }}>
-                Total Amount:{paymentAmount}
+                Total Amount:{paymentAmount.toFixed(2)}
               </h4>
               <Link
                 href="/paymentForm"
@@ -270,7 +270,7 @@ export default function Cart() {
                   <h3 className="pt-2">
                     Total Amount:
                     <span>
-                    &#8377;<strike>{item.category[item.categoryIndex].price * productWeight}</strike><span style={{marginLeft:10}}>&#8377;{calculateTotalAmount(item, productWeight)} Rs.</span>
+                    &#8377;<strike>{item.category[item.categoryIndex].price * productWeight}</strike><span style={{marginLeft:10}}>&#8377;{(calculateTotalAmount(item, productWeight)).toFixed(2)} Rs.</span>
                     </span>
                   </h3>
 
