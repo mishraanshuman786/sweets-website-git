@@ -2,8 +2,11 @@
 import React, { useState, useEffect } from "react";
 import "./Success.css";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 function Success() {
+
+  const backButtonRouter=useRouter();
   const [presentPaymentAmount, setPresentPaymentAmount] = useState(null);
   const [presentPaymentAddress, setPresentPaymentAddress] = useState();
   const [presentProductDetails, setPresentProductDetails] = useState();
@@ -11,6 +14,7 @@ function Success() {
   const [presentUserId,setPresentUserId]=useState();
 
   useEffect(() => {
+    backButtonRouter.replace("/Cart");
     getData();
  
   }, []);
