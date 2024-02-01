@@ -7,9 +7,10 @@ import { usePayment } from "@/context/PaymentContext";
 import { useRouter } from "next/navigation";
 
 const PaymentForm = () => {
-  let router=useRouter();
-  let routerbutton=useRouter();
-  let { paymentAmount, paymentAddress, updatePaymentAddress,productDetails } = usePayment();
+  let router = useRouter();
+  let routerbutton = useRouter();
+  let { paymentAmount, paymentAddress, updatePaymentAddress, productDetails } =
+    usePayment();
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(null);
 
   const handleRadioChange = (index) => {
@@ -31,16 +32,16 @@ const PaymentForm = () => {
 
   useEffect(() => {
     fetchData();
-    if(paymentAmount===0)
-    {
+    if (paymentAmount === 0) {
       router.push("/");
     }
   }, []);
 
-   // Display a warning message when the page is reloaded
+  // Display a warning message when the page is reloaded
   useEffect(() => {
     const handleBeforeUnload = (event) => {
-      const message = "Are you sure you want to leave? Your changes may not be saved.";
+      const message =
+        "Are you sure you want to leave? Your changes may not be saved.";
       event.returnValue = message; // Standard for most browsers
       return message; // For some older browsers
     };
@@ -51,7 +52,6 @@ const PaymentForm = () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
-
 
   // saving addresses to the database
   const saveData = async () => {
@@ -132,9 +132,8 @@ const PaymentForm = () => {
     }
   };
 
-  
   return (
-    <div className="head" style={{ marginTop: 170}}>
+    <div className="head" style={{ marginTop: 170 }}>
       <CustomNavbar />
       <div className={styles.container}>
         <div className={styles.leftContainer}>
@@ -199,8 +198,8 @@ const PaymentForm = () => {
               </h2>
             </div>
             <form onSubmit={handleFormSubmit}>
-              <div  className={styles.spanStyle}>
-                <span style={{ marginRight: 40 }} >
+              <div className={styles.spanStyle}>
+                <span style={{ marginRight: 40 }}>
                   <input
                     type="text"
                     placeholder="Name"
@@ -229,7 +228,7 @@ const PaymentForm = () => {
                 </span>
               </div>
               <div className={styles.spanStyle}>
-                <span style={{ marginRight: 40 }} >
+                <span style={{ marginRight: 40 }}>
                   <input
                     type="text"
                     placeholder="Pincode"
@@ -241,7 +240,7 @@ const PaymentForm = () => {
                     }
                   />
                 </span>
-                <span >
+                <span>
                   <input
                     type="text"
                     placeholder="Locality"
@@ -254,21 +253,26 @@ const PaymentForm = () => {
                   />
                 </span>
               </div>
-              <div  className={styles.spanStyle}>
+              <div className={styles.spanStyle}>
                 <input
                   type="email"
                   placeholder="Email"
                   className={styles.email}
                   value={newAddress.email}
                   required
-                  onChange={(e) => 
+                  onChange={(e) =>
                     setNewAddress({ ...newAddress, email: e.target.value })
                   }
                 />
               </div>
               <div className={styles.spanStyle}>
                 <textarea
-                  style={{ paddingLeft: 8, width: 540, borderRadius: 4 ,width:"90%"}}
+                  style={{
+                    paddingLeft: 8,
+                    width: 540,
+                    borderRadius: 4,
+                    width: "90%",
+                  }}
                   placeholder="Address(Area and Street)"
                   rows={4}
                   required
@@ -278,7 +282,7 @@ const PaymentForm = () => {
                   }
                 ></textarea>
               </div>
-              <div  className={styles.spanStyle}>
+              <div className={styles.spanStyle}>
                 <span style={{ marginRight: 40 }}>
                   <input
                     type="text"
@@ -292,7 +296,7 @@ const PaymentForm = () => {
                   />
                 </span>
               </div>
-              <div  className={styles.spanStyle}>
+              <div className={styles.spanStyle}>
                 <span style={{ marginRight: 40 }}>
                   <input
                     type="text"
@@ -305,7 +309,7 @@ const PaymentForm = () => {
                     }
                   />
                 </span>
-                <span >
+                <span>
                   <input
                     type="text"
                     placeholder="Alternate Phone"
@@ -384,33 +388,31 @@ const PaymentForm = () => {
           </div>
           <hr />
           <button
-  className={styles.button}
-  onClick={() => {
-    if (selectedAddressIndex !== null) {
-        updatePaymentAddress(addresses[selectedAddressIndex]);
-        routerbutton.push("/payments/cashOnDelivery");
-     
-    } else {
-      alert("Please select an address");
-    }
-  }}
->
-  Cash On Delivery
-</button>
-<button
-  className={styles.button}
-  onClick={() => {
-    if (selectedAddressIndex !== null) {
-        updatePaymentAddress(addresses[selectedAddressIndex]);
-        routerbutton.push("/payOnline");
-     
-    } else {
-      alert("Please select an address");
-    }
-  }}
->
-  Pay Online
-</button>
+            className={styles.button}
+            onClick={() => {
+              if (selectedAddressIndex !== null) {
+                updatePaymentAddress(addresses[selectedAddressIndex]);
+                routerbutton.push("/payments/cashOnDelivery");
+              } else {
+                alert("Please select an address");
+              }
+            }}
+          >
+            Cash On Delivery
+          </button>
+          <button
+            className={styles.button}
+            onClick={() => {
+              if (selectedAddressIndex !== null) {
+                updatePaymentAddress(addresses[selectedAddressIndex]);
+                routerbutton.push("/payOnline");
+              } else {
+                alert("Please select an address");
+              }
+            }}
+          >
+            Pay Online
+          </button>
         </div>
       </div>
     </div>

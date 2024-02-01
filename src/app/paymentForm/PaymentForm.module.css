@@ -63,8 +63,9 @@
 }
 .button{
  margin-left: 40px;
+ display: flex;
  height:55px;
- font-size: 20px;
+ font-size: 16px;
  padding: 4px;
  background-color: brown;
  color: white;
