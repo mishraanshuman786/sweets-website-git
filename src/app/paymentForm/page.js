@@ -42,7 +42,7 @@ const PaymentForm = () => {
 
     // Update state variables if values are available in local storage
     if (storedTotalDiscount) {
-      setTotalDiscount(parseFloat(storedTotalDiscount));
+      setTotalDiscount(parseFloat(JSON.parse(storedTotalDiscount)));
     }
 
     if (storedWithoutDiscountAmount) {
