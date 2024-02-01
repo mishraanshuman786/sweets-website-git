@@ -16,7 +16,7 @@ export default function Cart() {
   const [loginStatus, setLoginStatus] = useState(false);
   const [products, setProducts] = useState([]);
   const [totalDiscount, setTotalDiscount] = useState(0); // New state variable
-
+  const [withoutDiscountAmount,setWithoutDiscountAmount]=useState(0);
   let {
     state: { cart, idPrice },
     dispatch,
@@ -25,6 +25,7 @@ export default function Cart() {
   let { paymentAmount, updatePaymentAmount, addProductDetails } = usePayment();
 
   useEffect(() => {
+    let withoutDiscountAmount=0;
     let calculatedTotalAmount = 0;
     let calculatedTotalDiscount = 0; // New variable to track total discount
     let updatedProducts = [];
@@ -32,6 +33,8 @@ export default function Cart() {
     if (cart.length >= 1) {
       cart.forEach((item) => {
         const weight = productWeights[item._id] || 1;
+         
+        calculatedWithoutDiscountAmount +=item.category[item.categoryIndex].price;
         calculatedTotalAmount += calculateTotalAmount(item, weight);
         calculatedTotalDiscount += calculateDiscount(item, weight); // Accumulate discount
 
@@ -49,11 +52,13 @@ export default function Cart() {
 
     updatePaymentAmount(calculatedTotalAmount);
     setTotalDiscount(calculatedTotalDiscount); // Set the total discount
+    setWithoutDiscountAmount(calculatedWithoutDiscountAmount);
   }, [cart, idPrice, productWeights]);
 
   useEffect(() => {
     localStorage.setItem("totalDiscount", JSON.stringify(totalDiscount.toFixed(2)));
-  }, [totalDiscount]);
+    localStorage.setItem("withoutDiscountAmount", JSON.stringify(withoutDiscountAmount));
+  }, [totalDiscount,withoutDiscountAmount]);
 
   useEffect(() => {
     const fetchLoginStatus = async () => {

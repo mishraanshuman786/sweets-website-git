@@ -7,6 +7,11 @@ import { usePayment } from "@/context/PaymentContext";
 import { useRouter } from "next/navigation";
 
 const PaymentForm = () => {
+  // states for total discount and total amount
+  const [totalDiscount, setTotalDiscount] = useState(0);
+  const [withoutDiscountAmount, setWithoutDiscountAmount] = useState(0);
+
+
   let router = useRouter();
   let routerbutton = useRouter();
   let { paymentAmount, paymentAddress, updatePaymentAddress, productDetails } =
@@ -29,6 +34,21 @@ const PaymentForm = () => {
     landmark: "",
     alternatePhone: "",
   });
+
+  useEffect(() => {
+    // Fetch totalDiscount and withoutDiscountAmount from local storage
+    const storedTotalDiscount = localStorage.getItem("totalDiscount");
+    const storedWithoutDiscountAmount = localStorage.getItem("withoutDiscountAmount");
+
+    // Update state variables if values are available in local storage
+    if (storedTotalDiscount) {
+      setTotalDiscount(parseFloat(storedTotalDiscount));
+    }
+
+    if (storedWithoutDiscountAmount) {
+      setWithoutDiscountAmount(parseFloat(storedWithoutDiscountAmount));
+    }
+  }, []);
 
   useEffect(() => {
     fetchData();
@@ -351,7 +371,7 @@ const PaymentForm = () => {
             }}
           >
             <label style={{ fontSize: 25 }}>Price:</label>
-            <span style={{ fontSize: 25 }}>&#8377;{paymentAmount}</span>
+            <span style={{ fontSize: 25 }}>&#8377;{withoutDiscountAmount}</span>
           </div>
           <div
             style={{
@@ -371,7 +391,7 @@ const PaymentForm = () => {
             }}
           >
             <label style={{ fontSize: 25 }}>Discount:</label>
-            <span style={{ fontSize: 25 }}>&#8377;0</span>
+            <span style={{ fontSize: 25 }}>&#8377;{totalDiscount}</span>
           </div>
           <div style={{ borderTop: "2px dashed grey" }}></div>
           <div
