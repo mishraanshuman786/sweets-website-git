@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import styles from "./onlinePayment.module.css";
 import { usePayment } from "@/context/PaymentContext";
 import { v4 as uuidv4 } from "uuid";
 
@@ -65,95 +64,96 @@ const Pay = () => {
       console.error("Error making payment:", error.message);
     }
   };
+
   return (
-    <div className={styles.container}>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <h2 className={styles.heading}>Payment Form</h2>
-        <label>
-          <strong className={styles.label}>Order Id:</strong>
+    <div className="container mt-5">
+      <form className="bg-primary text-white p-4 rounded" onSubmit={handleSubmit}>
+        <h2 className="text-center mb-4">Payment Form</h2>
+        <div className="mb-3">
+          <label className="form-label">
+            <strong>Order Id:</strong>
+          </label>
           <input
-            
             type="text"
-            className={styles.input}
+            className="form-control"
             name="name"
             value={formData.muid}
             onChange={handleChange}
             placeholder="Name"
             disabled
           />
-        </label>
-        <br />
-        <label>
-          <strong className={styles.label}>Name:</strong>
+        </div>
+        <div className="mb-3">
+          <label className="form-label">
+            <strong>Name:</strong>
+          </label>
           <input
-          
             type="text"
-            className={styles.input}
+            className="form-control"
             name="name"
             value={formData.name}
             onChange={handleChange}
             placeholder="Name"
             disabled
           />
-        </label>
-        <br />
-        <label>
-          <strong className={styles.label}>Mobile:</strong>
+        </div>
+        <div className="mb-3">
+          <label className="form-label">
+            <strong>Mobile:</strong>
+          </label>
           <input
-          
             type="number"
-            className={styles.input}
+            className="form-control"
             name="mobile"
             value={formData.mobile}
             onChange={handleChange}
             placeholder="Mobile Number"
             disabled
           />
-        </label>
-        <br />
-        <label>
-          <strong className={styles.label}>E-mail:</strong>
+        </div>
+        <div className="mb-3">
+          <label className="form-label">
+            <strong>E-mail:</strong>
+          </label>
           <input
-         
-            type="E-mail"
-            className={styles.input}
+            type="email"
+            className="form-control"
             name="Email"
             value={formData.email}
             onChange={handleChange}
             placeholder="E-mail Address"
             disabled
           />
-        </label>
-        <br />
-        <label>
-          <strong className={styles.label}>Address:</strong>
+        </div>
+        <div className="mb-3">
+          <label className="form-label">
+            <strong>Address:</strong>
+          </label>
           <input
-          
             type="text"
-            className={styles.input}
+            className="form-control"
             name="Address"
             value={formData.address}
             onChange={handleChange}
             placeholder="Address"
             disabled
           />
-        </label>
-        <br />
-        <label>
-          <strong className={styles.label}>Amount:</strong>
+        </div>
+        <div className="mb-3">
+          <label className="form-label">
+            <strong>Amount:</strong>
+          </label>
           <input
-            
             type="number"
-            className={styles.input}
+            className="form-control"
             name="amount"
             value={formData.amount}
             onChange={handleChange}
             placeholder="Payment Amount"
             disabled
           />
-        </label>
-        <br />
-        <button className={styles.button} type="submit">
+        </div>
+        <button className="btn btn-light" type="submit">
           <strong>Pay Now</strong>
         </button>
       </form>
