@@ -14,10 +14,8 @@ import ProductSlider from "./components/ProductSlider";
 
 export default function Homepage() {
   const router = useRouter();
-  const reload=useRouter();
  
   useEffect(() => {
-    reload.refresh();
     getCollections();
     // getProducts();
     getLaddooDesighee();

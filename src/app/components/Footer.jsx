@@ -130,7 +130,7 @@ export default function Footer() {
             <h5>Get In Touch With Us</h5>
           <p>
             Customer Care - 6307010388 ( Mon-Sat : 9 AM to 7 PM ) <br></br>
-            Email : journywithabhipandit@gmail.com , indiankissanvns@gmail.com<br></br>
+            Email : laddoostory@gmail.com<br></br>
             Address: S-28/56 R-9 Anula Mahadev Nagar Colony, Varanasi 
           </p>
             </div>
@@ -173,7 +173,7 @@ export default function Footer() {
           <h5>Get In Touch With Us</h5>
           <p>
             Customer Care - 6307010388 ( Mon-Sat : 9 AM to 7 PM ) <br></br>
-            Email : journywithabhipandit@gmail.com , indiankissanvns@gmail.com<br></br>
+            Email :laddoostory@gmail.com<br></br>
             Address: S-28/56 R-9 Anula Mahadev Nagar Colony, Varanasi 
           </p>
         </div>
