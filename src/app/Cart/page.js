@@ -25,7 +25,7 @@ export default function Cart() {
   let { paymentAmount, updatePaymentAmount, addProductDetails } = usePayment();
 
   useEffect(() => {
-    let withoutDiscountAmount=0;
+    let calculatedWithoutDiscountAmount=0;
     let calculatedTotalAmount = 0;
     let calculatedTotalDiscount = 0; // New variable to track total discount
     let updatedProducts = [];
