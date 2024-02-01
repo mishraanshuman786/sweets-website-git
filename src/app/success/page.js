@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "./Success.css";
 import axios from "axios";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 function Success() {
   const backButtonRouter = useRouter();
