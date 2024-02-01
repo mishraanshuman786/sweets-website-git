@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { usePayment } from "@/context/PaymentContext";
 import { v4 as uuidv4 } from "uuid";
+import CustomNavbar from "./components/CustomNavbar";
 
 const Pay = () => {
   let { paymentAmount, paymentAddress, updatePaymentAddress, productDetails } =
@@ -64,8 +65,12 @@ const Pay = () => {
       console.error("Error making payment:", error.message);
     }
   };
+ 
 
   return (
+    <div>
+      {/* navbar  */}
+      <CustomNavbar />
     <div className="container mt-5">
       <form className="text-white p-4 rounded" style={{backgroundColor:"#6610f2"}} onSubmit={handleSubmit}>
         <h2 className="text-center mb-4">Payment Form</h2>
@@ -157,6 +162,7 @@ const Pay = () => {
           <strong>Pay Now</strong>
         </button>
       </form>
+    </div>
     </div>
   );
 };
