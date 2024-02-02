@@ -371,11 +371,12 @@ export default function Homepage() {
           </div>
         </div>
       </div>
-      {/* whatsapp content */}
+      {/* whatsapp */}
       <div
                 className="fixed-bottom"
                 style={{ marginBottom: 100, marginLeft: 1600, width: 100 }}
               >
+                {/* whatsapp content */}
                 <Link
                   className="show-tool-tip"
                   href="https://wa.me/916307010388"
