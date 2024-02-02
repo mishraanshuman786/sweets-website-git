@@ -15,7 +15,7 @@ export async function POST(req){
           );
     }catch(error)
     {
-        console.log(error);
+        
         NextResponse.json(
             { message: "An error occurred while saving the transaction details into the Database.", ok: false },
             { status: 500 }

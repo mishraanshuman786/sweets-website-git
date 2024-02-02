@@ -36,7 +36,7 @@ function Success() {
             productDetails: presentProductDetails,
           });
 
-          console.log("Axios Response Success Page:", response.data);
+         
 
           // Redirect to the home page after 5 seconds
           const intervalId = setInterval(() => {
@@ -48,7 +48,7 @@ function Success() {
             router.replace("/");
           }, 5000);
         } else {
-          console.log("api not called");
+         
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -102,6 +102,7 @@ function Success() {
 
       setTimeout(() => {
         clearInterval(intervalId);
+        localStorage.setItem("reload",true);
         router.replace("/");
       }, 5000);
     } catch (error) {
@@ -109,11 +110,7 @@ function Success() {
     }
   }
 
-  console.log("present Payment Address:", presentPaymentAddress);
-  console.log("present ProductDetails:", presentProductDetails);
-  console.log("present Payment Amount:", presentPaymentAmount);
-  console.log("present User Id:", presentUserId);
-  console.log("present order id:", presentOrderId);
+ 
 
   return (
     <div className="container">

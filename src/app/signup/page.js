@@ -26,9 +26,9 @@ function Signup() {
       e.preventDefault();
       setLoading(true);
       // Handle signup form submission logic here using the 'user' state
-      console.log("User Information:", user);
+     
      const response=await axios.post("api/users/signup",user);
-     console.log("Success:",response.data);
+    
      router.push("/login");
 
       toast.success("Username: " + user.username+" with email: "+user.email+" created Successfully.", { position: "top-right" });

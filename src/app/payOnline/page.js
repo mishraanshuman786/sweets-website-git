@@ -1,13 +1,16 @@
 "use client"
 import React, { useState } from "react";
+import "./onlinePay.css";
 import { useRouter } from "next/navigation";
 import { usePayment } from "@/context/PaymentContext";
 import { v4 as uuidv4 } from "uuid";
 import CustomNavbar from "../components/CustomNavbar";
 import Footer from "../components/Footer";
+
 const Pay = () => {
-  let { paymentAmount, paymentAddress, updatePaymentAddress, productDetails } =
+  let { paymentAmount,paymentAddress, updatePaymentAddress, productDetails } =
     usePayment();
+
   const [formData, setFormData] = useState({
     name: paymentAddress.name,
     mobile: paymentAddress.mobileNumber,
@@ -40,7 +43,7 @@ const Pay = () => {
     localStorage.setItem("paymentAmount", paymentAmount);
     localStorage.setItem("paymentAddress", JSON.stringify(paymentAddress));
     localStorage.setItem("productDetails", JSON.stringify(productDetails));
-    console.log("Form submitted:", formData);
+   
     makePayment();
   };
 
@@ -59,8 +62,8 @@ const Pay = () => {
       }
 
       const responseData = await response.json();
-      console.log("server response from custom phonepey:", responseData);
-      router.push(responseData.data);
+     
+      router.replace(responseData.data);
     } catch (error) {
       console.error("Error making payment:", error.message);
     }

@@ -1,6 +1,6 @@
 import { connectionSrc } from "@/library/db";
 import { DeliveryAddress } from "@/library/model/deliveryaddress";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 
 //   Post method to add or update a delivery address for the perticular user
@@ -34,12 +34,11 @@ export async function POST(request) {
     // Fetch the updated delivery addresses
     const updatedAddresses = await DeliveryAddress.findOne({ userId: id });
 
-    console.log("Updated addresses:", updatedAddresses.addresses);
-
+    
     return NextResponse.json({ status: true, data: updatedAddresses.addresses });
 
   } catch (error) {
-    console.log("Adding address error:", error.message);
+   
     return NextResponse.json({ status: false });
   }
 }

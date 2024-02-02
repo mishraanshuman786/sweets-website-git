@@ -94,7 +94,7 @@ const PaymentForm = () => {
 
           // fetching addresses from the database
           fetchData();
-          console.log("saving response", response);
+         
         }
       } else {
         alert("Please fill all the fileds.....");

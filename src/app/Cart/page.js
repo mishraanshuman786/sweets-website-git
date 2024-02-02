@@ -9,6 +9,7 @@ import { usePayment } from "@/context/PaymentContext";
 import CustomNavbar from "@/app/components/CustomNavbar";
 import Footer from "@/app/components/Footer";
 import "./Cart.css";
+import CartProductShowing from "../components/CartProductsShowing";
 
 
 export default function Cart() {
@@ -168,159 +169,7 @@ export default function Cart() {
               const productWeight = productWeights[item._id] || 1;
 
               return (
-                <div
-                  style={{
-                    border: "1px solid grey",
-                    backgroundColor: "white",
-                    margin: 8,
-                    borderRadius: 6,
-                    padding: 6,
-                  }}
-                  key={item._id}
-                >
-                  <h3 style={{ color: "brown" }}>{item.productName}</h3>
-                  <div style={{ display: "flex", overflowX: "auto" }}>
-                    {item.images.map((ele, index) => {
-                      let url = `/ProductImages/${ele}.jpg`;
-                      return (
-                        <Image
-                          src={url}
-                          width={180}
-                          height={180}
-                          style={{
-                            border: "1px solid grey",
-                            borderRadius: 6,
-                            margin: 6,
-                          }}
-                          alt="Product Images"
-                          key={index}
-                        />
-                      );
-                    })}
-                  </div>
-
-                  {item.category[item.categoryIndex] &&
-                  item.category[item.categoryIndex].price !== undefined ? (
-                    <h4>
-                      <span style={{ marginLeft: 20 }}>&#8377;</span>
-                      {item.category[item.categoryIndex].price} Rs/kg
-                    </h4>
-                  ) : null}
-
-                  <div>
-                    {[...Array(5)].map((_, index) => {
-                      return item.category[item.categoryIndex].rating >
-                        index ? (
-                        <IoStar className="ms-1" />
-                      ) : (
-                        <FaRegStar className="ms-1" />
-                      );
-                    })}
-                  </div>
-
-                  <div
-                    style={{
-                      width: 160,
-                      padding: 0,
-                      height: 40,
-                      border: "1px solid black",
-                      fontSize: 25,
-                      fontWeight: "bold",
-                      borderRadius: 6,
-                      userSelect: "none",
-                      marginTop: 6,
-                    }}
-                  >
-                    <div
-                      style={{
-                        height: 38,
-                        display: "inline-block",
-                        width: 29,
-                        textAlign: "center",
-                        cursor: "pointer",
-                      }}
-                      onClick={() => {
-                        setProductWeights((prevWeights) => ({
-                          ...prevWeights,
-                          [item._id]:
-                            productWeight > 0.25 ? productWeight - 0.25 : 0.25,
-                        }));
-                      }}
-                    >
-                      -
-                    </div>
-                    <div
-                      style={{
-                        display: "inline-block",
-                        width: 98,
-                        textAlign: "center",
-                      }}
-                    >
-                      {productWeight}kg
-                    </div>
-                    <div
-                      style={{
-                        display: "inline-block",
-                        height: 38,
-                        width: 29,
-                        textAlign: "center",
-                        cursor: "pointer",
-                      }}
-                      onClick={() =>
-                        setProductWeights((prevWeights) => ({
-                          ...prevWeights,
-                          [item._id]:
-                            productWeight < 50 ? productWeight + 0.25 : 50,
-                        }))
-                      }
-                    >
-                      +
-                    </div>
-                  </div>
-
-                  <h3 className="pt-2">
-                    Total Amount:
-                    <span>
-                      &#8377;
-                      <strike>
-                        {item.category[item.categoryIndex].price *
-                          productWeight}
-                      </strike>
-                      <span style={{ marginLeft: 10 }}>
-                        &#8377;{(calculateTotalAmount(item, productWeight)).toFixed(2)} Rs.
-                      </span>
-                    </span>
-                  </h3>
-
-                  <div style={{ display: "flex", flexDirection: "column" }}>
-                    <button
-                      class="btn btn-primary"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal2"
-                      style={{
-                        width: 145,
-                        height: 44,
-                        borderRadius: 6,
-                        fontSize: 14,
-                        color: "white",
-                        margin: 15,
-                        marginTop: 8,
-                        border: "none",
-                        backgroundColor: "brown",
-                      }}
-                      onClick={() =>
-                        dispatch({
-                          type: "REMOVE_FROM_CART",
-                          payload: {
-                            productId: item._id,
-                          },
-                        })
-                      }
-                    >
-                      Remove To Cart
-                    </button>
-                  </div>
-                </div>
+                <CartProductShowing key={item._id} item={item} productWeight={productWeight} setProductWeights={setProductWeights} dispatch={dispatch} />
               );
             })
           ) : (
@@ -333,6 +182,32 @@ export default function Cart() {
           )}
         </div>
       </div>
+
+      {/* whatsapp content */}
+
+      <div
+                className="fixed-bottom"
+                style={{ marginBottom: 100, marginLeft: 1600, width: 100 }}
+              >
+                <Link
+                  className="show-tool-tip"
+                  href="https://wa.me/916307010388"
+                  style={{ textDecoration: "none" }}
+                  target="_blank"
+                >
+                  <img
+                    src="/whatsapp.svg"
+                    alt="whatsapp"
+                    className="bounce" // Apply the bounce class here
+                    style={{
+                      width: 60,
+                      height: 60,
+                      color: "green",
+                      animation: "bounce 1s infinite",
+                    }} // Apply the bouncing animation
+                  />
+                </Link>
+              </div>
 
       <Footer />
     </div>

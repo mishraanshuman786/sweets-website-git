@@ -1,5 +1,5 @@
-/* onlinePayment.module.css */
-
+@import "bootstrap/dist/css/bootstrap.min.css";
+/* 
 .container {
   display: flex;
   align-items: center;
@@ -47,9 +47,9 @@
   height: 40px;
   border-radius: 5px;
 }
-
+/* 
 /* Media Query for smaller screens */
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
   .container {
     display: flex;
     align-items: center;
@@ -85,4 +85,4 @@
   .button {
     width: 100%;
   }
-}
+}  */

@@ -131,7 +131,7 @@ export default function Footer() {
           <p>
             Customer Care - 6307010388 ( Mon-Sat : 9 AM to 7 PM ) <br></br>
             Email : laddoostory@gmail.com<br></br>
-            Address: S-28/56 R-9 Anula Mahadev Nagar Colony, Varanasi 
+            Address: Pandeypur, Varanasi 
           </p>
             </div>
           </div>
@@ -174,7 +174,7 @@ export default function Footer() {
           <p>
             Customer Care - 6307010388 ( Mon-Sat : 9 AM to 7 PM ) <br></br>
             Email :laddoostory@gmail.com<br></br>
-            Address: S-28/56 R-9 Anula Mahadev Nagar Colony, Varanasi 
+            Address: Pandeypur, Varanasi 
           </p>
         </div>
       </div>
@@ -188,7 +188,8 @@ export default function Footer() {
         <div className="d-md-flex justify-content-between">
           <div>
             <h6>@2023 Ladoo Story</h6>
-            <h6>All Rights Reserverd</h6>
+            <h6>All Rights Reserverd </h6>
+            <h6>Developed by Hindsol Pvt. Ltd.</h6>
           </div>
 
           <div>

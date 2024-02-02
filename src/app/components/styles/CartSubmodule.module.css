@@ -1,0 +1,65 @@
+/* ProductItem.module.css */
+
+.productContainer {
+    border: 1px solid grey;
+    background-color: white;
+    margin: 8px;
+    border-radius: 6px;
+    padding: 6px;
+  }
+  
+  .productName {
+    color: brown;
+  }
+  
+  .productImagesContainer {
+    display: flex;
+    overflow-x: auto;
+  }
+  
+  .productImage {
+    border: 1px solid grey;
+    border-radius: 6px;
+    margin: 6px;
+  }
+  
+  .productPrice {
+    margin-left: 20px;
+  }
+  
+  .productRating {
+    width: 160px;
+    padding: 0;
+    height: 40px;
+    border: 1px solid black;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 6px;
+    user-select: none;
+    margin-top: 6px;
+  }
+  
+  .productWeightButton {
+    height: 38px;
+    display: inline-block;
+    width: 29px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .totalAmount {
+    padding-top: 2em;
+  }
+  
+  .removeButton {
+    width: 145px;
+    height: 44px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: white;
+    margin: 15px;
+    margin-top: 8px;
+    border: none;
+    background-color: brown;
+  }
+  

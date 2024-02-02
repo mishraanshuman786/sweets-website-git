@@ -1,7 +1,7 @@
 import { connectionSrc } from "@/library/db";
 import { Cart } from "@/library/model/cart";
 import mongoose from "mongoose";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
@@ -24,10 +24,8 @@ export async function POST(request) {
         { new: true } // Return the updated document
       );
 
-      console.log(`Cart updated for user with ID ${updatedCart.user}`);
-    } else {
-      console.log("Cart not found for the user.");// Add a log or handle as needed
-    }
+     
+    } 
 
     // Setting the cookies
     const response = NextResponse.json({
@@ -38,7 +36,7 @@ export async function POST(request) {
 
     return response;
   } catch (error) {
-    console.log("Error:", error.message);
+   
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

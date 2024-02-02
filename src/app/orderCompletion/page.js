@@ -13,7 +13,7 @@ const OrderCompletion = () => {
     try {
       // Check if orderId is entered before making the request
       if (!orderId) {
-        console.log('Please enter an Order ID.');
+       
         return;
       }
 
@@ -23,14 +23,14 @@ const OrderCompletion = () => {
       // Check if the order is found
       if (response.data) {
         setDetails(response.data.order);
-        console.log(response.data)
+       
         setOrderStatus(!response.data.order.orderCompleted);
       } else {
         setDetails(null);
         setOrderStatus(false);
       }
 
-      console.log('Search Order Response:', response.data);
+     
     } catch (error) {
       console.error('Error searching for order:', error.message);
     }
@@ -40,7 +40,7 @@ const OrderCompletion = () => {
     try {
       // Check if orderId is entered before making the request
       if (!orderId) {
-        console.log('Please enter an Order ID.');
+       
         return;
       }
 
@@ -56,7 +56,7 @@ const OrderCompletion = () => {
         setDetails(null);
       }
 
-      console.log('Search Order Response:', response.data);
+     
     } catch (error) {
       console.error('Error searching for order:', error.message);
     }

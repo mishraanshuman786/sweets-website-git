@@ -97,7 +97,7 @@ function sendDeliveryBoyEmail(orderId, userId, amount, address,productDetails) {
     if (error) {
       console.error("Error sending email:", error.message);
     } else {
-      console.log("Email sent:", info.response);
+      
     }
   });
 }

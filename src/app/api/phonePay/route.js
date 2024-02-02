@@ -49,7 +49,7 @@ async function callPhonePey(muid,mobile,amount) {
 
   try {
     const response = await axios.request(options);
-    console.log("response data:", response.data.data.instrumentResponse.redirectInfo);
+    
 
     const redirectUrl = response.data.data.instrumentResponse.redirectInfo.url;
     return redirectUrl;
@@ -65,7 +65,7 @@ export async function POST(request) {
    
 
     const response = await callPhonePey(muid,mobile,amount);
-    console.log(response);
+   
 
     if (response) {
       return NextResponse.json({ status: true, data: response });

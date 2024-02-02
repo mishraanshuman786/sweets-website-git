@@ -1,5 +1,4 @@
 "use client";
-import styles from "./login.css";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
@@ -41,7 +40,7 @@ function Login() {
 
       // fetching cart data from the particular user cart
       const cartObject= await axios.post("api/cart/fetchCart", response.data);
-      console.log("cartObject:",cartObject.data.data.cartItems);
+     
        // Dispatch AUTH_SUCCESS action with user-specific cart data
        if(cartObject.status===200 && cartObject.data.data.cartItems!=null)
        {

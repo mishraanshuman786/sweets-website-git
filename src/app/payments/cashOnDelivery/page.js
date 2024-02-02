@@ -68,7 +68,7 @@ const CashOnDelivery = () => {
       });
 
       // Handle the response as needed
-      console.log("Axios Response:", response.data);
+     
       router.push("/");
 
       toast.success(

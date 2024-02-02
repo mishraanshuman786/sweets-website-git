@@ -6,14 +6,21 @@ import "./components/styles/page.css";
 import Link from "next/link";
 import Slider from "./components/Slider";
 import { CartState } from "@/context/Context";
-import { useRouter } from "next/navigation";
+import HomePageDescription from "./components/HomePageDescription";
 
 // import Popup from "./components/Popup";
 import ReviewSlider from "./components/ReviewSlider";
 import ProductSlider from "./components/ProductSlider";
 
 export default function Homepage() {
-  const router = useRouter();
+  
+  useEffect(()=>{
+      
+      if(localStorage.getItem("reload")){
+        window.location.reload();
+        localStorage.removeItem("reload");
+      }
+  });
  
   useEffect(() => {
     getCollections();
@@ -42,8 +49,8 @@ export default function Homepage() {
     dispatch,
   } = CartState();
 
-  console.log("first:", collections);
-  console.log("login status:", loginStatus);
+ 
+ 
   async function getCollections() {
     let collectionData = await fetch("api/collections");
     collectionData = await collectionData.json();
@@ -145,62 +152,8 @@ export default function Homepage() {
           index={1}
         />
         <hr />
-        {/* Description */}
-        <div className="container">
-          <h2 style={{ textAlign: "center", color: "brown" }}>
-            Ladoo Story- Flavours of India
-          </h2>
-          
-          <p
-            style={{
-              textAlign: "justify",
-              padding: 12,
-              color: "black",
-              fontSize: 18,
-            }}
-          >
-            Hello laddoos lovers , Your most welcome in LADDOO STORY family,Our
-            ‘Homemade’ box of Laddoos, carries a ‘token of love’ for you, your
-            family & friends. Yes, it is indeed a ‘token of love’ because we at
-            Simply Laddoos nurture our sweets with love combined with finest
-            ingredients cooked in very hygienic conditions. Every piece promises
-            to deliver you satisfaction of the cost. These little gems will
-            tickle your palate and leave you wanting for more. All our sweets
-            are cooked in ‘Desi Ghee’ incorporating traditional methods of
-            cooking. Our Laddoos are free from additives, needs no refrigeration
-            and have long shelf life. ‘Laddu Story’ gives you a trust of purity,
-            combined with ‘Homemade’ taste. Hope you enjoy our sweets and
-            remember us in your blessings. We are sell sugar or without sugar
-            laddu on your order YES! We mean that, because that’s what you are
-            buying in the form of sweet in every other sweet shop. Our Laddus
-            are made with all-natural Jaggery and Ghee.
-          </p>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <h5>FSSAI License- 122222999000322</h5>
-            <button
-              onClick={() => router.push("/https://wa.me/917706087842")}
-              style={{
-                width: "60%",
-                height: 60,
-                borderRadius: 6,
-                fontSize: 18,
-                color: "white",
-                margin: 10,
-                border: "none",
-                backgroundColor: "brown",
-              }}
-            >
-              Explore More
-            </button>
-          </div>
-        </div>
+        {/* home page description component */}
+        <HomePageDescription/>
       </div>
 
       {/* ============================================================= */}
@@ -240,6 +193,7 @@ export default function Homepage() {
           }}
         />
         <button
+           
           style={{
             width: "90%",
             height: 65,
@@ -417,6 +371,30 @@ export default function Homepage() {
           </div>
         </div>
       </div>
+      {/* whatsapp content */}
+      <div
+                className="fixed-bottom"
+                style={{ marginBottom: 100, marginLeft: 1600, width: 100 }}
+              >
+                <Link
+                  className="show-tool-tip"
+                  href="https://wa.me/916307010388"
+                  style={{ textDecoration: "none" }}
+                  target="_blank"
+                >
+                  <img
+                    src="/whatsapp.svg"
+                    alt="whatsapp"
+                    className="bounce" // Apply the bounce class here
+                    style={{
+                      width: 60,
+                      height: 60,
+                      color: "green",
+                      animation: "bounce 1s infinite",
+                    }} // Apply the bouncing animation
+                  />
+                </Link>
+              </div>
 
       {/* Footer */}
       <Footer />

@@ -1,6 +1,6 @@
 import { connectionSrc } from "@/library/db";
 import { User } from "@/library/model/user";
-import { NextRequest,NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 import mongoose from "mongoose";  
 
@@ -13,7 +13,7 @@ export async function POST(request){
       });
          const reqbody=await request.json();
          const {username,email,password}=reqbody;
-         console.log(reqbody);
+       
 
         const user=await User.findOne({email})
 
@@ -35,7 +35,7 @@ export async function POST(request){
 
         const savedUser=await newUser.save();
 
-        console.log(savedUser);
+       
          
         return NextResponse.json({
             message:"User Created Successfully.",
@@ -44,7 +44,7 @@ export async function POST(request){
         })
 
     }catch(error){
-        console.log("Error:",error.message);
+       
         return NextResponse.json({error:error.message},{status:500})
     }
 }

@@ -24,7 +24,7 @@ export async function POST(request, content) {
   try {
     let data = await request.json();
     mongoose.connect(connectionSrc);
-    console.log("Data coming from the postman:",data);
+   
 
     // Adding rating and comments in the particular product
     // Using findOneAndUpdate
@@ -35,10 +35,10 @@ export async function POST(request, content) {
     );
 
     if (updatedDocument) {
-      console.log('Item added successfully:', updatedDocument);
+     
       return NextResponse.json({ result: updatedDocument, status: true });
     } else {
-      console.log('Document not found');
+     
       return NextResponse.json({ status: false });
     }
   } catch (err) {

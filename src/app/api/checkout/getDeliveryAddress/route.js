@@ -1,5 +1,5 @@
 import { connectionSrc } from "@/library/db";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { DeliveryAddress } from "@/library/model/deliveryaddress";
 import mongoose from "mongoose";
 
@@ -24,7 +24,7 @@ export async function POST(request) {
       return NextResponse.json({ status: true, data: deliveryAddresses.addresses });
   
     } catch (error) {
-      console.log("Fetching delivery addresses error:", error.message);
+
       return NextResponse.json({ status: false });
-    }
+    }     
   }

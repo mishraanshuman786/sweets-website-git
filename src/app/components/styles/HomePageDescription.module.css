@@ -1,0 +1,35 @@
+.container {
+    text-align: center;
+  }
+  
+  .heading {
+    text-align: center;
+    color: brown;
+  }
+  
+  .paragraph {
+    text-align: justify;
+    padding: 12px;
+    color: black;
+    font-size: 18px;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button {
+    width: 60%;
+    height: 60px;
+    border-radius: 6px;
+    font-size: 18px;
+    color: white;
+    margin: 10px;
+    border: none;
+    background-color: brown;
+    cursor: pointer;
+  }
+  
