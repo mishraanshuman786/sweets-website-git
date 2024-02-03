@@ -53,12 +53,14 @@ export default function RootLayout({ children }) {
               
               {children}
 
+              {/* whatsapp */}
+
               <div
         className="fixed-bottom"
         style={{ marginBottom: 100, marginLeft: 1600, width: 100 }}
       >
         {/* WhatsApp content */}
-        <a
+        <Link
           className="show-tool-tip"
           href="https://wa.me/916307010388"
           style={{
@@ -79,7 +81,7 @@ export default function RootLayout({ children }) {
               animation: "bounce 1s infinite",
             }} // Apply the bouncing animation
           />
-        </a>
+        </Link>
       </div>
               
         
