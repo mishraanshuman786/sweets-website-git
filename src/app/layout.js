@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
 
               <div
         className="fixed-bottom"
-        style={{ marginBottom: 100, marginLeft: 1600, width: 100 }}
+        style={{ marginBottom: 100, marginLeft: 800, width: 100,}}
       >
         {/* WhatsApp content */}
         <Link
