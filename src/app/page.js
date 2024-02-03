@@ -374,9 +374,8 @@ export default function Homepage() {
       {/* whatsapp */}
       <div
                 className="fixed-bottom"
-                style={{ marginBottom: 80, marginLeft: 1250, width: 100 }}
+                style={{ marginBottom: 100, marginLeft: 1600, width: 100 }}
               >
-                {/* whatsapp content */}
                 <Link
                   className="show-tool-tip"
                   href="https://wa.me/916307010388"
@@ -396,7 +395,6 @@ export default function Homepage() {
                   />
                 </Link>
               </div>
-
       {/* Footer */}
       <Footer />
     </div>
