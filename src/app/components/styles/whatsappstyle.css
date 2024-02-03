@@ -1,6 +1,16 @@
 .whatsappcontainer {
-  text-decoration: none;
-  margin-bottom: 360px;
-  margin-left: 320px;
-  width: 100px;
+    text-decoration: none;
+    margin-bottom: 110px;
+    margin-left: 780px;
+    width: 100px;
+  }
+
+@media (max-width: 630px) {
+    .whatsappcontainer {
+        text-decoration: none;
+        margin-bottom: 360px;
+        margin-left: 320px;
+        width: 100px;
+      }
+
 }
