@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
       <div className="fixed-bottom whatsappcontainer">
         <Link
           className="show-tool-tip"
-          href="https://wa.me/916307010388"
+          href="https://wa.me/916307010388"     
           style={{ textDecoration: "none" }}
           target="_blank"
         >
