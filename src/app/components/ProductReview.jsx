@@ -29,7 +29,7 @@ const ProductReviews = (props) => {
     };
     setReviews([...reviews, newReview]);
    
-   const apiUrl = `http://localhost:3000/api/products/${props.products.result[0]._id}`;
+   const apiUrl = `/api/products/${props.productId}`;
     // sending fetch post request to the products/[id] route
     let response=await fetch(apiUrl,{
       method:"POST",
@@ -46,7 +46,8 @@ const ProductReviews = (props) => {
     // Clear the input fields
     setNewRating(5);
     setNewComment("");
-
+    console.log("productId:",props.products.result[0]._id);
+  console.log("productId2:",props.productId);
    
 
     // Trigger animation
@@ -63,12 +64,14 @@ const ProductReviews = (props) => {
     return () => clearTimeout(timerId);
   }, [isAnimating]);
 
+  
+ 
   return (
     <div className={styles.productReviewsContainer}>
       {/* Display existing reviews */}
       <div className={styles.reviewsSection}>
         <h2>Customer Reviews:</h2>
-        {(reviews)?(reviews.map((review,id) =>{ return (
+        {(reviews)?(reviews.slice(-2).map((review,id) =>{ return (
           <div key={review.id} className={styles.reviewItem}>
             <div>
               {Array.from({ length: review.productRating }).map(

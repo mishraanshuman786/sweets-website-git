@@ -16,7 +16,7 @@ export default function Product({ params }) {
 
   useEffect(() => {
     getProduct();
-  });
+  },[]);
 
   const {
     state: { cart },
