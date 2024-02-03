@@ -7,6 +7,7 @@ import Link from "next/link";
 import Slider from "./components/Slider";
 import { CartState } from "@/context/Context";
 import HomePageDescription from "./components/HomePageDescription";
+import "../components/styles/whatsappstyle.css";
 
 // import Popup from "./components/Popup";
 import ReviewSlider from "./components/ReviewSlider";
@@ -373,8 +374,8 @@ export default function Homepage() {
       </div>
       {/* whatsapp */}
       <div
-                className="fixed-bottom"
-                style={{ marginBottom: 100, marginLeft: 1600, width: 100 }}
+                className="fixed-bottom whatsappcontainer"
+                
               >
                 <Link
                   className="show-tool-tip"
