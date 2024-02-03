@@ -1,18 +1,21 @@
 import React from "react";
-import Link from "next/link";
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
     <div>
       <div
         className="fixed-bottom"
         style={{ marginBottom: 100, marginLeft: 1600, width: 100 }}
       >
-        {/* whatsapp content */}
-        <Link
+        {/* WhatsApp content */}
+        <a
           className="show-tool-tip"
           href="https://wa.me/916307010388"
-          style={{ textDecoration: "none" }}
+          style={{
+            textDecoration: "none",
+            display: "block",
+            position: "relative",
+          }}
           target="_blank"
         >
           <img
@@ -26,11 +29,12 @@ const Layout = ({children}) => {
               animation: "bounce 1s infinite",
             }} // Apply the bouncing animation
           />
-        </Link>
+        </a>
       </div>
 
       {children}
     </div>
   );
 };
+
 export default Layout;
