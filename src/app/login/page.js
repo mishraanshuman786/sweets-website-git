@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import axios from "axios";
 import Link from "next/link";
+import "./login.css";
 
 import { toast } from "react-toastify";
 import { CartState } from "@/context/Context";
