@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import "../components/styles/whatsappstyle.css";
+import "../../components/styles/whatsappstyle.css";
 
 const Layout = ({ children }) => {
   return (
