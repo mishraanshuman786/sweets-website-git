@@ -1,15 +1,15 @@
 .whatsappcontainer {
     text-decoration: none;
     margin-bottom: 110px;
-    margin-left: 780px;
+    margin-left: 1201px;
     width: 100px;
   }
 
 @media (max-width: 630px) {
     .whatsappcontainer {
         text-decoration: none;
-        margin-bottom: 360px;
-        margin-left: 320px;
+        margin-bottom: 110px;
+        margin-left: 295px;
         width: 100px;
       }
 
