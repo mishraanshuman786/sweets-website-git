@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
           <div
             className="container-fluid sticky-top small-device"
             style={{
-              color: "white",
+              coclslor: "white",
               backgroundColor: "#761700",
               width:"100%",
               height: 40,
@@ -55,12 +55,12 @@ export default function RootLayout({ children }) {
 
               {/* whatsapp */}
 
-              <div
+              {/* <div
         className="fixed-bottom"
         style={{ marginBottom: 100, marginLeft: 800, width: 100,}}
       >
         {/* WhatsApp content */}
-        <Link
+        {/* <Link
           className="show-tool-tip"
           href="https://wa.me/916307010388"
           style={{
@@ -82,9 +82,9 @@ export default function RootLayout({ children }) {
             }} // Apply the bouncing animation
           />
         </Link>
-      </div>
+      </div> */}
               
-        
+        {/* */} 
             </PaymentProvider>
             
           </Context>
