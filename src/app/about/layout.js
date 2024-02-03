@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
     <div>
         <div
         className="fixed-bottom"
-        style={{ marginBottom: 100, marginLeft: 1200, width: 100,}}
+        style={{ marginBottom: 80, marginLeft: 1250, width: 100,}}
       >
         {/* WhatsApp content */}
         <Link
