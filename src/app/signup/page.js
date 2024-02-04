@@ -19,29 +19,61 @@ function Signup() {
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [loading,setLoading]=useState(false);
+  const [usernameExists, setUsernameExists] = useState(false); // New state for username existence
 
+  const checkUsernameExistence = async (username) => {
+    try {
+      const response = await axios.get(`api/users/checkUsername?username=${username}`);
+      return response.data.exists;
+    } catch (error) {
+      toast.error("Error checking username existence!",{ position: "top-right" });
+      return false;
+    }
+  };
 
-  const handleSubmit =async (e) => {
+  const handleSubmit = async (e) => {
     try {
       e.preventDefault();
       setLoading(true);
-      // Handle signup form submission logic here using the 'user' state
-     
-     const response=await axios.post("api/users/signup",user);
-    
-     router.push("/login");
 
-      toast.success("Username: " + user.username+" with email: "+user.email+" created Successfully.", { position: "top-right" });
+      const isUsernameExists = await checkUsernameExistence(user.username.trim().toLowerCase());
 
-      // reseting the fields
-      setUser({
+      if (isUsernameExists.status) {
+        setUsernameExists(true);
+        toast.error(isUsernameExists.error, { position: "top-right" });
+
+         // reseting the fields
+         setUser({
+          username: "",
+          email: "",
+          password: "",
+        });
+      } else {
+        // Handle signup form submission logic here using the 'user' state
+        const response = await axios.post("api/users/signup", user);
+        router.push("/login");
+
+        toast.success(
+          "Username: " + user.username + " with email: " + user.email + " created Successfully.",
+          { position: "top-right" }
+        );
+
+        // reseting the fields
+        setUser({
+          username: "",
+          email: "",
+          password: "",
+        });
+      }
+    } catch (error) {
+      toast.error("Signup Failed..", { position: "top-right" });
+       // reseting the fields
+       setUser({
         username: "",
         email: "",
         password: "",
       });
-    } catch (error) {
-     toast.error("Signup Failed..",{ position: "top-right" });
-    } finally{
+    } finally {
       setLoading(false);
     }
   };
@@ -51,9 +83,21 @@ function Signup() {
     // Update the 'user' state based on the input field
     setUser((prevUser) => ({
       ...prevUser,
-      [name]: value,
+      [name]: value.trim().toLowerCase(),
     }));
   };
+
+  // const handleSignupClick = async () => {
+  //   const isUsernameExists = await checkUsernameExistence(user.username);
+
+  //   if (isUsernameExists.status) {
+  //     setUsernameExists(true);
+  //     toast.error(isUsernameExists.error, { position: "top-right" });
+  //   } else {
+  //     // Proceed with the signup logic
+  //     handleSubmit();
+  //   }
+  // };
 
   useEffect(() => {
     if (
@@ -65,7 +109,9 @@ function Signup() {
     } else {
       setButtonDisabled(true);
     }
-  }, [user]);
+  }, [user,usernameExists]);
+
+
   return (
     <div className={styles["signup-container"]}>
       <div
@@ -112,7 +158,7 @@ function Signup() {
             </div>
 
             <div className={styles["form-group"]}>
-              <button type="submit" disabled={buttonDisabled}>
+              <button type="submit"  disabled={buttonDisabled}>
                 Sign Up
               </button>
             </div>
