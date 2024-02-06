@@ -122,7 +122,9 @@ function Login() {
               </button>
 
               {/* forgotpassword */}
-            <Link href="/forgotpassword">Forgot Password</Link>
+              <button type="button" onClick={()=>router.push("/forgotpassword")} >
+                Forgot Password
+              </button>
               <p style={{ fontSize: 20, fontWeight: "normal", marginTop: 10 }}>
                 If you are not already Registered. Go To{" "}
                 <Link href="/signup">Sign Up Page</Link>

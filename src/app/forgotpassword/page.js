@@ -28,6 +28,28 @@ const ForgotPassword = () => {
             required
           />
         </div>
+        <div className="form-group">
+          <label htmlFor="username">New Password:</label>
+          <input
+            type="password"
+            id="username"
+            name="username"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="username">Confirm Password:</label>
+          <input
+            type="password"
+            id="username"
+            name="username"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            required
+          />
+        </div>
         <button type="submit">Reset Password</button>
       </form>
     </div>
