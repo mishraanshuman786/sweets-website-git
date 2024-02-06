@@ -43,6 +43,7 @@ export default function RootLayout({ children }) {
             }}
           >
             <p>Powered By NAGINA FOODS</p>
+            <p>Free Delivery Across India on orders above Rs. 999/-</p>
           </div>
           
 
