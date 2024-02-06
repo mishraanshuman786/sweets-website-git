@@ -42,8 +42,8 @@ export default function RootLayout({ children }) {
               zIndex: 100,
             }}
           >
-            <div className="fluid1" style={{borderRight: "2px solid white", paddingRight: "8px", height: "20px" }}><span>Powered By NAGINA FOODS</span></div>
-            <div className="fluid1" style={{borderRight: "2px solid white", paddingRight: "8px", height: "20px" }}><span>Free Delivery Across India on orders above Rs. 999/-</span></div>
+            <div className="fluid1" style={{borderRight: "2px solid white", paddingRight: "10px", height: "20px" }}><span>Powered By NAGINA FOODS</span></div>
+            <div className="fluid1" style={{paddingLeft: "10px" }}><span>Free Delivery Across India on orders above Rs. 999/-</span></div>
           </div>
           
 
