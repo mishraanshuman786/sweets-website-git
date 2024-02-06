@@ -41,14 +41,11 @@ const ProductReviews = (props) => {
 
     response=await response.json();
 
-    console.log("Response sending by the api after updating rating and price:",response);
+   
 
     // Clear the input fields
     setNewRating(5);
-    setNewComment("");
-    console.log("productId:",props.products.result[0]._id);
-  console.log("productId2:",props.productId);
-   
+    setNewComment("");   
 
     // Trigger animation
     setIsAnimating(true);

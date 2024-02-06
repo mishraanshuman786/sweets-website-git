@@ -39,7 +39,7 @@ const ForgotPassword = () => {
       body: jsonData,
     });
     const responseData = await response.json();
-    console.log("forgot password response:", responseData);
+   
     if (responseData.status) {
       alert(responseData.message);
       // Reset the form

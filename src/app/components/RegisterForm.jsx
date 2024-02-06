@@ -53,7 +53,7 @@ export default function RegisterForm() {
           setPassword("");
         }
       } catch (error) {
-        console.log("error:", error);
+        
       }
     }
   }

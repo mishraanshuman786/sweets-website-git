@@ -36,7 +36,7 @@ const ProductSlider = (props) => {
     setScrollPosition((prevPosition) => Math.max(0, prevPosition - 1));
   };
 
-  console.log("content:", props.data);
+  
 
   return (
     <div style={{ position: "relative", width: "85%", margin: "auto" }}>

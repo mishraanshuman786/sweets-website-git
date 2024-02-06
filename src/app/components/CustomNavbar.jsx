@@ -121,7 +121,6 @@ const CustomNavbar= () => {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
-  console.log("collections:",navCollections);
 
   return (
     <nav className={styles.navbar}>
@@ -432,7 +431,7 @@ const CustomNavbar= () => {
                         updatedLoginStatusString
                       );
                       setUserDetails(JSON.parse(updatedLoginStatusString));
-                      console.log("Logout response:", response);
+                     
                     }}
                   >
                     LogOut
@@ -567,7 +566,7 @@ const CustomNavbar= () => {
                         updatedLoginStatusString
                       );
                       setUserDetails(JSON.parse(updatedLoginStatusString));
-                      console.log("Logout response:", response);
+                     
                     }}
                   >
                     LogOut
