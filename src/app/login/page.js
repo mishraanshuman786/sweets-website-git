@@ -122,7 +122,7 @@ function Login() {
               </button>
 
               {/* forgotpassword */}
-              <button type="button" onClick={()=>router.push("/forgotpassword")} >
+              <button style={{marginLeft:10}} type="button" onClick={()=>router.replace("/forgotpassword")} >
                 Forgot Password
               </button>
               <p style={{ fontSize: 20, fontWeight: "normal", marginTop: 10 }}>
