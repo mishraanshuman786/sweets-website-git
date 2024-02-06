@@ -8,7 +8,7 @@ import Slider from "./components/Slider";
 import { CartState } from "@/context/Context";
 import HomePageDescription from "./components/HomePageDescription";
 import { useRouter } from "next/navigation";
-
+import "./components/styles/whatsappstyle.css";
 // import Popup from "./components/Popup";
 import ReviewSlider from "./components/ReviewSlider";
 import ProductSlider from "./components/ProductSlider";
