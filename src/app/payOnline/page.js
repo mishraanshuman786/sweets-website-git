@@ -183,7 +183,7 @@ const Pay = () => {
             disabled
           />
         </div>
-        <button className="btn btn-light" type="submit">
+        <button className="btn btn-light" type="button" onClick={handleSubmit}>
           <strong>Pay Now</strong>
         </button>
       </form>
