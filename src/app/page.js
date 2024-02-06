@@ -196,7 +196,7 @@ export default function Homepage() {
         <Link href="https://laddoostory.com/contact"><button
            
           style={{
-            width: "90%",
+            width: "100%",
             height: 65,
             fontSize: 20,
             color: "white",
