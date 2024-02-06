@@ -96,7 +96,7 @@ const Pay = () => {
       {/* navbar  */}
       <CustomNavbar />
     <div className="container mt-5">
-      <form className="text-white p-4 rounded" style={{backgroundColor:"#6610f2"}} onSubmit={handleSubmit}>
+      <form className="text-white p-4 rounded" style={{backgroundColor:"#6610f2"}} >
         <h2 className="text-center mb-4">Payment Form</h2>
         <div className="mb-3">
           <label className="form-label">
@@ -182,7 +182,7 @@ const Pay = () => {
             disabled
           />
         </div>
-        <button className="btn btn-light" type="button" onClick={handleSubmit}>
+        <button className="btn btn-light" type="button" onClick={()=>handleSubmit()}>
           <strong>Pay Now</strong>
         </button>
       </form>
