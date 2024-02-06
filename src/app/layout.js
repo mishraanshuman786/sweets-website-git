@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
             style={{
               color: "white",
               backgroundColor: "#761700",
-              width:"100%",
+              width: "100%",
               height: 40,
               display: "flex",
               alignItems: "center",
@@ -42,20 +42,11 @@ export default function RootLayout({ children }) {
               zIndex: 100,
             }}
           >
-            <div className="fluid1" style={{borderRight: "2px solid white", paddingRight: "10px", height: "20px" }}><span>Powered By NAGINA FOODS</span></div>
-            <div className="fluid1" style={{paddingLeft: "10px" }}><span>Free Delivery Across India on orders above Rs. 999/-</span></div>
+            <p>Free Delivery Across India on orders above Rs. 999/-</p>
           </div>
-          
 
           <Context>
-            <PaymentProvider>
-
-              
-              
-              {children}
-
-            </PaymentProvider>
-            
+            <PaymentProvider>{children}</PaymentProvider>
           </Context>
         </AuthProvider>
       </body>
