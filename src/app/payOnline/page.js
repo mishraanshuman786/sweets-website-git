@@ -70,32 +70,26 @@ const Pay = () => {
     }
   };
 
-  // Display a warning message when the page is reloaded
+  // Display a confirmation alert when the page is reloaded
   useEffect(() => {
     const handleBeforeUnload = (event) => {
-      const message =
+      event.preventDefault();
+      const confirmationMessage =
         "Are you sure you want to leave? Your changes may not be saved.";
-      event.returnValue = message; // Standard for most browsers
-      return message; // For some older browsers
-    };
-
-    const handleUnload = (event) => {
-      
-      // Redirect to homepage upon leaving the page
-      homepageRoute.replace('/');
+      event.returnValue = confirmationMessage;
+      if (typeof confirmationMessage === "string") {
+        window.confirm(confirmationMessage) && homepageRoute.replace("/");
+      }
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
-    window.addEventListener("unload", handleUnload);
 
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
-      window.removeEventListener("unload", handleUnload);
     };
-  }, []);
+  }, [homepageRoute]);
 
- 
-
+  
   return (
     <div style={{marginTop:200}}>
       {/* navbar  */}
