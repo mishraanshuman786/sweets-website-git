@@ -8,6 +8,7 @@ import CustomNavbar from "../components/CustomNavbar";
 import Footer from "../components/Footer";
 
 const Pay = () => {
+  const homepageRoute=useRouter();
   let { paymentAmount,paymentAddress, updatePaymentAddress, productDetails } =
     usePayment();
 
@@ -79,8 +80,9 @@ const Pay = () => {
     };
 
     const handleUnload = (event) => {
+      
       // Redirect to homepage upon leaving the page
-      router.replace('/');
+      homepageRoute.replace('/');
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
