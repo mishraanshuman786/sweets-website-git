@@ -38,15 +38,20 @@ const ForgotPassword = () => {
      console.log("forgot password response:",responseData);
      if(responseData.status)
      {
-      toast.success(responseData.message, { position: "top-right" });
-     }else{
-      toast.error(responseData.message, { position: "top-right" });
-     }
-
-    // Reset the form
+      alert(responseData.message);
+       // Reset the form
     setUsername('');
     setPassword('');
     setConfirmPassword('');
+    router.replace("/");
+     }else{
+    toast.error(responseData.message, { position: "top-right" });
+    setUsername('');
+    setPassword('');
+    setConfirmPassword('');
+     }
+
+   
 
     // going to homeopage for getting refresh
     router.replace("/");
