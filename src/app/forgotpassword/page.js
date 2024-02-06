@@ -1,15 +1,15 @@
-"use client";
+"use client"
 import React, { useEffect, useState } from "react";
 import "./forgotpassword.css";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const ForgotPassword = () => {
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
-
-  const [updateData, setUpdateData] = useState({});
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordMatch, setPasswordMatch] = useState(true);
 
   const router = useRouter();
 
@@ -20,10 +20,15 @@ const ForgotPassword = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    setUpdateData({
+    if (password !== confirmPassword) {
+      setPasswordMatch(false);
+      return;
+    }
+
+    const updateData = {
       username: username.trim().toLowerCase(),
       password: password,
-    });
+    };
 
     const jsonData = JSON.stringify(updateData);
     const response = await fetch("/api/users/forgotPassword", {
@@ -36,24 +41,24 @@ const ForgotPassword = () => {
     const responseData = await response.json();
     console.log("forgot password response:", responseData);
     if (responseData.status) {
-       alert(responseData.message);
+      alert(responseData.message);
       // Reset the form
       setUsername("");
       setPassword("");
       setConfirmPassword("");
-      
-      
     } else {
       toast.error(responseData.message, { position: "top-right" });
       setUsername("");
       setPassword("");
       setConfirmPassword("");
     }
-
   };
 
   return (
     <div className="forgot-password-form-container">
+      <button className="navigate" onClick={() => router.replace("/")}>
+        <FaArrowAltCircleLeft />
+      </button>
       <h2>Forgot Password</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -68,7 +73,7 @@ const ForgotPassword = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="username">New Password:</label>
+          <label htmlFor="password">New Password:</label>
           <input
             type="password"
             id="password"
@@ -79,15 +84,21 @@ const ForgotPassword = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="username">Confirm Password:</label>
+          <label htmlFor="confirmPassword">Confirm Password:</label>
           <input
             type="password"
             id="confirmPassword"
             name="confirmPassword"
             value={confirmPassword}
             onChange={(event) => setConfirmPassword(event.target.value)}
+            className={!passwordMatch ? "password-mismatch" : ""}
             required
           />
+          {!passwordMatch && (
+            <span className="error-message">
+              Passwords do not match. Please try again.
+            </span>
+          )}
         </div>
         <button type="submit">Reset Password</button>
       </form>
