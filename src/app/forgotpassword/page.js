@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import './forgotpassword.css';
 import { toast } from "react-toastify";
+import { useRouter } from 'next/navigation';
 
 const ForgotPassword = () => {
   const [username, setUsername] = useState('');
@@ -10,8 +11,11 @@ const ForgotPassword = () => {
 
   const [updateData, setUpdateData] = useState({});
 
+  const router=useRouter();
+
   useEffect(()=>{
     localStorage.setItem("reload",true);
+    
   },[]);
 
   const handleSubmit = async(event) => {
@@ -32,7 +36,7 @@ const ForgotPassword = () => {
     });
       const responseData=await response.json();
      console.log("forgot password response:",responseData);
-     if(response.status)
+     if(responseData.status)
      {
       toast.success(responseData.message, { position: "top-right" });
      }else{
@@ -43,6 +47,10 @@ const ForgotPassword = () => {
     setUsername('');
     setPassword('');
     setConfirmPassword('');
+
+    // going to homeopage for getting refresh
+    router.replace("/");
+
   };
 
   return (
