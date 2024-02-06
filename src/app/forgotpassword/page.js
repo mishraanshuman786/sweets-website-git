@@ -1,61 +1,57 @@
-"use client"
-import React, { useEffect, useState } from 'react';
-import './forgotpassword.css';
+"use client";
+import React, { useEffect, useState } from "react";
+import "./forgotpassword.css";
 import { toast } from "react-toastify";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 const ForgotPassword = () => {
-  const [username, setUsername] = useState('');
-  const [password,setPassword] = useState();
-  const [confirmPassword,setConfirmPassword] = useState();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
 
   const [updateData, setUpdateData] = useState({});
 
-  const router=useRouter();
+  const router = useRouter();
 
-  useEffect(()=>{
-    localStorage.setItem("reload",true);
-    
-  },[]);
+  useEffect(() => {
+    localStorage.setItem("reload", true);
+  }, []);
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     setUpdateData({
       username: username.trim().toLowerCase(),
-      password: password
+      password: password,
     });
 
     const jsonData = JSON.stringify(updateData);
-    const response = await fetch("/api/users/forgotPassword",{
-      method: 'PUT',
+    const response = await fetch("/api/users/forgotPassword", {
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: jsonData 
+      body: jsonData,
     });
-      const responseData=await response.json();
-     console.log("forgot password response:",responseData);
-     if(responseData.status)
-     {
-      alert(responseData.message);
-       // Reset the form
-    setUsername('');
-    setPassword('');
-    setConfirmPassword('');
-    router.replace("/");
-     }else{
-    toast.error(responseData.message, { position: "top-right" });
-    setUsername('');
-    setPassword('');
-    setConfirmPassword('');
-     }
-
-   
+    const responseData = await response.json();
+    console.log("forgot password response:", responseData);
+    if (responseData.status) {
+       alert(responseData.message);
+      // Reset the form
+      setUsername("");
+      setPassword("");
+      setConfirmPassword("");
+      
+      
+    } else {
+      toast.error(responseData.message, { position: "top-right" });
+      setUsername("");
+      setPassword("");
+      setConfirmPassword("");
+    }
 
     // going to homeopage for getting refresh
     router.replace("/");
-
   };
 
   return (
