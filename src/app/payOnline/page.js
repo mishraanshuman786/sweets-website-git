@@ -70,17 +70,13 @@ const Pay = () => {
     }
   };
 
-   // Display a confirmation alert when the page is reloaded
-   useEffect(() => {
+   // Display a warning message when the page is reloaded
+  useEffect(() => {
     const handleBeforeUnload = (event) => {
-      const confirmationMessage =
+      const message =
         "Are you sure you want to leave? Your changes may not be saved.";
-      event.returnValue = confirmationMessage;
-      if (typeof confirmationMessage === "string") {
-        if (window.confirm(confirmationMessage)) {
-          router.replace("/");
-        }
-      }
+      event.returnValue = message; // Standard for most browsers
+      return message; // For some older browsers
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
@@ -88,8 +84,13 @@ const Pay = () => {
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, [router]);
+  }, []);
 
+  useEffect(() => {
+    if (paymentAmount === 0) {
+      router.replace("/");
+    }
+  }, []);
   
   return (
     <div style={{marginTop:200}}>
