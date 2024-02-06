@@ -50,8 +50,6 @@ const ForgotPassword = () => {
       setConfirmPassword("");
     }
 
-    // going to homeopage for getting refresh
-    router.replace("/");
   };
 
   return (
