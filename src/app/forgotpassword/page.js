@@ -1,6 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import './forgotpassword.css';
+import { toast } from "react-toastify";
 
 const ForgotPassword = () => {
   const [username, setUsername] = useState('');
@@ -31,10 +32,17 @@ const ForgotPassword = () => {
     });
 
      console.log("forgot password response:",await response.json());
-    // Here you would implement the logic to reset the password using the provided username
-    console.log('Password reset request submitted for username:', username);
+     if(response.status)
+     {
+      toast.success(response.message, { position: "top-right" });
+     }else{
+      toast.error(response.message, { position: "top-right" });
+     }
+
     // Reset the form
     setUsername('');
+    setPassword('');
+    setConfirmPassword('');
   };
 
   return (
