@@ -131,10 +131,7 @@ function Login() {
              <Link href="/forgotpassword"> <button type="submit" disabled={buttonDisabled}>
                 forgot password
               </button></Link>
-              <p style={{ fontSize: 20, fontWeight: "normal", marginTop: 10 }}>
-                If you are not already Registered. Go To{" "}
-                <Link href="/signup">Sign Up Page</Link>
-              </p>
+             
             </div>
           </form>
         </div>
