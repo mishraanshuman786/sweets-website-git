@@ -30,7 +30,7 @@ const ForgotPassword = () => {
       body: jsonData 
     });
 
-     console.log("forgot password response:",response);
+     console.log("forgot password response:",await response.json());
     // Here you would implement the logic to reset the password using the provided username
     console.log('Password reset request submitted for username:', username);
     // Reset the form
