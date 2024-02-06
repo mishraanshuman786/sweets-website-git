@@ -186,10 +186,10 @@ export default function Footer() {
       >
         <hr></hr>
         <div className="d-md-flex justify-content-between">
-          <div>
-            <h6>@2023 Ladoo Story</h6>
-            <h6>All Rights Reserverd </h6>
-            <h6>Developed by Hindsol Pvt. Ltd.</h6>
+          <div className="flex">
+           <div><span className="paddingRight [2px]"> @2023 Ladoo Story</span></div>
+            <div>All Rights Reserverd </div>
+            <div>Developed by Hindsol Pvt. Ltd.</div>
           </div>
 
           <div>
