@@ -38,8 +38,7 @@ const Pay = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
 
     localStorage.setItem("paymentAmount", paymentAmount);
     localStorage.setItem("paymentAddress", JSON.stringify(paymentAddress));
