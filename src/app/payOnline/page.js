@@ -8,7 +8,7 @@ import CustomNavbar from "../components/CustomNavbar";
 import Footer from "../components/Footer";
 
 const Pay = () => {
-  const homepageRoute=useRouter();
+ 
   let { paymentAmount,paymentAddress, updatePaymentAddress, productDetails } =
     usePayment();
 
@@ -70,15 +70,16 @@ const Pay = () => {
     }
   };
 
-  // Display a confirmation alert when the page is reloaded
-  useEffect(() => {
+   // Display a confirmation alert when the page is reloaded
+   useEffect(() => {
     const handleBeforeUnload = (event) => {
-      event.preventDefault();
       const confirmationMessage =
         "Are you sure you want to leave? Your changes may not be saved.";
       event.returnValue = confirmationMessage;
       if (typeof confirmationMessage === "string") {
-        window.confirm(confirmationMessage) && homepageRoute.replace("/");
+        if (window.confirm(confirmationMessage)) {
+          router.replace("/");
+        }
       }
     };
 
@@ -87,7 +88,7 @@ const Pay = () => {
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, [homepageRoute]);
+  }, [router]);
 
   
   return (
