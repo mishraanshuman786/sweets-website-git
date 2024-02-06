@@ -27,7 +27,7 @@ const Pay = () => {
   });
 
   const router = useRouter();
-  const [isReloading, setIsReloading] = useState(false);
+  const [isReloading, setIsReloading] = useState(true);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,7 +70,7 @@ const Pay = () => {
   // Display a warning message when the page is reloaded
   useEffect(() => {
     const handleBeforeUnload = (event) => {
-      if (!isReloading) {
+      if (isReloading) {
         const message =
           "Are you sure you want to leave? Your changes may not be saved.";
         event.returnValue = message; // Standard for most browsers
