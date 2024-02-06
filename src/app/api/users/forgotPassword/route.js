@@ -25,27 +25,27 @@ export async function PUT(request) {
       user.password = hashedPassword;
       await user.save();
 
-      return NextResponse.json({
+      return NextResponse.json({data:{
         status: true,
         message: "Password updated successfully",
-      });
+      }});
     } else {
-      return NextResponse.json({
+      return NextResponse.json({data:{
         status: false,
         message: "User not found with this Username",
-      });
+      }});
     }
 
-    return NextResponse.json({
+    return NextResponse.json({data:{
       status: true,
       username: username,
       password: password,
-    });
+    }});
   } catch (error) {
     console.error(error);
-    return NextResponse.json({
+    return NextResponse.json({data:{
       status: false,
       message: "There is some error in Reseting the Password!",
-    });
+    }});
   }
 }
