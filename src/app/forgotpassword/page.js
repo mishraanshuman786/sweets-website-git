@@ -4,13 +4,33 @@ import './forgotpassword.css';
 
 const ForgotPassword = () => {
   const [username, setUsername] = useState('');
+  const [password,setPassword] = useState();
+  const [confirmPassword,setConfirmPassword] = useState();
+
+  const [updateData, setUpdateData] = useState({});
 
   useEffect(()=>{
     localStorage.setItem("reload",true);
   },[]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
+
+    setUpdateData({
+      username: username.trim().toLowerCase(),
+      password: password
+    });
+
+    const jsonData = JSON.stringify(updateData);
+    const response = await fetch("/api/users/forgotPassword",{
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: jsonData 
+    });
+
+     console.log("forgot password response:",response.data);
     // Here you would implement the logic to reset the password using the provided username
     console.log('Password reset request submitted for username:', username);
     // Reset the form
@@ -36,10 +56,10 @@ const ForgotPassword = () => {
           <label htmlFor="username">New Password:</label>
           <input
             type="password"
-            id="username"
-            name="username"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
+            id="password"
+            name="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
             required
           />
         </div>
@@ -47,10 +67,10 @@ const ForgotPassword = () => {
           <label htmlFor="username">Confirm Password:</label>
           <input
             type="password"
-            id="username"
-            name="username"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
+            id="confirmPassword"
+            name="confirmPassword"
+            value={confirmPassword}
+            onChange={(event) => setConfirmPassword(event.target.value)}
             required
           />
         </div>
