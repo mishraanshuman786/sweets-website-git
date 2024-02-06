@@ -7,7 +7,7 @@ import Link from "next/link";
 import Slider from "./components/Slider";
 import { CartState } from "@/context/Context";
 import HomePageDescription from "./components/HomePageDescription";
-import styles from "../../src/app/components/styles/whatsappstyle.css";
+import { useRouter } from "next/navigation";
 
 // import Popup from "./components/Popup";
 import ReviewSlider from "./components/ReviewSlider";
@@ -15,6 +15,7 @@ import ProductSlider from "./components/ProductSlider";
 
 export default function Homepage() {
   
+  const contactRouter=useRouter();
   useEffect(()=>{
       
       if(localStorage.getItem("reload")){
@@ -193,8 +194,8 @@ export default function Homepage() {
             borderRadius: 6,
           }}
         />
-        <Link href="https://laddoostory.com/contact"><button
-           
+          <button
+            onClick={()=>contactRouter.push("/contact")}
           style={{
             width: "800px",
             height: 65,
@@ -208,7 +209,7 @@ export default function Homepage() {
           }}
         >
           Subscribe
-        </button></Link>
+        </button>
       </div>
 
       {/* slider footer */}
