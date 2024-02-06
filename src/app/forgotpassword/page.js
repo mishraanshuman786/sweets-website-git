@@ -30,13 +30,13 @@ const ForgotPassword = () => {
       },
       body: jsonData 
     });
-
-     console.log("forgot password response:",await response.json());
+      const responseData=await response.json();
+     console.log("forgot password response:",responseData);
      if(response.status)
      {
-      toast.success(response.message, { position: "top-right" });
+      toast.success(responseData.message, { position: "top-right" });
      }else{
-      toast.error(response.message, { position: "top-right" });
+      toast.error(responseData.message, { position: "top-right" });
      }
 
     // Reset the form
