@@ -120,17 +120,18 @@ function Login() {
               <button type="submit" disabled={buttonDisabled}>
                 Log In
               </button>
+              {/* forgotpassword */}
+            <div className="form-group">
+             <Link href="/forgotpassword"> <button type="submit" disabled={buttonDisabled}>
+                forgot password
+              </button></Link>
               <p style={{ fontSize: 20, fontWeight: "normal", marginTop: 10 }}>
                 If you are not already Registered. Go To{" "}
                 <Link href="/signup">Sign Up Page</Link>
               </p>
             </div>
 
-            {/* forgotpassword */}
-            <div className="form-group">
-             <Link href="/forgotpassword"> <button type="submit" disabled={buttonDisabled}>
-                forgot password
-              </button></Link>
+            
              
             </div>
           </form>
