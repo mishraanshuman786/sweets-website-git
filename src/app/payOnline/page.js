@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import "./onlinePay.css";
 import { useRouter } from "next/navigation";
 import { usePayment } from "@/context/PaymentContext";
@@ -69,8 +69,8 @@ const Pay = () => {
     }
   };
 
-   // Display a warning message when the page is reloaded
-   useEffect(() => {
+  // Display a warning message when the page is reloaded
+  useEffect(() => {
     const handleBeforeUnload = (event) => {
       const message =
         "Are you sure you want to leave? Your changes may not be saved.";
@@ -78,12 +78,20 @@ const Pay = () => {
       return message; // For some older browsers
     };
 
+    const handleUnload = (event) => {
+      // Redirect to homepage upon leaving the page
+      router.replace('/');
+    };
+
     window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("unload", handleUnload);
 
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("unload", handleUnload);
     };
   }, []);
+
  
 
   return (
