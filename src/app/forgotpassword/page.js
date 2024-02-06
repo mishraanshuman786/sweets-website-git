@@ -1,9 +1,13 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './forgotpassword.css';
 
 const ForgotPassword = () => {
   const [username, setUsername] = useState('');
+
+  useEffect(()=>{
+    localStorage.setItem("reload",true);
+  },[]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
