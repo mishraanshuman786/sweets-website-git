@@ -193,7 +193,7 @@ export default function Homepage() {
             borderRadius: 6,
           }}
         />
-        <link href="https://laddoostory.com/contact"><button
+        <Link href="https://laddoostory.com/contact"><button
            
           style={{
             width: "90%",
@@ -208,7 +208,7 @@ export default function Homepage() {
           }}
         >
           Subscribe
-        </button></link>
+        </button></Link>
       </div>
 
       {/* slider footer */}
