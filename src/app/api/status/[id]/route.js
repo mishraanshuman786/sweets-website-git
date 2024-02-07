@@ -12,8 +12,7 @@ export async function POST(req, res) {
 
    
     const st =
-      `/pg/v1/status/${merchantId}/${transactionId}` +
-      "05992a0b-5254-4f37-86fb-e23bb79ea7e7";
+      `/pg/v1/status/${merchantId}/${transactionId}` +`${process.env.NEXT_SALT_KEY}`;
     const dataSha256 = sha256(st);
 
     const checksum =
