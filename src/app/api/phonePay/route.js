@@ -32,7 +32,7 @@ async function callPhonePey(muid,mobile,amount) {
   const checksum = dataSHa256 + "###1";
 
   // sending api request
-  const UAT_PAY_API_URL = `https://api.phonepe.com/apis/hermes/pg/v1/pay`;
+  const UAT_PAY_API_URL = `https://api.phonepe.com/apis/hermes`;
 
   const options = {
     method: "POST",
