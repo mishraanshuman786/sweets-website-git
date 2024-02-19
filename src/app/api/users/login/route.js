@@ -5,7 +5,7 @@ import bcryptjs from "bcryptjs";
 import mongoose from "mongoose";  
 import Jwt from "jsonwebtoken";
 
-export async function POST(request){
+export  async function POST(request){
     try{
 
          // Connection with MongoDB
